@@ -11,16 +11,25 @@ public class Player {
 	
 	
 	private String playername;
+
 	
 	
+	public String getPlayername() {
+		
+		return this.playername;
+	}
 	
+	public void setPlayername(String username) {
+		
+		this.playername = username;
+		
+		
+		
+	}
 	
 	public void printplayername() {
 		
-		
-		System.out.println(playername);
-		
-		
+		System.out.println("Spielername: " + playername);
 	}
 	
 }

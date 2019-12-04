@@ -4,6 +4,12 @@ public class Connect4 {
 	
 	
 	
-	Display test = new Display();
+	 public static void main(String[] args) {
+	      Display test = new Display();
+	      Player player1 = new Player();
+	      
+	   }
+	
+
 
 }

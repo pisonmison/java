@@ -87,6 +87,7 @@ public class Display implements ActionListener {
 	    	   //save input string into username string and close window again(make it invisible)
 	    	   submitAction();
 	    	   secondframe.setVisible(false);
+	    	  
 	    	   System.out.println(username); //just for testing
 	    	   
 	       }
@@ -145,11 +146,11 @@ public class Display implements ActionListener {
 	  
 	  //main methode 
 	  
-	  public static void main(String[] args) {
+	  /*public static void main(String[] args) {
 	      Display test = new Display();
 	   }
 	
-	  
+	  */
 	  
 	  
 	  
