@@ -12,11 +12,10 @@ public class Player {
 	
 	private String playername;
 
-	
-	
 	public String getPlayername() {
 		
 		return this.playername;
+		
 	}
 	
 	public void setPlayername(String username) {

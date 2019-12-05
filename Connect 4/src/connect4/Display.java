@@ -1,5 +1,6 @@
 package connect4;
 
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +18,9 @@ public class Display implements ActionListener {
 	
 	private JTextField userInput;
 	
-	private String username = "";
+	//private String username = "asdasd";
+	
+	Player player1 = new Player();
 	
 	
 
@@ -87,9 +90,13 @@ public class Display implements ActionListener {
 	    	   //save input string into username string and close window again(make it invisible)
 	    	   submitAction();
 	    	   secondframe.setVisible(false);
-	    	  
-	    	   System.out.println(username); //just for testing
+	    	   //firstframe.setVisible(false);
+	    	  // Grid();
 	    	   
+	    	  
+	    	//   System.out.println(p); //just for testing
+	    	   
+	    	  
 	       }
 	    }
 	  
@@ -98,7 +105,8 @@ public class Display implements ActionListener {
 	  
 	  //method to create a small window, where the player can put in their nickname aka his player name
 	  public void createNameWindow() {
-		  
+
+		//  string name1=NULL;
 		  secondframe = new JFrame("Connect 4");
 		  secondframe.setSize(300,200);
 		  secondframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,23 +130,24 @@ public class Display implements ActionListener {
 	      
 	     
 	      secondframe.add(p3, BorderLayout.NORTH);
-	      secondframe.add(p1, BorderLayout.CENTER);
+	      secondframe.add(p1, BorderLayout.CENTER);	
 	      secondframe.add(p2, BorderLayout.SOUTH);
 	      
 	      secondframe.setLocationRelativeTo(null);
 	      secondframe.setVisible(true);
+	      userInput.getText();
 	      
-		  
+	    
 		  
 		  
 		  
 	  }
-	  
+	
 	  //save input string to string variable "username" -> next step: save to string in class Player
 	  private void submitAction() {
-		  
-		  username = userInput.getText();
-		  
+		  player1.setPlayername(userInput.getText());
+	      player1.printplayername();
+	
 	  }
 	  
 	  
@@ -150,8 +159,8 @@ public class Display implements ActionListener {
 	      Display test = new Display();
 	   }
 	
-	  */
 	  
+	  */
 	  
 	  
 	  
