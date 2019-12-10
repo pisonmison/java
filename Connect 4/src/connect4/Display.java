@@ -13,7 +13,7 @@ public class Display implements ActionListener {
 	//declare the different stuff which we add to the window like buttons, textlabels etc. for better overseeing
 	private JFrame mainframe, secondframe;
 	private JLabel textlabel1, textlabel2, ipText, portText, nameText;
-	private JButton b1, b2, connectButton;
+	private JButton b1, connectButton;
 	private JPanel p1, p2, p3;
 	
 	private JTextField ipInput, portInput, nameInput;
@@ -172,12 +172,12 @@ public class Display implements ActionListener {
 	  
 	  //main methode 
 	  
-	  /*public static void main(String[] args) {
+	  public static void main(String[] args) {
 	      Display test = new Display();
 	   }
 	
 	  
-	  */
+	  
 	  
 	  
 	  

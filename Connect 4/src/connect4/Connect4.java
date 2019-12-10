@@ -26,7 +26,7 @@ public class Connect4 {
 	
 	 public static void main(String[] args) {
 	      Display test = new Display();
-	      Grid testgrid = new Grid();
+	      GridTest testgrid = new GridTest();
 	      Player player1 = new Player();
 	      Player player2 = new Player();
 	      //player1.printplayername();
