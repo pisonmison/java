@@ -91,6 +91,7 @@ public class Display implements ActionListener {
 	    	   submitAction();
 	    	   secondframe.setVisible(false);
 	    	   mainframe.setVisible(false);
+	    	   //createGrid();
 	    	  // Grid();
 	    	   
 	    	  

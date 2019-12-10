@@ -1,66 +1,98 @@
 package connect4;
 
 
-public class Grid {
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
 
-    private int xsize;
-    private int ysize;
-    private int[][] matrix;
-    private int cells_left = 0;
+public class Grid extends JFrame {
 
-    public Grid() {
-        xsize = 7;
-        ysize = 6;
+   private  JFrame mainWindow;
+   private JButton firstArrow, secondArrow, thirdArrow, fourthArrow, fifthArrow,sixthArrow, seventhArrow; 
+   //= new JButton("Drop");
+   private JPanel[][] gridArray = new JPanel[6][7];
+   private JPanel gridPanel, mainPanel, buttonPanel;
+   private JLabel emptyLabel, redLabel, blackLabel;
+   private JPanel emptyPanel, redPanel, blackPanel;
+   private ImageIcon emptyBox, redBox, blackBox;
+   
+  
 
-        matrix = new int[xsize][ysize];
-        for (int i = 0; i < xsize; i++) {
-            for (int j = 0; j < ysize; j++) {
-                matrix[i][j] = 0;
-                cells_left++;
-            }
-        }
-    }
-    //methods to gain access to internal private data
+  public  void createGrid() {
+    mainPanel = new JPanel();
+    gridPanel = new JPanel();
+    buttonPanel = new JPanel();
 
-    public int get_cells_left() {
-        return cells_left;
-    }
+    mainPanel.setLayout(new BorderLayout());
+    gridPanel.setLayout(new GridLayout(6, 7));
+    buttonPanel.setLayout(new GridLayout(1, 7));
+    mainPanel.setBackground(new Color(23, 13, 44));
 
-    public int[][] get_matrix() {
-        return matrix;
-    }
+    emptyBox = new ImageIcon("emptyBox.jpg"); 
+    emptyLabel = new JLabel(emptyBox); 
+    emptyPanel = new JPanel();
+    emptyPanel.add(emptyLabel);
 
-    public boolean matrix_equals(int a, int b, int c) {
-        return matrix [a][b] == c;
-    }
+    mainPanel.add(gridPanel, BorderLayout.CENTER);
+    mainPanel.add(buttonPanel, BorderLayout.NORTH);
+    gridPanel.add(emptyPanel);
 
-    public void set_matrix(int a, int b, int temp_player) {
-        matrix[a][b] = temp_player;
-    }
+    buttonPanel.add(firstArrow);
+    buttonPanel.add(secondArrow);
+    buttonPanel.add(thirdArrow);
+    buttonPanel.add(fourthArrow);
+    buttonPanel.add(fifthArrow);
+    buttonPanel.add(sixthArrow);
+    buttonPanel.add(seventhArrow);
+    
+    
+    
+    
 
-    public int get_xsize() {//returns the xsize
-        return xsize;
-    }
+    mainWindow = new JFrame("Connect Four");
+    mainWindow.setContentPane(mainPanel);
+    mainWindow.setSize(846, 730);
+    mainWindow.setLocationRelativeTo(null);
+    mainWindow.setVisible(true);
+    mainWindow.setResizable(false);
 
-    public int get_ysize() {//returns the ysize
-        return ysize;
-    }
+  }
 
-    public int find_y(int x) {//checks for room in collumn and returns free spot.
-        int y = -1;
-        for (int i = 0; i < ysize; i++) {
-            if (matrix[x][i] == 0) {
-                y = i;
-            }
-        }
-        return y;
-    }
+  private JPanel greateOnePanel(){
+	    JPanel panel = new JPanel();
+	    ImageIcon icon = new ImageIcon("emptybox.jpg");
+	    JLabel label = new JLabel(icon);
+	    panel.add(label);
 
-    public int changeplayer(int player, int max_players) {
-        player++;
-        if (player > max_players) {
-            return 1;
-        }
-        return player;
-    }
-    }
+	    return panel;
+	}
+  
+  
+  public  void fillGrid () {
+	   
+	  
+	  for(int j = 0; j < 6; j++) {
+	      for (int k = 0; k < 7; k++) {
+	        gridPanel.add(greateOnePanel());
+
+	      }
+	    }
+	}
+  
+  
+  
+
+
+
+
+public static void main(String[] args) {
+    Grid tst = new Grid();//create a new instance of your class
+    
+    
+
+
+}
+
+}
