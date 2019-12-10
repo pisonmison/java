@@ -11,7 +11,12 @@ public class Player {
 	
 	
 	private String playername;
+	private String playerIP;
+	private String playerPort;
 
+	
+	//getting username input from user and assigning it to player
+	
 	public String getPlayername() {
 		
 		return this.playername;
@@ -26,9 +31,63 @@ public class Player {
 		
 	}
 	
-	public void printplayername() {
+	//getting ip adress from user input and assigning it to the player
+
+	public void setPlayerIP(String ipadress) {
 		
-		System.out.println("Spielername: " + playername);
+		this.playerIP = ipadress;
+	
 	}
 	
+	public String getPlayerIP() {
+		
+		return this.playerIP;
+		
+		}
+
+	
+	//getting port number from user input
+	
+public void setPlayerPort(String portnumber) {
+		
+		this.playerPort = portnumber;
+	
+	}
+	
+	public String getPlayerPort() {
+		
+		return this.playerPort;
+	}
+
+
+
+	
+	
+	
+	//just for testing
+		public void printplayerInfo() {
+			
+			System.out.println("Spielername: " + playername);
+			System.out.println("IP Adress of Player 1: " + playerIP);		
+			System.out.println("Port Number of Player 1: " + playerPort);
+		
+		}
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

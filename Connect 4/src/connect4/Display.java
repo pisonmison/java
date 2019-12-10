@@ -12,11 +12,11 @@ public class Display implements ActionListener {
 	// Create a simple GUI window
 	//declare the different stuff which we add to the window like buttons, textlabels etc. for better overseeing
 	private JFrame mainframe, secondframe;
-	private JLabel textlabel1, textlabel2;
-	private JButton b1, b2;
+	private JLabel textlabel1, textlabel2, ipText, portText, nameText;
+	private JButton b1, b2, connectButton;
 	private JPanel p1, p2, p3;
 	
-	private JTextField userInput;
+	private JTextField ipInput, portInput, nameInput;
 	
 	//private String username = "asdasd";
 	
@@ -83,14 +83,14 @@ public class Display implements ActionListener {
 	  public void actionPerformed(ActionEvent e) {
 	       if(e.getSource() == b1) {
 	    	   
-	    	   createNameWindow();
+	    	   createConnectWindow();
 	       }
 	       
-	       if(e.getSource() == b2) {
+	       if(e.getSource() == connectButton) {
 	    	   //save input string into username string and close window again(make it invisible)
 	    	   submitAction();
 	    	   secondframe.setVisible(false);
-	    	   //firstframe.setVisible(false);
+	    	   mainframe.setVisible(false);
 	    	  // Grid();
 	    	   
 	    	  
@@ -102,52 +102,68 @@ public class Display implements ActionListener {
 	  
 	  
 	  
-	  
-	  //method to create a small window, where the player can put in their nickname aka his player name
-	  public void createNameWindow() {
-
-		//  string name1=NULL;
-		  secondframe = new JFrame("Connect 4");
-		  secondframe.setSize(300,200);
-		  secondframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	      
-	      userInput = new JTextField(10);
-	      b2 = new JButton("Done!");
-	      b2.addActionListener(this);
-	      
-	      textlabel1 = new JLabel("Please enter your Nickname");
-	      
-	      
-	      p1 = new JPanel();
-	      p1.add(userInput, BorderLayout.CENTER);
-	      
-	      p2 = new JPanel();
-	      p2.add(b2, BorderLayout.CENTER);
-	      
-	      
-	      p3 = new JPanel();
-	      p3.add(textlabel1, BorderLayout.CENTER);
-	      
-	     
-	      secondframe.add(p3, BorderLayout.NORTH);
-	      secondframe.add(p1, BorderLayout.CENTER);	
-	      secondframe.add(p2, BorderLayout.SOUTH);
-	      
-	      secondframe.setLocationRelativeTo(null);
-	      secondframe.setVisible(true);
-	      userInput.getText();
+	 
 	      
 	    
 		  
 		  
+		////creating a window where user can input his name and ip/port to which he want to connect 
+
+	  
+	  public void createConnectWindow() {
+		  
+		  secondframe = new JFrame("Connect to Server");
+		 
+		  secondframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  
+		  //creating input fields for ip,port,name
+		  ipInput = new JTextField(10);
+		  portInput = new JTextField(6);
+		  nameInput = new JTextField(10);
+		  
+		  //creating headlines over the input fields, so user know which field is for which input
+		  ipText = new JLabel("IP-Adress");
+		  portText = new JLabel("Port Number");
+		  nameText = new JLabel("Username");
+		  
+		  
+	      
+		  connectButton = new JButton("Connect!");
+		  connectButton.addActionListener(this);
+		  
+		  //left pannel with textfields for ip/port/username
+		  p1 = new JPanel();
+		  p1.setLayout(new GridLayout(2, 3));
+		  p1.add(ipText);
+		  p1.add(portText);
+		  p1.add(nameText);
+		  p1.add(ipInput);
+		  p1.add(portInput);
+		  p1.add(nameInput);
+		  
+		  
+		  
+		  
+		  
+		  secondframe.add(p1, BorderLayout.WEST);
+		  secondframe.add(connectButton, BorderLayout.EAST);
+		  secondframe.pack();
+		  secondframe.setVisible(true);
 		  
 	  }
 	
 	  //save input string to string variable "username" -> next step: save to string in class Player
 	  private void submitAction() {
-		  player1.setPlayername(userInput.getText());
-	      player1.printplayername();
+		  
+		  //für spieler1
+		  player1.setPlayername(nameInput.getText());
+		  player1.setPlayerIP(ipInput.getText());
+		  player1.setPlayerPort(portInput.getText());
+	      player1.printplayerInfo();
 	
+	      
+	      //für spieler2
+	      
 	  }
 	  
 	  
