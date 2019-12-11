@@ -11,8 +11,12 @@ public class GridTest extends JFrame {
 	
 	
 	JFrame mainWindow;
-	JPanel buttonPanel, mainPanel, gridPanel, emptyPanel, panel1;
-	ImageIcon emptyBox;
+	JPanel buttonPanel, mainPanel;
+	static JPanel gridPanel;
+	JPanel emptyPanel;
+	JPanel panel1;
+	static ImageIcon emptyBox;
+	static JPanel[][] gridArray;
 	
 	JLabel emptyLabel;
 	
@@ -85,45 +89,43 @@ public class GridTest extends JFrame {
 		mainWindow.setVisible(true);
 		
 		
-		
+		fillGrid();
 		
 	}
+	
 	
 	
 	
 	/*private JPanel greateOnePanel(){
 		
-		private String ShowPNG(String arg){
-		      if (arg == null ) {
-		        arg = "C:/Eclipse/workspace/ShowPNG/bin/a.png";
-		      }
-		}
+		
 		      
-		      
-	    JPanel panel = new JPanel();
-	    ImageIcon icon = new ImageIcon();
-	    JLabel label = new JLabel(icon);
-	    panel.add(label);
+		gridArray[j][7] = new JPanel();
+		panel.setBackground(Color.BLACK);
+		ImageIcon icon = new ImageIcon("//C:/Users/Anton/git/java/Connect%204/resources/images/emptyBox.png");
+		panel.add(icon);
+		
+		
+	   
 
 	    return panel;
 	}
 	
-	
-	
-	
-	public  void fillGrid() {
-		   
-		  
-		  for(int j = 0; j < 6; j++) {
-		      for (int k = 0; k < 7; k++) {
-		        gridPanel.add(greateOnePanel());
-
-		      }
-		    }
-		}
-	
-	
 	*/
+	
+	
+	public static void fillGrid() {
+	    for(int j = 0; j < 6; j++) {
+	      for (int k = 0; k < 7; k++) {
+	        gridArray[j][k] = new JPanel();
+	        gridArray[j][k].add(new JLabel(emptyBox));
+	        gridPanel.add(gridArray[j][k]);
+
+	      }
+	    }
+	}
+	
+
 	
 	
 	
@@ -144,12 +146,14 @@ public class GridTest extends JFrame {
 
 public GridTest() {
 	createGameGrid();
+	fillGrid();
 	
 }
 
 
 public static void main(String[] args) {
     GridTest test = new GridTest();
+    
  }
 
 }

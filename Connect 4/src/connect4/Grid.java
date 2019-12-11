@@ -17,6 +17,7 @@ public class Grid {
    private JLabel emptyLabel, redLabel, blackLabel;
    private JPanel emptyPanel, redPanel, blackPanel;
    private ImageIcon emptyBox, redBox, blackBox;
+   private JPanel[][] gridArray;
    
   
 
@@ -56,12 +57,16 @@ public class Grid {
     buttonPanel.add(sixthArrow);
     buttonPanel.add(seventhArrow);
     
-    for(int j = 0; j < 6; j++) {
-	      for (int k = 0; k < 7; k++) {
-	        gridPanel.add(greateOnePanel());
+    
+        for(int j = 0; j < 6; j++) {
+          for (int k = 0; k < 7; k++) {
+            gridArray[j][k] = new JPanel();
+            gridArray[j][k].add(new JLabel(emptyBox));
+            gridPanel.add(gridArray[j][k]);
 
-	      }
-	    }
+          }
+        }
+    
     
    
     //creating the main frame
@@ -77,32 +82,6 @@ public class Grid {
 
   
   //create a new panel and add a picture and a label to it
-  private JPanel greateOnePanel(){
-	    JPanel panel = new JPanel();
-	    ImageIcon icon = new ImageIcon("emptybox.jpg");
-	    JLabel label = new JLabel(icon);
-	    panel.add(label);
-
-	    return panel;
-	}
-  
-  
-  /* insert the created panel above and cycle through a loop, filling the grid with empty boxes
-  until the grid is filled out*/
-
- 
- /*public  void fillGrid () {
-	   
-	  
-	  for(int j = 0; j < 6; j++) {
-	      for (int k = 0; k < 7; k++) {
-	        gridPanel.add(greateOnePanel());
-
-	      }
-	    }
-	}
-  
-  */
   
 
 public Grid() {
