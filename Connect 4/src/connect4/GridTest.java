@@ -10,31 +10,55 @@ public class GridTest extends JFrame {
 
 	
 	
-	JFrame mainWindow;
-	JPanel buttonPanel, mainPanel;
-	static JPanel gridPanel;
-	JPanel emptyPanel;
-	JPanel panel1;
-	static ImageIcon emptyBox;
-	static JPanel[][] gridArray;
+	private JFrame mainframe;
+	private JPanel buttonPanel, mainPanel,emptyPanel;
 	
+	
+	private ImageIcon emptyBox, whiteBox;
+	private JPanel[][] gridArray = new JPanel[6][7];
+	private JPanel gridPanel;
 	JLabel emptyLabel;
 	
-	JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow7;
 	
-	public void createGameGrid() {
+	static JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow7;
+	
+	public GridTest() {
+		createGameGrid();
+		fillGrid();
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public  void createGameGrid() {
 		
 	    //creating window and mainpanel
 		
-		mainWindow = new JFrame("Connect 4");
-		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainframe = new JFrame("Connect 4");
+		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
+		//mainPanel = new JPanel();
+		//mainPanel.setLayout(new BorderLayout());
 		
-		
-		
+		JPanel mainPanel = new JPanel();
+	    
+	    gridPanel = new JPanel();
+	    JPanel buttonPanel = new JPanel();
+	    
+	    
+	    //mache das layout der einzelnen bereiche
+	    mainPanel.setLayout(new BorderLayout());
+	    gridPanel.setLayout(new GridLayout(6, 7));
+	    buttonPanel.setLayout(new GridLayout(1, 7));
+	  
 		
 		
 		
@@ -67,68 +91,64 @@ public class GridTest extends JFrame {
 		gridPanel.setLayout(new GridLayout(6,7));
 		
 		
+		emptyBox = new ImageIcon("emptyBox.png"); 
+	    emptyLabel = new JLabel(emptyBox); 
+	    emptyPanel = new JPanel();
 		
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		mainPanel.add(buttonPanel, BorderLayout.NORTH);
-		mainPanel.add(gridPanel, BorderLayout.SOUTH);
-		mainWindow.add(mainPanel);
-		mainWindow.pack();
-		mainWindow.setLocationRelativeTo(null);
-		mainWindow.setVisible(true);
-		
-		
-		fillGrid();
-		
-	}
-	
-	
-	
-	
-	/*private JPanel greateOnePanel(){
-		
-		
-		      
-		gridArray[j][7] = new JPanel();
-		panel.setBackground(Color.BLACK);
-		ImageIcon icon = new ImageIcon("//C:/Users/Anton/git/java/Connect%204/resources/images/emptyBox.png");
-		panel.add(icon);
 		
 		
 	   
-
-	    return panel;
+		
+		
+		
+		
+		mainPanel.add(gridPanel);
+	    mainPanel.add(buttonPanel, BorderLayout.NORTH);
+	    
+		//insert the main panel into the frame
+	    mainframe.add(mainPanel);
+		mainframe.setSize(600,600);
+		mainframe.setLocationRelativeTo(null);
+		mainframe.setVisible(true);
+		mainframe.setResizable(true);
+		
+		
+		
+		
 	}
 	
-	*/
 	
 	
-	public static void fillGrid() {
-	    for(int j = 0; j < 6; j++) {
+	
+	
+	
+	
+
+	
+	public void fillGrid() {
+	    
+		
+		for(int j = 0; j < 6; j++) {
 	      for (int k = 0; k < 7; k++) {
-	        gridArray[j][k] = new JPanel();
-	        gridArray[j][k].add(new JLabel(emptyBox));
+	        
+	    	 JLabel label = new JLabel("test");
+	    	 
+
+	    	gridArray[j][k] = new JPanel();
+	       
+	        gridArray[j][k].setBackground(Color.RED);
+	        gridArray[j][k].add(label,BorderLayout.CENTER);
 	        gridPanel.add(gridArray[j][k]);
+	        
 
 	      }
 	    }
 	}
 	
-
-	
-	
-	
 	
 	
 	
@@ -144,11 +164,7 @@ public class GridTest extends JFrame {
 	
 
 
-public GridTest() {
-	createGameGrid();
-	fillGrid();
-	
-}
+
 
 
 public static void main(String[] args) {

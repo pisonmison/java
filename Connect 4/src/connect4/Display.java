@@ -70,7 +70,7 @@ public class Display implements ActionListener {
 	     
 	      //Display the window.
 	      mainframe.setLocationRelativeTo(null); // zeige fenster in der mitte des bildschirms an, ohne das command wirds immer links oben geöffnet
-	   
+	      mainframe.pack();
 	      mainframe.setVisible(true);
 	   }
 	   // if Object Display is made, it automatically calls the createWindow method.
