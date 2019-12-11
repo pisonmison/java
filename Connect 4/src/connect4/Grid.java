@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.*;
 import java.io.*;
 
-public class Grid extends JFrame {
+public class Grid {
 
    private  JFrame mainWindow;
    private JButton firstArrow, secondArrow, thirdArrow, fourthArrow, fifthArrow,sixthArrow, seventhArrow; 
@@ -37,15 +37,15 @@ public class Grid extends JFrame {
 
     //add empty box picture into imageicon, add the icon in the label
    
-    emptyBox = new ImageIcon("emptyBox.png"); 
+    /*emptyBox = new ImageIcon("emptyBox.png"); 
     emptyLabel = new JLabel(emptyBox); 
     emptyPanel = new JPanel();
-    emptyPanel.add(emptyLabel);
+    emptyPanel.add(emptyLabel);*/
 
     //add panels into the main panel
     mainPanel.add(gridPanel, BorderLayout.CENTER);
     mainPanel.add(buttonPanel, BorderLayout.NORTH);
-    gridPanel.add(emptyPanel);
+    //gridPanel.add(emptyPanel);
 
    //add the 7 buttons to the button panel above the grid
     buttonPanel.add(firstArrow);
@@ -56,7 +56,12 @@ public class Grid extends JFrame {
     buttonPanel.add(sixthArrow);
     buttonPanel.add(seventhArrow);
     
-    
+    for(int j = 0; j < 6; j++) {
+	      for (int k = 0; k < 7; k++) {
+	        gridPanel.add(greateOnePanel());
+
+	      }
+	    }
     
    
     //creating the main frame
@@ -65,12 +70,12 @@ public class Grid extends JFrame {
     mainWindow.setSize(846, 730);
     mainWindow.setLocationRelativeTo(null);
     mainWindow.setVisible(true);
-   // mainWindow.setResizable(false);
+    mainWindow.setResizable(false);
 
   }
  
 
-  /*
+  
   //create a new panel and add a picture and a label to it
   private JPanel greateOnePanel(){
 	    JPanel panel = new JPanel();
@@ -84,7 +89,9 @@ public class Grid extends JFrame {
   
   /* insert the created panel above and cycle through a loop, filling the grid with empty boxes
   until the grid is filled out*/
- /* public  void fillGrid () {
+
+ 
+ /*public  void fillGrid () {
 	   
 	  
 	  for(int j = 0; j < 6; j++) {
@@ -95,14 +102,19 @@ public class Grid extends JFrame {
 	    }
 	}
   
-  
+  */
   
 
-*/
+public Grid() {
+	
+	createGrid();
+	
+}
 
 
 public static void main(String[] args) {
     Grid tst = new Grid();
+    
    
     
     
