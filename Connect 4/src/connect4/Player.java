@@ -82,7 +82,7 @@ public void setPlayerPort(String portnumber) {
 //füg mal hier dein zeug ein wir commiten zsm dann ist auf dem anderen lapi alles komme gerade net da ran wenn ich morgen alles reinfüge kannst du ja schnell commiten
 
 
-//guck whatsapp
+//jetzt haste zugriff aufd alles
 
 
 
