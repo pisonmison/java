@@ -70,13 +70,14 @@ public void setPlayerPort(String portnumber) {
 			System.out.println("Spielername: " + playername);
 			System.out.println("IP Adress of Player 1: " + playerIP);		
 			System.out.println("Port Number of Player 1: " + playerPort);
+			newGrid();//nach dem Userdaten übergeben wird das Fenster von Grid öffnen
 		
 		}
 		
 
-
-
-
+		public void newGrid() {
+		GridTest testgrid = new GridTest();
+		}
 
 //fÃ¼g mal hier dein zeug ein wir commiten zsm dann ist auf dem anderen lapi alles komme gerade net da ran wenn ich morgen alles reinfÃ¼ge kannst du ja schnell commiten
 
