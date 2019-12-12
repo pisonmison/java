@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class GridTest extends JFrame {
+import java.awt.event.ActionListener;
+public class GridTest extends JFrame implements ActionListener {
 
 	
 	
@@ -20,11 +21,13 @@ public class GridTest extends JFrame {
 	JLabel emptyLabel;
 	
 	
-	static JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow7;
+	static JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
 	
 	public GridTest() {
 		createGameGrid();
 		fillGrid();
+		insertColor(); //just for testing and understanding
+
 		
 		
 	}
@@ -51,8 +54,8 @@ public class GridTest extends JFrame {
 	    
 	    //mache das layout der einzelnen bereiche
 	    mainPanel.setLayout(new BorderLayout());
-	    gridPanel.setLayout(new GridLayout(6, 7));
-	    buttonPanel.setLayout(new GridLayout(1, 7));
+	    gridPanel.setLayout(new GridLayout(4, 5));
+	    buttonPanel.setLayout(new GridLayout(1, 5));
 	  
 		
 		
@@ -63,21 +66,32 @@ public class GridTest extends JFrame {
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1, 7));
 		
-		arrow1 = new JButton("V");
-		arrow2 = new JButton("V");
-		arrow3 = new JButton("V");
-		arrow4 = new JButton("V");
-		arrow5 = new JButton("V");
-		arrow6 = new JButton("V");
-		arrow7 = new JButton("V");
+		arrow0 = new JButton("0");
+		arrow1 = new JButton("1");
+		arrow2 = new JButton("2");
+		arrow3 = new JButton("3");
+		arrow4 = new JButton("4");
+		arrow5 = new JButton("5");
+		arrow6 = new JButton("6");
 		
+		//adding actionlisteners to button;
+		arrow0.addActionListener((ActionListener) this);
+		arrow1.addActionListener((ActionListener) this);
+		arrow2.addActionListener((ActionListener) this);
+		arrow3.addActionListener((ActionListener) this);
+		arrow4.addActionListener((ActionListener) this);
+		arrow5.addActionListener((ActionListener) this);
+		arrow6.addActionListener((ActionListener) this);
+		
+		
+		buttonPanel.add(arrow0);
 		buttonPanel.add(arrow1);
 		buttonPanel.add(arrow2);
 		buttonPanel.add(arrow3);
 		buttonPanel.add(arrow4);
 		buttonPanel.add(arrow5);
 		buttonPanel.add(arrow6);
-		buttonPanel.add(arrow7);
+		
 		
 		
 		
@@ -101,8 +115,9 @@ public class GridTest extends JFrame {
 		
 		
 		
-		mainPanel.add(gridPanel);
+		mainPanel.add(gridPanel, BorderLayout.CENTER);
 	    mainPanel.add(buttonPanel, BorderLayout.NORTH);
+	 
 	    
 		//insert the main panel into the frame
 	    mainframe.add(mainPanel);
@@ -131,10 +146,12 @@ public class GridTest extends JFrame {
 		for(int j = 0; j < 6; j++) {
 	      for (int k = 0; k < 7; k++) {
 	        
+			 
+	    	 if(j==5 && k==0) {//Random Wert von Player einsetzen
 	    	
 	    	//create a label and add an image from the "img folder" into them. 
 	    	JLabel label = new JLabel("");
-	    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
+	    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 	    	label.setIcon(new ImageIcon(img));
 	    	
 	    	
@@ -145,60 +162,238 @@ public class GridTest extends JFrame {
 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
 	        gridArray[j][k].add(label);
 	        gridPanel.add(gridArray[j][k]);
-	        
-
-	      }
+	    	 }
+	    	 else {
+	 	    	//create a label and add an image from the "img folder" into them. 
+	 	    	JLabel label = new JLabel("");
+	 	    	Image img = new ImageIcon(this.getClass().getResource("/EmptyBox.png")).getImage();
+	 	    	label.setIcon(new ImageIcon(img));
+	 	    	
+	 	    	
+	 	    	
+	 	    	//insert the created image labels into the grid array until full
+	 	    	gridArray[j][k] = new JPanel();
+	 	       
+	 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+	 	        gridArray[j][k].add(label);
+	 	        gridPanel.add(gridArray[j][k]);
+	      
 	    }
 	}
-	
-	
+	}
+	}
 	//bevor du pushsr/commit erstmal ausführen! dann nimmt er änderungen wahr.verstehe
-	
 	//hier erste testfunktion zum einsetzen roter/gelber farbe
 	
-	/*public void insertColor() {
+	public void insertColor() {
 		
-		for(int j = 0; j < 6; j++) {
-		      for (int k = 0; k < 7; k++) {
+	
+		for(int j = 0; j < 1; j++) {
+			
+		      for (int k = 0; k < 1; k++) {
 		        
-		    	
-		    	if(gridArray[j][k].isEqual) {  
+				 //If player 1 press button x 
 		    	  
+		    	
 		    	//create a label and add an image from the "img folder" into them. 
 		    	JLabel label = new JLabel("");
 		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 		    	label.setIcon(new ImageIcon(img));
-		    	label.setBounds(20, 10, 40, 40);
+		    	
+		    	
+		    	
+		    	//insert the created image labels into the grid array until full
+		   // 	gridArray[j][k] = new JPanel();
+		       
+		       // gridArray[j][k].setBackground((new Color(30, 144, 255)));
+		     //   gridArray[j][k].add(label);
+		     //   gridPanel.add(gridArray[j][k]);
+		        
+		    	 
+		      }
+		    }
+		        
+		        gridPanel.revalidate();
+		        
+		        
+		    	}
+		      
+		    	
+		    
+		/////////////////action events for button input
+	
+	 public void actionPerformed(ActionEvent e) {
+	       if(e.getSource() == arrow0) {
+	    	   
+	    	   button0();
+	    	   
+	    	   //dfcfg
+	       }
+	       else if(e.getSource() == arrow1) {
+	    	   
+	    	   button1();
+	    	   
+	    	   
+	       }
+	       else if(e.getSource() == arrow2) {
+	    	   
+	    	   button2();
+	    	   
+	    	   
+	       }
+	       else if(e.getSource() == arrow3) {
+	    	   
+	    	   button3();
+	    	   
+	    	   
+	       }
+	       else if(e.getSource() == arrow4) {
+	    	   
+	    	   button4();
+	    	   
+	    	   
+	       }
+	       else if(e.getSource() == arrow5) {
+	    	   
+	    	   button5();
+	    	   
+	    	   
+	       }
+	       else if(e.getSource() == arrow6) {
+	    	   
+	    	   button6();
+	    	   
+	    	   
+	       }
+	 }
+	  
+		
+		
+		
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 public void updateGrid() {
+		    
+			
+			for(int j = 0; j < 6; j++) {
+		      for (int k = 0; k < 7; k++) {
+		        
+				 
+		    	 if(j==4 && k==0) {//Random Wert von Player einsetzen
+		    	
+		    	//create a label and add an image from the "img folder" into them. 
+		    	JLabel label = new JLabel("");
+		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+		    	label.setIcon(new ImageIcon(img));
+		    	
 		    	
 		    	
 		    	//insert the created image labels into the grid array until full
 		    	gridArray[j][k] = new JPanel();
 		       
-		        //gridArray[j][k].setBackground(Color.BLUE);
-		        gridArray[j][k].add(label,BorderLayout.CENTER);
+		        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+		        gridArray[j][k].add(label);
 		        gridPanel.add(gridArray[j][k]);
-		    	}
-
+		    	 }
+		    	 else {
+		 	    	//create a label and add an image from the "img folder" into them. 
+		 	    	JLabel label = new JLabel("");
+		 	    	Image img = new ImageIcon(this.getClass().getResource("/EmptyBox.png")).getImage();
+		 	    	label.setIcon(new ImageIcon(img));
+		 	    	
+		 	    	
+		 	    	
+		 	    	//insert the created image labels into the grid array until full
+		 	    	gridArray[j][k] = new JPanel();
+		 	       
+		 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+		 	        gridArray[j][k].add(label);
+		 	        gridPanel.add(gridArray[j][k]);
+		 	        gridPanel.revalidate();
+		 	      //  gridPanel.repaint();
 		      }
 		    }
-		
-		
-		
-		
-		
+		}
+		}
+	
+
+	public void  button0() {
+		for(int j = 0; j < 6; j++) {
+		      for (int k = 0; k < 7; k++) {
+		        
+	JLabel label = new JLabel("");
+    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+    label.setIcon(new ImageIcon(img));
+    gridArray[j][k].add(label);
+    gridPanel.add(gridArray[j][k]);
+    gridPanel.revalidate();
 	}
-	
-	
-	*/ 
-	
-	
-	
-	
-	
+		}
+	}
+	public void  button1() {
+		
+		JLabel label = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+	    label.setIcon(new ImageIcon(img));
+	    gridArray[1][1].add(label);
+	    gridPanel.add(gridArray[1][1]);
+	    gridPanel.revalidate();
+		}
+	public void  button2() {
+		
+		JLabel label = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+	    label.setIcon(new ImageIcon(img));
+	    gridArray[2][2].add(label);
+	    gridPanel.add(gridArray[2][2]);
+	    gridPanel.revalidate();
+		}
+	public void  button3() {
+		
+		JLabel label = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+	    label.setIcon(new ImageIcon(img));
+	    gridArray[3][3].add(label);
+	    gridPanel.add(gridArray[3][3]);
+	    gridPanel.revalidate();
+		}
+	public void  button4() {
+		
+		JLabel label = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+	    label.setIcon(new ImageIcon(img));
+	    gridArray[4][4].add(label);
+	    gridPanel.add(gridArray[4][4]);
+	    gridPanel.revalidate();
+		}
+	public void  button5() {
+		
+		JLabel label = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+	    label.setIcon(new ImageIcon(img));
+	    gridArray[5][5].add(label);
+	    gridPanel.add(gridArray[5][5]);
+	    gridPanel.revalidate();
+		}
+public void  button6() {
+		
+		JLabel label = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+	    label.setIcon(new ImageIcon(img));
+	    gridArray[6][6].add(label);
+	    gridPanel.add(gridArray[6][6]);
+	    gridPanel.revalidate();
+		}
 
 
-
-
+  public void test() {}
 
 public static void main(String[] args) {
     GridTest test = new GridTest();
