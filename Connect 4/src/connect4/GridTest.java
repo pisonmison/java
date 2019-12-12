@@ -202,12 +202,9 @@ public class GridTest extends JFrame implements ActionListener {
 		    	
 		    	
 		    	
-		    	//insert the created image labels into the grid array until full
-		   // 	gridArray[j][k] = new JPanel();
-		       
-		       // gridArray[j][k].setBackground((new Color(30, 144, 255)));
-		     //   gridArray[j][k].add(label);
-		     //   gridPanel.add(gridArray[j][k]);
+		    	 gridArray[4][4].add(label);
+		  	    gridPanel.add(gridArray[1][1]);
+		  	    gridPanel.revalidate();
 		        
 		    	 
 		      }
@@ -327,7 +324,8 @@ public class GridTest extends JFrame implements ActionListener {
 	public void  button0() {
 		for(int j = 0; j < 6; j++) {
 		      for (int k = 0; k < 7; k++) {
-		        
+		    	  if(j==3 && k==0) {
+		    
 	JLabel label = new JLabel("");
     Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
     label.setIcon(new ImageIcon(img));
@@ -335,16 +333,12 @@ public class GridTest extends JFrame implements ActionListener {
     gridPanel.add(gridArray[j][k]);
     gridPanel.revalidate();
 	}
+		      }
 		}
 	}
 	public void  button1() {
 		
-		JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    label.setIcon(new ImageIcon(img));
-	    gridArray[1][1].add(label);
-	    gridPanel.add(gridArray[1][1]);
-	    gridPanel.revalidate();
+		insertColor();
 		}
 	public void  button2() {
 		
@@ -384,12 +378,7 @@ public class GridTest extends JFrame implements ActionListener {
 		}
 public void  button6() {
 		
-		JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    label.setIcon(new ImageIcon(img));
-	    gridArray[6][6].add(label);
-	    gridPanel.add(gridArray[6][6]);
-	    gridPanel.revalidate();
+	insertColor();
 		}
 
 
