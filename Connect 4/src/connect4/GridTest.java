@@ -31,10 +31,6 @@ public class GridTest extends JFrame {
 	
 	
 	
-	//wann tritt der fehler auf? nahcdem du deinen eigenen code hinzugefügt hast? denke wenn ich was ändern ja ja ok ich weis warum.... wenn du etwas ändert, dann musst du das erstmal commiten, damit die allgemeine repo aktuall ist, dann erst darfst du neue änderungen pullen! lass mal tes atenooy
-	
-	
-	
 	
 	
 	public  void createGameGrid() {
@@ -196,7 +192,10 @@ public class GridTest extends JFrame {
 	
 	
 	
-	
+	public void testfürcommit() {
+		//dhdhdhdh
+		//LOLOLOL 
+	}
 
 
 
