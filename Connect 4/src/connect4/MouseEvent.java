@@ -36,6 +36,7 @@ class EventMouse implements MouseListener {
 	@Override
 	public void mouseClicked(java.awt.event.MouseEvent e) {
 		System.out.println("Clicked");
+	
 	}
 
 	@Override
@@ -52,8 +53,7 @@ class EventMouse implements MouseListener {
 
 	@Override
 	public void mouseEntered(java.awt.event.MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Koordinate X: " + e.getX() + "Koordinate Y: " + e.getY());
 	}
 
 	@Override
