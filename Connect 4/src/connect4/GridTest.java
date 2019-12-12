@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class GridTest extends JFrame implements ActionListener {
+public class GridTest extends JFrame {
 
 	
 	
@@ -31,7 +31,7 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	
 	
-	
+	//wann tritt der fehler auf? nahcdem du deinen eigenen code hinzugefügt hast? denke wenn ich was ändern ja ja ok ich weis warum.... wenn du etwas ändert, dann musst du das erstmal commiten, damit die allgemeine repo aktuall ist, dann erst darfst du neue änderungen pullen! lass mal tes atenooy
 	
 	
 	
