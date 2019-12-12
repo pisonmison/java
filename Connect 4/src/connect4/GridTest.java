@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class GridTest extends JFrame {
+public class GridTest extends JFrame implements ActionListener {
 
 	
 	
@@ -111,10 +111,11 @@ public class GridTest extends JFrame {
 	    
 		//insert the main panel into the frame
 	    mainframe.add(mainPanel);
-		mainframe.setSize(600,600);
+		mainframe.setSize(800,800);
 		mainframe.setLocationRelativeTo(null);
 		mainframe.setVisible(true);
 		mainframe.setResizable(true);
+		
 		
 		
 		
@@ -123,10 +124,9 @@ public class GridTest extends JFrame {
 	
 	
 	
+
 	
-	
-	
-	
+	////rgb blauer hingergrund: R: 30 ,G: 144, B: 255
 
 	
 	public void fillGrid() {
@@ -135,13 +135,19 @@ public class GridTest extends JFrame {
 		for(int j = 0; j < 6; j++) {
 	      for (int k = 0; k < 7; k++) {
 	        
-	    	 JLabel label = new JLabel("test");
-	    	 
-
+	    	
+	    	//create a label and add an image from the "img folder" into them. 
+	    	JLabel label = new JLabel("");
+	    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
+	    	label.setIcon(new ImageIcon(img));
+	    	
+	    	
+	    	
+	    	//insert the created image labels into the grid array until full
 	    	gridArray[j][k] = new JPanel();
 	       
-	        gridArray[j][k].setBackground(Color.RED);
-	        gridArray[j][k].add(label,BorderLayout.CENTER);
+	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+	        gridArray[j][k].add(label);
 	        gridPanel.add(gridArray[j][k]);
 	        
 
@@ -150,13 +156,42 @@ public class GridTest extends JFrame {
 	}
 	
 	
+	//hier erste testfunktion zum einsetzen roter/gelber farbe
+	
+	/*public void insertColor() {
+		
+		for(int j = 0; j < 6; j++) {
+		      for (int k = 0; k < 7; k++) {
+		        
+		    	
+		    	if(gridArray[j][k].isEqual) {  
+		    	  
+		    	//create a label and add an image from the "img folder" into them. 
+		    	JLabel label = new JLabel("");
+		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+		    	label.setIcon(new ImageIcon(img));
+		    	label.setBounds(20, 10, 40, 40);
+		    	
+		    	
+		    	//insert the created image labels into the grid array until full
+		    	gridArray[j][k] = new JPanel();
+		       
+		        //gridArray[j][k].setBackground(Color.BLUE);
+		        gridArray[j][k].add(label,BorderLayout.CENTER);
+		        gridPanel.add(gridArray[j][k]);
+		    	}
+
+		      }
+		    }
+		
+		
+		
+		
+		
+	}
 	
 	
-	
-	
-	
-	
-	
+	*/
 	
 	
 	
