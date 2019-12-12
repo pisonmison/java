@@ -25,4 +25,4 @@ public class Client {
 		}
 	}
 }
- //sdfhgasdfghsdf
+ //sdfhgasdfghsdf mein IP ist 18
