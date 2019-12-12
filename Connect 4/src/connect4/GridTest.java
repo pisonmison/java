@@ -45,8 +45,7 @@ public class GridTest extends JFrame implements ActionListener {
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		//mainPanel = new JPanel();
-		//mainPanel.setLayout(new BorderLayout());
+	
 		
 		JPanel mainPanel = new JPanel();
 	    
@@ -111,7 +110,8 @@ public class GridTest extends JFrame implements ActionListener {
 	    
 		//insert the main panel into the frame
 	    mainframe.add(mainPanel);
-		mainframe.setSize(800,800);
+		mainframe.setSize(700,600);
+	    
 		mainframe.setLocationRelativeTo(null);
 		mainframe.setVisible(true);
 		mainframe.setResizable(true);
