@@ -152,6 +152,8 @@ public class GridTest extends JFrame {
 	}
 	
 	
+	//bevor du pushsr/commit erstmal ausführen! dann nimmt er änderungen wahr.verstehe
+	
 	//hier erste testfunktion zum einsetzen roter/gelber farbe
 	
 	/*public void insertColor() {
@@ -187,16 +189,12 @@ public class GridTest extends JFrame {
 	}
 	
 	
-	*/
+	*/ 
 	
 	
 	
 	
-	public void testfürcommit2222222222222() {
-		//dhdhdhdh
-		//LOLOLOL sdsdsdsd
-		int x = lol;
-	}
+	
 
 
 
