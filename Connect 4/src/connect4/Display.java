@@ -30,7 +30,7 @@ public class Display implements ActionListener {
 	      mainframe = new JFrame("Connect 4");
 	      mainframe.setSize(500,400);
 	      mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	      
+	      	
 	      //create a label
 	      textlabel1 = new JLabel("Press Button to start Game",SwingConstants.CENTER);
 	      textlabel1.setPreferredSize(new Dimension(200, 50));
@@ -91,7 +91,8 @@ public class Display implements ActionListener {
 	    	   submitAction();
 	    	   secondframe.setVisible(false);
 	    	   mainframe.setVisible(false);
-	    	   //createGrid();
+	    	   GridTest testgrid = new GridTest();
+	    	   
 	    	  // Grid();
 	    	   
 	    	  

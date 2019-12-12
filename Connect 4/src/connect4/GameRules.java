@@ -144,6 +144,7 @@ public class GameRules {
 		
 	}
 
+<<<<<<< HEAD
 
 //Muss PlayerId einsetzen um zu gucken wer immer dran ist, aber auch nochmal nachgucken
 /*
@@ -166,3 +167,8 @@ public class GameRules {
  * playerId.setColor (color.yellow);
  * }
  * */
+=======
+}
+
+
+>>>>>>> branch 'master' of https://github.com/pisonmison/java.git
