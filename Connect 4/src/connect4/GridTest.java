@@ -145,7 +145,7 @@ public class GridTest extends JFrame implements ActionListener {
 		
 		for(int j = 0; j < 6; j++) {
 	      for (int k = 0; k < 7; k++) {
-	    	  if(j==1 && k==0) {
+	    	  if(j==5 && k==0) {
 	    		  JLabel label = new JLabel("");
 		 	    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 		 	    	label.setIcon(new ImageIcon(img));
@@ -156,6 +156,21 @@ public class GridTest extends JFrame implements ActionListener {
 		 	    	gridArray[j][k] = new JPanel();
 		 	       
 		 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+		 	        gridArray[j][k].add(label);
+		 	        gridPanel.add(gridArray[j][k]);
+	    	  }
+	    	  else  if(j==4 && k==0) {
+	    		  JLabel label = new JLabel("");
+		 	    	Image img = new ImageIcon(this.getClass().getResource("/yellowBox.png")).getImage();
+		 	    	label.setIcon(new ImageIcon(img));
+		 	    	
+		 	    	
+		 	    	
+		 	    	//insert the created image labels into the grid array until full
+		 	    	gridArray[j][k] = new JPanel();
+		 	       
+		 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+		 	        
 		 	        gridArray[j][k].add(label);
 		 	        gridPanel.add(gridArray[j][k]);
 	    	  }
