@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 public class GridTest extends JFrame implements ActionListener {
 
-	
+	public int xPos, yPos; // hier sp√§ter koordinaten √ºbergeben
 	
 	private JFrame mainframe;
 	private JPanel buttonPanel, mainPanel,emptyPanel;
@@ -145,27 +145,14 @@ public class GridTest extends JFrame implements ActionListener {
 		
 		for(int j = 0; j < 6; j++) {
 	      for (int k = 0; k < 7; k++) {
-	    	  if(j==5 && k==0) {
 	    		  JLabel label = new JLabel("");
-		 	    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+		 	    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
 		 	    	label.setIcon(new ImageIcon(img));
 		 	    	
 		 	    	
-		 	    	
-		 	    	//insert the created image labels into the grid array until full
-		 	    	gridArray[j][k] = new JPanel();
-		 	       
-		 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
-		 	        gridArray[j][k].add(label);
-		 	        gridPanel.add(gridArray[j][k]);
-	    	  }
-	    	  else  if(j==4 && k==0) {
-	    		  JLabel label = new JLabel("");
-		 	    	Image img = new ImageIcon(this.getClass().getResource("/yellowBox.png")).getImage();
-		 	    	label.setIcon(new ImageIcon(img));
-		 	    	
-		 	    	
-		 	    	
+	    	 
+	    	 
+	    		  
 		 	    	//insert the created image labels into the grid array until full
 		 	    	gridArray[j][k] = new JPanel();
 		 	       
@@ -173,27 +160,13 @@ public class GridTest extends JFrame implements ActionListener {
 		 	        
 		 	        gridArray[j][k].add(label);
 		 	        gridPanel.add(gridArray[j][k]);
-	    	  }
-	    	  else {
-	 	    	//create a label and add an image from the "img folder" into them. 
-	 	    	JLabel label = new JLabel("");
-	 	    	Image img = new ImageIcon(this.getClass().getResource("/EmptyBox.png")).getImage();
-	 	    	label.setIcon(new ImageIcon(img));
-	 	    	
-	 	    	
-	 	    	
-	 	    	//insert the created image labels into the grid array until full
-	 	    	gridArray[j][k] = new JPanel();
-	 	       
-	 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
-	 	        gridArray[j][k].add(label);
-	 	        gridPanel.add(gridArray[j][k]);
-	    }    } 
+	    	  
+	    	
+		 	        gridPanel.revalidate();
 	}
-		 gridPanel.revalidate();
+		}
 	}
-		
-	//bevor du pushsr/commit erstmal ausf¸hren! dann nimmt er ‰nderungen wahr.verstehe
+	//bevor du pushsr/commit erstmal ausfÔøΩhren! dann nimmt er ÔøΩnderungen wahr.verstehe
 	//hier erste testfunktion zum einsetzen roter/gelber farbe
 	
 	public void insertColor() {
@@ -232,8 +205,9 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	 public void actionPerformed(ActionEvent e) {
 	       if(e.getSource() == arrow0) {
-	    	   
-	    	   button0();
+	    	   yPos = 5;
+	    	   xPos = 0;
+	    	   updateGrid();
 	    	   
 	    	   //dfcfg
 	       }
@@ -388,9 +362,65 @@ public class GridTest extends JFrame implements ActionListener {
 	    gridPanel.revalidate();
 		}
 public void  button6() {
-		
+		gridPanel.removeAll();
+		updateGrid();
+		gridPanel.revalidate();
+		gridPanel.repaint();
 	
 		}
+
+
+/////// hier funktion zum updaten des spielfeldes, es wird jedesmal erneut gemalt
+public void updateGrid() {
+	gridPanel.removeAll();
+	for(int j = 0; j < 6; j++) {
+    for (int k = 0; k < 7; k++) {
+  	  
+    	
+    	if(j==yPos && k==xPos) { /// hier spielerfarbe + kooardinaten abfragen
+  		  ///spieler 1
+    		JLabel label = new JLabel("");
+	    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+	    	label.setIcon(new ImageIcon(img));
+	    	
+	    	
+	    	
+	    	//insert the created image labels into the grid array until full
+	    	gridArray[j][k] = new JPanel();
+	       
+	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+	        gridArray[j][k].add(label);
+	        gridPanel.add(gridArray[j][k]);
+  	  }
+  	 
+  	  else {
+  		  //spieler 2
+  		  
+  		  
+  		  
+  		  
+	    	//create a label and add an image from the "img folder" into them. 
+	    	JLabel label = new JLabel("");
+	    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
+	    	label.setIcon(new ImageIcon(img));
+	    	
+	    	
+	    	
+	    	//insert the created image labels into the grid array until full
+	    	gridArray[j][k] = new JPanel();
+	       
+	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+	        gridArray[j][k].add(label);
+	        gridPanel.add(gridArray[j][k]);
+  	  }    
+    } 
+}
+	gridPanel.revalidate();
+	gridPanel.repaint();
+}
+
+
+
 
 
 
