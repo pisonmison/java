@@ -26,7 +26,7 @@ public class GridTest extends JFrame implements ActionListener {
 	public GridTest() {
 		createGameGrid();
 		fillGrid();
-		insertColor(); //just for testing and understanding
+	//	insertColor(); //just for testing and understanding
 
 		
 		
@@ -147,23 +147,7 @@ public class GridTest extends JFrame implements ActionListener {
 	      for (int k = 0; k < 7; k++) {
 	        
 			 
-	    	 if(j==5 && k==0) {//Random Wert von Player einsetzen
-	    	
-	    	//create a label and add an image from the "img folder" into them. 
-	    	JLabel label = new JLabel("");
-	    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    	label.setIcon(new ImageIcon(img));
-	    	
-	    	
-	    	
-	    	//insert the created image labels into the grid array until full
-	    	gridArray[j][k] = new JPanel();
-	       
-	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
-	        gridArray[j][k].add(label);
-	        gridPanel.add(gridArray[j][k]);
-	    	 }
-	    	 else {
+	    	 
 	 	    	//create a label and add an image from the "img folder" into them. 
 	 	    	JLabel label = new JLabel("");
 	 	    	Image img = new ImageIcon(this.getClass().getResource("/EmptyBox.png")).getImage();
@@ -178,10 +162,11 @@ public class GridTest extends JFrame implements ActionListener {
 	 	        gridArray[j][k].add(label);
 	 	        gridPanel.add(gridArray[j][k]);
 	      
-	    }
+	    }     
 	}
+		 gridPanel.revalidate();
 	}
-	}
+		
 	//bevor du pushsr/commit erstmal ausführen! dann nimmt er änderungen wahr.verstehe
 	//hier erste testfunktion zum einsetzen roter/gelber farbe
 	
@@ -192,31 +177,31 @@ public class GridTest extends JFrame implements ActionListener {
 			
 		      for (int k = 0; k < 1; k++) {
 		        
-				 //If player 1 press button x 
+				 if(j==5 && k==5) {
 		    	  
 		    	
-		    	//create a label and add an image from the "img folder" into them. 
+//				gridArray[j][k].remove(gridPanel);
 		    	JLabel label = new JLabel("");
 		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 		    	label.setIcon(new ImageIcon(img));
 		    	
 		    	
 		    	
-		    	 gridArray[4][4].add(label);
-		  	    gridPanel.add(gridArray[1][1]);
+		    	gridArray[0][0].add(label);
+		  	    gridPanel.add(gridArray[0][0]);
 		  	    gridPanel.revalidate();
-		        
+		       
 		    	 
 		      }
 		    }
-		        
+		}    
 		        gridPanel.revalidate();
 		        
 		        
 		    	}
 		      
 		    	
-		    
+		
 		/////////////////action events for button input
 	
 	 public void actionPerformed(ActionEvent e) {
@@ -276,7 +261,7 @@ public class GridTest extends JFrame implements ActionListener {
 	 
 	 
 	 
-	 public void updateGrid() {
+/*	 public void updateGrid() {
 		    
 			
 			for(int j = 0; j < 6; j++) {
@@ -320,7 +305,7 @@ public class GridTest extends JFrame implements ActionListener {
 		}
 		}
 	
-
+*/
 	public void  button0() {
 		for(int j = 0; j < 6; j++) {
 		      for (int k = 0; k < 7; k++) {
@@ -338,34 +323,35 @@ public class GridTest extends JFrame implements ActionListener {
 	}
 	public void  button1() {
 		
-		insertColor();
+	
 		}
 	public void  button2() {
 		
 		JLabel label = new JLabel("");
 	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 	    label.setIcon(new ImageIcon(img));
-	    gridArray[2][2].add(label);
-	    gridPanel.add(gridArray[2][2]);
+	 
 	    gridPanel.revalidate();
 		}
 	public void  button3() {
-		
+		gridArray[1][1].remove(gridPanel);
 		JLabel label = new JLabel("");
 	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 	    label.setIcon(new ImageIcon(img));
-	    gridArray[3][3].add(label);
-	    gridPanel.add(gridArray[3][3]);
-	    gridPanel.revalidate();
+	    gridArray[1][1] = new JPanel();
+	       
+     //   gridArray.setBackground((new Color(30, 144, 255)));
+        gridArray[1][1].add(label);
+        gridPanel.add(gridArray[2][2]);
+        gridPanel.revalidate();
+	    
 		}
 	public void  button4() {
 		
 		JLabel label = new JLabel("");
 	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 	    label.setIcon(new ImageIcon(img));
-	    gridArray[4][4].add(label);
-	    gridPanel.add(gridArray[4][4]);
-	    gridPanel.revalidate();
+	  
 		}
 	public void  button5() {
 		
@@ -378,11 +364,10 @@ public class GridTest extends JFrame implements ActionListener {
 		}
 public void  button6() {
 		
-	insertColor();
+	
 		}
 
 
-  public void test() {}
 
 public static void main(String[] args) {
     GridTest test = new GridTest();
