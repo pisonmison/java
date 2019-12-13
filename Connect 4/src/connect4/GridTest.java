@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 public class GridTest extends JFrame implements ActionListener {
 
-	public int xPos, yPos; // hier später koordinaten übergeben
+	int xPos, yPos; // hier später koordinaten übergeben
 	
 	private JFrame mainframe;
 	private JPanel buttonPanel, mainPanel,emptyPanel;
