@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class GridTest extends JFrame implements ActionListener {
 
 	int xPos, yPos; // hier später koordinaten übergeben
+	int firstrowCounter = 0;
 	
 	private JFrame mainframe;
 	private JPanel buttonPanel, mainPanel,emptyPanel;
@@ -205,45 +206,46 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	 public void actionPerformed(ActionEvent e) {
 	       if(e.getSource() == arrow0) {
+	    	   gridPanel.removeAll();
 	    	   yPos = 5;
 	    	   xPos = 0;
-	    	   updateGrid();
+	    	   updateGrid(); // hier direkt funktionen reinpacken, extra button funktion wird nicht gerbaucht!
 	    	   
 	    	   //dfcfg
 	       }
 	       else if(e.getSource() == arrow1) {
 	    	   
-	    	   button1();
+	    	   
 	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow2) {
 	    	   
-	    	   button2();
+	    	 
 	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow3) {
 	    	   
-	    	   button3();
+
 	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow4) {
 	    	   
-	    	   button4();
+	    	  
 	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow5) {
 	    	   
-	    	   button5();
+	    	
 	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow6) {
 	    	   
-	    	   button6();
+	    	   
 	    	   
 	    	   
 	       }
@@ -321,64 +323,24 @@ public class GridTest extends JFrame implements ActionListener {
 		      }
 		}
 	}
-	public void  button1() {
-		
-	
-		}
-	public void  button2() {
-		
-		JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    label.setIcon(new ImageIcon(img));
-	 
-	    gridPanel.revalidate();
-		}
-	public void  button3() {
-		gridArray[1][1].remove(gridPanel);
-		JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    label.setIcon(new ImageIcon(img));
-	    gridArray[1][1] = new JPanel();
-	       
-     //   gridArray.setBackground((new Color(30, 144, 255)));
-        gridArray[1][1].add(label);
-        gridPanel.add(gridArray[2][2]);
-        gridPanel.revalidate();
-	    
-		}
-	public void  button4() {
-		
-		JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    label.setIcon(new ImageIcon(img));
-	  
-		}
-	public void  button5() {
-		JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    label.setIcon(new ImageIcon(img));
-	    gridArray[5][5].add(label);
-	    gridPanel.add(gridArray[5][5]);
-	    gridPanel.revalidate();
-		}
-public void  button6() {
-		gridPanel.removeAll();
-		updateGrid();
-		gridPanel.revalidate();
-		gridPanel.repaint();
-	
-		}
 
-
+	
+	
 /////// hier funktion zum updaten des spielfeldes, es wird jedesmal erneut gemalt
 public void updateGrid() {
-	gridPanel.removeAll();
+	
+	
 	for(int j = 0; j < 6; j++) {
     for (int k = 0; k < 7; k++) {
-  	  
-    	
+    //if(firstrowCounter  < 7) {
     	if(j==yPos && k==xPos) { /// hier spielerfarbe + kooardinaten abfragen
-  		  ///spieler 1
+  		  
+    		
+    		
+    		
+    		
+    		
+    		
     		JLabel label = new JLabel("");
 	    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
 	    	label.setIcon(new ImageIcon(img));
@@ -391,8 +353,13 @@ public void updateGrid() {
 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
 	        gridArray[j][k].add(label);
 	        gridPanel.add(gridArray[j][k]);
-  	  }
-  	 
+	       
+	        
+    		}
+    		
+    		
+    
+   
   	  else {
   		  //spieler 2
   		  
@@ -412,14 +379,20 @@ public void updateGrid() {
 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
 	        gridArray[j][k].add(label);
 	        gridPanel.add(gridArray[j][k]);
-  	  }    
+  	  } 
+    	
     } 
+    
+
 }
+
+	
+
+	
 	gridPanel.revalidate();
 	gridPanel.repaint();
+    
 }
-
-
 
 
 
