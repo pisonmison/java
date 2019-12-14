@@ -15,7 +15,7 @@ public class MultiDimensionalArray {
 		}
 
 		// showing multidimensional arrays initializing
-		int[][] arrMulti = new int[2][]; // yes it's valid
+		/*int[][] arrMulti = new int[2][]; // yes it's valid
 
 		arrMulti[0] = new int[2];
 		arrMulti[1] = new int[3];
@@ -30,6 +30,6 @@ public class MultiDimensionalArray {
 				System.out.print(arrInt[i][j] + " ");
 			}
 			System.out.println("");
-		}
+		}*/
 	}
 }
