@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Display implements ActionListener {
+public class Display extends JFrame implements ActionListener {
 	
 	// Create a simple GUI window
 	//declare the different stuff which we add to the window like buttons, textlabels etc. for better overseeing
@@ -20,7 +20,7 @@ public class Display implements ActionListener {
 	
 	//private String username = "asdasd";
 	
-	Player player1 = new Player();
+	Player player = new Player();
 	
 	
 
@@ -158,10 +158,10 @@ public class Display implements ActionListener {
 	  private void submitAction() {
 		  
 		  //für spieler1
-		  player1.setPlayername(nameInput.getText());
-		  player1.setPlayerIP(ipInput.getText());
-		  player1.setPlayerPort(portInput.getText());
-	      player1.printplayerInfo();
+		  player.setPlayername(nameInput.getText());
+		  player.setPlayerIP(ipInput.getText());
+		  player.setPlayerPort(portInput.getText());
+	      player.printplayerInfo();
 	
 	      
 	      //für spieler2

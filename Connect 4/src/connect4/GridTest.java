@@ -10,19 +10,32 @@ import java.awt.event.ActionListener;
 public class GridTest extends JFrame implements ActionListener {
 
 	int xPos, yPos; // hier später koordinaten übergeben
-	int firstrowCounter = 0;
+
+	int counter0 = 5;
+	int counter1 = 5;
+	int counter2 = 5;
+	int counter3 = 5;
+	int counter4 = 5;
+	int counter5 = 5;
+	int counter6 = 5;
 	
 	private JFrame mainframe;
 	private JPanel buttonPanel, mainPanel,emptyPanel;
 	
 	
 	private ImageIcon emptyBox, whiteBox;
-	private JPanel[][] gridArray = new JPanel[6][7];
+	private JPanel[][] gridArrayPanel = new JPanel[6][7];
 	private JPanel gridPanel;
 	JLabel emptyLabel;
 	
-	
+	private char[][] spielfeld;
 	static JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
+	
+	GridArray gamefield = new GridArray();
+	Player player = new Player();
+	
+	//test for player color
+	int playercolor = 0;
 	
 	public GridTest() {
 		createGameGrid();
@@ -146,7 +159,9 @@ public class GridTest extends JFrame implements ActionListener {
 		
 		for(int j = 0; j < 6; j++) {
 	      for (int k = 0; k < 7; k++) {
-	    		  JLabel label = new JLabel("");
+	    		  
+	    	  		
+	    	  		JLabel label = new JLabel("");
 		 	    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
 		 	    	label.setIcon(new ImageIcon(img));
 		 	    	
@@ -155,12 +170,12 @@ public class GridTest extends JFrame implements ActionListener {
 	    	 
 	    		  
 		 	    	//insert the created image labels into the grid array until full
-		 	    	gridArray[j][k] = new JPanel();
+		 	    	gridArrayPanel[j][k] = new JPanel();
 		 	       
-		 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
+		 	        gridArrayPanel[j][k].setBackground((new Color(30, 144, 255)));
 		 	        
-		 	        gridArray[j][k].add(label);
-		 	        gridPanel.add(gridArray[j][k]);
+		 	        gridArrayPanel[j][k].add(label);
+		 	        gridPanel.add(gridArrayPanel[j][k]);
 	    	  
 	    	
 		 	        gridPanel.revalidate();
@@ -171,34 +186,33 @@ public class GridTest extends JFrame implements ActionListener {
 	//hier erste testfunktion zum einsetzen roter/gelber farbe
 	
 	public void insertColor() {
+	 
 		
 	
-		for(int j = 0; j < 1; j++) {
-			
-		      for (int k = 0; k < 1; k++) {
-		        
-				 if(j==5 && k==5) {
-		    	  
-		    	
-//				gridArray[j][k].remove(gridPanel);
-		    	JLabel label = new JLabel("");
-		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-		    	label.setIcon(new ImageIcon(img));
-		    	
-		    	
-		    	
-		    	gridArray[0][0].add(label);
-		  	    gridPanel.add(gridArray[0][0]);
-		  	    gridPanel.revalidate();
+	 
+	  gridPanel.removeAll();
+  	 	
+		  
+	  if(playercolor == 0 && yPos >= 0)
+		  {//0 for red
+		  gamefield.setArray('0', yPos, xPos);
+		  
+		  
+		  
+		  
+		  
+		 
+	  
+  	  
+	   }
+	   updateGrid();
+	  	 gamefield.printArray();
+	  
+	}    
 		       
-		    	 
-		      }
-		    }
-		}    
-		        gridPanel.revalidate();
 		        
 		        
-		    	}
+		    	
 		      
 		    	
 		
@@ -206,46 +220,63 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	 public void actionPerformed(ActionEvent e) {
 	       if(e.getSource() == arrow0) {
-	    	   gridPanel.removeAll();
-	    	   yPos = 5;
 	    	   xPos = 0;
-	    	   updateGrid(); // hier direkt funktionen reinpacken, extra button funktion wird nicht gerbaucht!
-	    	   
-	    	   //dfcfg
+	    	   yPos = counter0;
+	    	   insertColor();
+	    	   counter0--;
+	    	  
 	       }
 	       else if(e.getSource() == arrow1) {
 	    	   
 	    	   
-	    	   
+	    	   xPos = 1;
+	    	   yPos = counter1;
+	    	   insertColor();
+	    	   counter1--;
 	    	   
 	       }
 	       else if(e.getSource() == arrow2) {
 	    	   
-	    	 
+	    	   xPos = 2;
+	    	   yPos = counter2;
+	    	   insertColor();
+	    	   counter2--;
 	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow3) {
 	    	   
 
-	    	   
+	    	   xPos = 3;
+	    	   yPos = counter3;
+	    	   insertColor();
+	    	   counter3--;
 	    	   
 	       }
 	       else if(e.getSource() == arrow4) {
 	    	   
-	    	  
+	    	   xPos = 4;
+	    	   yPos = counter4;
+	    	   insertColor();
+	    	   counter4--;
 	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow5) {
 	    	   
 	    	
-	    	   
+	    	   xPos = 5;
+	    	   yPos = counter5;
+	    	   insertColor();
+	    	   counter5--;
 	    	   
 	       }
 	       else if(e.getSource() == arrow6) {
 	    	   
-	    	   
+	    	   xPos = 6;
+	    	   yPos = counter6;
+	    	   insertColor();
+	    	   counter6--;
 	    	   
 	    	   
 	       }
@@ -263,66 +294,8 @@ public class GridTest extends JFrame implements ActionListener {
 	 
 	 
 	 
-/*	 public void updateGrid() {
-		    
-			
-			for(int j = 0; j < 6; j++) {
-		      for (int k = 0; k < 7; k++) {
-		        
-				 
-		    	 if(j==4 && k==0) {//Random Wert von Player einsetzen
-		    	
-		    	//create a label and add an image from the "img folder" into them. 
-		    	JLabel label = new JLabel("");
-		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-		    	label.setIcon(new ImageIcon(img));
-		    	
-		    	
-		    	
-		    	//insert the created image labels into the grid array until full
-		    	gridArray[j][k] = new JPanel();
-		       
-		        gridArray[j][k].setBackground((new Color(30, 144, 255)));
-		        gridArray[j][k].add(label);
-		        gridPanel.add(gridArray[j][k]);
-		    	 }
-		    	 else {
-		 	    	//create a label and add an image from the "img folder" into them. 
-		 	    	JLabel label = new JLabel("");
-		 	    	Image img = new ImageIcon(this.getClass().getResource("/EmptyBox.png")).getImage();
-		 	    	label.setIcon(new ImageIcon(img));
-		 	    	
-		 	    	
-		 	    	
-		 	    	//insert the created image labels into the grid array until full
-		 	    	gridArray[j][k] = new JPanel();
-		 	       
-		 	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
-		 	        gridArray[j][k].add(label);
-		 	        gridPanel.add(gridArray[j][k]);
-		 	        gridPanel.revalidate();
-		 	      //  gridPanel.repaint();
-		      }
-		    }
-		}
-		}
+
 	
-*/
-	public void  button0() {
-		for(int j = 0; j < 6; j++) {
-		      for (int k = 0; k < 7; k++) {
-		    	  if(j==3 && k==0) {
-		    
-	JLabel label = new JLabel("");
-    Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-    label.setIcon(new ImageIcon(img));
-    gridArray[j][k].add(label);
-    gridPanel.add(gridArray[j][k]);
-    gridPanel.revalidate();
-	}
-		      }
-		}
-	}
 
 	
 	
@@ -331,55 +304,51 @@ public void updateGrid() {
 	
 	
 	for(int j = 0; j < 6; j++) {
-    for (int k = 0; k < 7; k++) {
-    //if(firstrowCounter  < 7) {
-    	if(j==yPos && k==xPos) { /// hier spielerfarbe + kooardinaten abfragen
-  		  
-    		
-    		
-    		
-    		
-    		
-    		
-    		JLabel label = new JLabel("");
-	    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
-	    	label.setIcon(new ImageIcon(img));
+		for (int k = 0; k < 7; k++) {
+  
+	    	char box = gamefield.getArray(j, k);
 	    	
 	    	
 	    	
-	    	//insert the created image labels into the grid array until full
-	    	gridArray[j][k] = new JPanel();
-	       
-	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
-	        gridArray[j][k].add(label);
-	        gridPanel.add(gridArray[j][k]);
-	       
-	        
-    		}
-    		
-    		
+	    	if(box == '0') { /// hier spielerfarbe + kooardinaten abfragen
+	  		  
+	    		//insert the created image labels into the grid array until full
+	    		JLabel label = new JLabel("");
+		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+		    	label.setIcon(new ImageIcon(img));
+		    	
+		    	
+		    	gridArrayPanel[j][k] = new JPanel();
+		    	gridArrayPanel[j][k].setBackground((new Color(30, 144, 255)));
+		        gridArrayPanel[j][k].add(label);
+		        gridPanel.add(gridArrayPanel[j][k]);
+		       
+		        
+	    		}
+	    		
+	    		
     
    
-  	  else {
-  		  //spieler 2
-  		  
-  		  
-  		  
-  		  
-	    	//create a label and add an image from the "img folder" into them. 
-	    	JLabel label = new JLabel("");
-	    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
-	    	label.setIcon(new ImageIcon(img));
-	    	
-	    	
-	    	
-	    	//insert the created image labels into the grid array until full
-	    	gridArray[j][k] = new JPanel();
-	       
-	        gridArray[j][k].setBackground((new Color(30, 144, 255)));
-	        gridArray[j][k].add(label);
-	        gridPanel.add(gridArray[j][k]);
-  	  } 
+	  	  else {
+	  		  //spieler 2
+	  		  
+	  		  
+	  		  
+	  		  
+		    	//create a label and add an image from the "img folder" into them. 
+		    	JLabel label = new JLabel("");
+		    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
+		    	label.setIcon(new ImageIcon(img));
+		    	
+		    	
+		    	
+		    	//insert the created image labels into the grid array until full
+		    	gridArrayPanel[j][k] = new JPanel();
+		       
+		        gridArrayPanel[j][k].setBackground((new Color(30, 144, 255)));
+		        gridArrayPanel[j][k].add(label);
+		        gridPanel.add(gridArrayPanel[j][k]);
+	  	  } 
     	
     } 
     

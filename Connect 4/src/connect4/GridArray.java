@@ -3,20 +3,40 @@ package connect4;
 public class GridArray {
 	
 	
+	
+	 char[][] gameGridArray =  {
+			{'-','-', '-', '-', '-', '-', '-'},
+			{'-','-', '-', '-', '-', '-', '-'},
+			{'-','-', '-', '-', '-', '-', '-'},  //spielfeld
+			{'-','-', '-', '-', '-', '-', '-'},
+			{'-','-', '-', '-', '-', '-', '-'},
+			{'-','-', '-', '-', '-', '-', '-'}};
 	public GridArray() {
-		createArray();
+		
 	}
 	
 	
+	///////////////////////////////////
+	//getter und setter
 	
-	public void createArray() {
-	char[][] gameGridArray =  {
-	{'-','-', '-', '-', '-', '-', '-'},
-	{'-','-', '-', '-', '-', '-', '-'},
-	{'-','-', '-', '-', '-', '-', '-'},  //spielfeld
-	{'-','-', '-', '-', '-', '-', '-'},
-	{'-','-', '-', '-', '-', '-', '-'},
-	{'-','-', '-', '-', '-', '-', '-'}};
+	
+public void setArray(char box, int y, int x) {
+		this.gameGridArray[y][x] = box;
+		
+	}
+	
+public char getArray(int y, int x){
+	return gameGridArray[y][x];
+}
+
+	
+	
+	
+	
+	
+	///////////////////////////////////
+	public void printArray() {
+	
 	
 	
 	//array mit - füllen und jweils "0" oder "X" für farbe einsetzen und dann kann man rechnen
@@ -35,7 +55,15 @@ public class GridArray {
 	System.out.println("_____________"); // zum visuellen trennen von spielfeldern in der konsole
 }
 	
-	
+	public void insertInto(int yPos, int xPos) {
+		
+		
+		
+		
+		
+		gameGridArray[yPos][xPos] = '0'; // testfunktion um etwas einzuf�gen
+		
+	}
 	
 	
 	
@@ -43,6 +71,8 @@ public class GridArray {
 	
 	public static void main(String[] args) {
 		
-		new GridArray();
+		GridArray test = new  GridArray();
+	
+		
 	}
 }
