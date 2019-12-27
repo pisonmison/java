@@ -2,6 +2,8 @@ package connect4;
 
 import javax.swing.*;
 
+import java.net.*;
+
 
 public class Client {
 
@@ -39,7 +41,7 @@ class LaminaMarcoCliente extends JPanel{
 		JLabel texto=new JLabel("CLIENTE");
 		
 		add(texto);
-	
+	//test
 		campo1=new JTextField(20);
 	
 		add(campo1);		
