@@ -11,12 +11,12 @@ public class GameRules {
 		
 		boolean winCheck =false;
 		
-		static int r = 6;
-		static int c = 7;
+		static int row = 6;
+		static int column = 7;
 		int counter = 0;
 		int otherCounter = 0; 
 		int playerId = 2;
-		int [][] spot = new int [r][c];
+		int [][] spot = new int [row][column];
 		
 		//Horizontal prüfen
 		checkHorizontal:
@@ -144,7 +144,7 @@ public class GameRules {
 		
 	}
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 //Muss PlayerId einsetzen um zu gucken wer immer dran ist, aber auch nochmal nachgucken
 /*
@@ -167,8 +167,9 @@ public class GameRules {
  * playerId.setColor (color.yellow);
  * }
  * */
-=======
+/*=======
 }
 
 
 >>>>>>> branch 'master' of https://github.com/pisonmison/java.git
+*/
