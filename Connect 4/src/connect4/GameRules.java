@@ -11,12 +11,12 @@ public class GameRules {
 		
 		boolean winCheck =false;
 		
-		static int row = 6;
-		static int column = 7;
+		int row2 = 6;
+		int column2 = 7;
 		int counter = 0;
 		int otherCounter = 0; 
-		int playerId = 2;
-		int [][] spot = new int [row][column];
+		int playerId1 = 2;
+		int [][] spot1 = new int [row][column];
 		
 		//Horizontal prüfen
 		checkHorizontal:
@@ -87,7 +87,7 @@ public class GameRules {
 		if (spot [row + 1 + counter] [column + counter] == playerId && winCheck == false)
 		{
 		    counter++;
-		    continue rightDiagonalCheck;
+	//	    continue rightDiagonalCheck;
 		}
    }
 	    winCheck = true;
