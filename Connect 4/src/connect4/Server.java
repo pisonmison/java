@@ -1,52 +1,39 @@
 package connect4;
+import javax.swing.*;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.*;
+import java.awt.*;
 
-public class Server {
-	private ServerSocket server;
-	
-	public Server(int port)
-	{
-		try {
+public class Server  {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		
-			server = new ServerSocket(port);
-			server.setSoTimeout(100000);
-		}	catch (SocketException e)
+		MarcoServidor mimarco=new MarcoServidor();
 		
-		{
-		e.printStackTrace();
-	} catch (IOException e)
-	{
-		e.printStackTrace();
-	}
-	}
+		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+	}	
+}
+
+class MarcoServidor extends JFrame {
 	
-	public void laufen() {
-		while(true) {
-			try {
-			System.out.println(server.getInetAddress());
-			System.out.println("waiting for client" + server.getLocalPort());
-			Socket client = server.accept();
-			DataInputStream input = new DataInputStream(client.getInputStream());
-			System.out.println(input.readUTF());
-			System.out.println(client.getRemoteSocketAddress());
-			DataOutputStream output = new DataOutputStream(client.getOutputStream());
-			output.writeUTF("Greetings, Lord Dave!");
-			client.close();
+	public MarcoServidor(){
+		
+		setBounds(1200,300,280,350);				
+			
+		JPanel milamina= new JPanel();
+		
+		milamina.setLayout(new BorderLayout());
+		
+		areatexto=new JTextArea();
+		
+		milamina.add(areatexto,BorderLayout.CENTER);
+		
+		add(milamina);
+		
+		setVisible(true);
+		
 		}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-				break;
-			}
-		}
-	}
-	public static void main(String[] args)
-	{
-		Server s = new Server(1337);
-		s.laufen();
-	}
+	
+	private	JTextArea areatexto;
 }
