@@ -11,7 +11,7 @@ public class Display extends JFrame implements ActionListener {
 	
 	// Create a simple GUI window
 	//declare the different stuff which we add to the window like buttons, textlabels etc. for better overseeing
-	private JFrame mainframe, secondframe;
+	private JFrame mainframe, secondframe, endframe;
 	private JLabel textlabel1, textlabel2, ipText, portText, nameText;
 	private JButton b1, connectButton;
 	private JPanel p1, p2, p3;
@@ -22,7 +22,26 @@ public class Display extends JFrame implements ActionListener {
 	
 	Player player = new Player();
 	
-	
+	public void createEndingWindow(){
+		endframe = new JFrame();
+		endframe.setSize(500,400);
+		endframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		p1 = new JPanel();
+
+		JLabel label = new JLabel("");
+	    Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
+	    label.setIcon(new ImageIcon(img));
+	    p1.add(label);
+		
+		endframe.add(p1);
+		endframe.setVisible(true);
+		
+		
+		
+		
+		
+	}
 
 	
 	  public void createWindow() {

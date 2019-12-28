@@ -25,11 +25,11 @@ public class Connect4 {
  */
 	
 	 public static void main(String[] args) {
-	      //Display test = new Display();
+	      Display test = new Display();
 	      Player player = new Player();
 	      GridArray gamefield = new GridArray();
-	      gamefield.printArray();
-	      GridTest gridUI =  new GridTest();
+	      
+	     
 	     
 	      
 	      

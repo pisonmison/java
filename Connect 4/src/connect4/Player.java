@@ -6,13 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
+
 public class Player {
 	
-	
+
 	
 	private String playername;
 	private String playerIP;
 	private String playerPort;
+	
 
 	
 	//getting username input from user and assigning it to player

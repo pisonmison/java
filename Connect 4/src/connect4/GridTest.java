@@ -11,6 +11,8 @@ public class GridTest extends JFrame implements ActionListener {
 
 	int xPos, yPos; // hier später koordinaten übergeben
 
+	
+	//counter per tcp �bersenden jedesmal
 	int counter0 = 5;
 	int counter1 = 5;
 	int counter2 = 5;
@@ -34,13 +36,16 @@ public class GridTest extends JFrame implements ActionListener {
 	GridArray gamefield = new GridArray();
 	Player player = new Player();
 	
+	
 	//test for player color
 	int playercolor = 0;
+	boolean playerSwitch = false;
 	
 	public GridTest() {
 		createGameGrid();
 		fillGrid();
-	//	insertColor(); //just for testing and understanding
+	
+		
 
 		
 		
@@ -147,7 +152,7 @@ public class GridTest extends JFrame implements ActionListener {
 		
 	}
 	
-	
+
 	
 
 	
@@ -187,33 +192,27 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	public void insertColor() {
 	 
-		
-	
-	 
-	  gridPanel.removeAll();
-  	 	
-		  
-	  if(playercolor == 0 && yPos >= 0)
-		  {//0 for red
-		  gamefield.setArray('0', yPos, xPos);
-		  
-		  
-		  
-		  
-		  
-		 
-	  
-  	  
-	   }
-	   updateGrid();
-	  	 gamefield.printArray();
+			gridPanel.removeAll();
+					
+			
+			
+			
+		   if(playerSwitch == true && yPos >= 0 ){//true for red
+			   gamefield.setArray('0', yPos, xPos);
+		  }
+		   else if(playerSwitch == false && yPos >= 0) {//false for yellow
+			   gamefield.setArray('X', yPos, xPos);
+		   }
+		   
+		   
+		   playerSwitch = !playerSwitch;
+		   
+		   
+		   updateGrid();
+		   gamefield.printArray();
 	  
 	}    
-		       
-		        
-		        
-		    	
-		      
+
 		    	
 		
 		/////////////////action events for button input
@@ -224,7 +223,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter0;
 	    	   insertColor();
 	    	   counter0--;
-	    	  
+	    	   
 	       }
 	       else if(e.getSource() == arrow1) {
 	    	   
@@ -233,6 +232,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter1;
 	    	   insertColor();
 	    	   counter1--;
+	    	  
 	    	   
 	       }
 	       else if(e.getSource() == arrow2) {
@@ -251,7 +251,8 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter3;
 	    	   insertColor();
 	    	   counter3--;
-	    	   
+	    	
+	    	
 	       }
 	       else if(e.getSource() == arrow4) {
 	    	   
@@ -259,6 +260,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter4;
 	    	   insertColor();
 	    	   counter4--;
+	    	
 	    	   
 	    	   
 	       }
@@ -269,6 +271,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter5;
 	    	   insertColor();
 	    	   counter5--;
+	    	  
 	    	   
 	       }
 	       else if(e.getSource() == arrow6) {
@@ -277,6 +280,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter6;
 	    	   insertColor();
 	    	   counter6--;
+	    	  
 	    	   
 	    	   
 	       }
@@ -308,7 +312,7 @@ public void updateGrid() {
   
 	    	char box = gamefield.getArray(j, k);
 	    	
-	    	
+	    	//insert red boxes where 0 is in gamefield array	
 	    	
 	    	if(box == '0') { /// hier spielerfarbe + kooardinaten abfragen
 	  		  
@@ -325,10 +329,22 @@ public void updateGrid() {
 		       
 		        
 	    		}
+	    	//insert yellow boxes where X is in gamefield array	
+	    	else if(box == 'X') {
+	    		JLabel label = new JLabel("");
+		    	Image img = new ImageIcon(this.getClass().getResource("/yellowBox.png")).getImage();
+		    	label.setIcon(new ImageIcon(img));
+		    	
+		    	
+		    	gridArrayPanel[j][k] = new JPanel();
+		    	gridArrayPanel[j][k].setBackground((new Color(30, 144, 255)));
+		        gridArrayPanel[j][k].add(label);
+		        gridPanel.add(gridArrayPanel[j][k]);
 	    		
 	    		
+	    	}
     
-   
+	    	//insert emtpy boxes where - is in gamefield array	
 	  	  else {
 	  		  //spieler 2
 	  		  
