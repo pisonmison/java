@@ -5,20 +5,108 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class GameRules {
+public class GameRules{
 	
-	public static boolean isFour(int[][] spot, int row, int column, int playerId) {
+	int [][] spot = new int [7][6];
+	int row;
+	int column;
+	
+public gridSpot(){
+	
+
+	for (int row=0; row=6; row++) {
+	for (int column=0; column=7; column++){
+		spot[column][row]=0;
+    	}
+     }
+}
+//Ab hier checken ob vier Stück vorhanden sind
+public boolean winCheck() {
+	boolean check = false;
+
+//horizontal
+for (int row = 0; row < 6; row++){
+	for (int column = 0; column < 4; column++) {
+	if (spot[column][row]!=0 && spot[column][row] == spot[column+1][row] && spot[column][row]==spot[column+2][row] && spot [column][row]==spot[column+3][row]) {
+			check =true;
+	    }
+	  }
+    }
+//vertical
+for (int row = 0; row < 3; row++){
+	for (int column = 0; column < 7; column++) {
+	if (spot[column][row]!=0 && spot[column][row] == spot[column][row+1] && spot[column][row]==spot[column][row+2] && spot [column][row]==spot[column][row+3]) {
+			check =true;
+	   }
+	 }
+   }
+//diagonal up
+
+
+//diagonal down
+
+return check;
+}//winCheckSchleife
+}//GameRulesSchleife
+
+
+
+
+
+
+
+
+
+
+
+
+/*public class GameRules {
+	
+	
+	boolean winCheck =false;
+	
+	int row = 0;
+	int column = 0;
+	int counter = 0;
+	int otherCounter = 0; 
+	int playerId1 = 2;
+	int [][] spot1 = new int [row][column];
+	
+	int cHRed = 0;
+	
+	
+	
+	public void checkRed() {
+	for(int j = 0; j < 6; j++) {
+	      for (int k = 0; k < 7; k++) {
+
+	      char spot = GridTest.gamefield.getArray(j, k);
+	      if(spot == 'X') {
+	    	  cHRed++;
+	      }
+	    }
+	  }
+	if(cHRed == 4) {
+		System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
+	}
+}
+	
+	      
+	      
+	      
+	      public boolean isFour(int[][] spot, int rowY, int columnX, int playerId) {
 		
-		boolean winCheck =false;
 		
-		int row2 = 6;
-		int column2 = 7;
-		int counter = 0;
-		int otherCounter = 0; 
-		int playerId1 = 2;
-		int [][] spot1 = new int [row][column];
 		
+		GridArray gamefield = new GridArray();
 		//Horizontal prüfen
+		
+		char colorSpot = gamefield.getArray(row, column);
+		
+		
+		
+		
+		
 		checkHorizontal:
 		while (true) {
 			
@@ -142,7 +230,7 @@ public class GameRules {
 			}
 		
 		
-	}
+	} */
 
 //<<<<<<< HEAD
 
