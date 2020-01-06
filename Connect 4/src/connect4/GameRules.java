@@ -22,28 +22,41 @@ public void gridSpot(){
 }
 //Ab hier checken ob vier Stück vorhanden sind
 public boolean winCheck() {
-	boolean check = false;
+	boolean check=false;
 
 //horizontal
 for (int row = 0; row < 6; row++){
-	for (int column = 0; column < 4; column++) {
+	for (int column=0; column<4; column++) {
 	if (spot[column][row]!=0 && spot[column][row] == spot[column+1][row] && spot[column][row]==spot[column+2][row] && spot [column][row]==spot[column+3][row]) {
-			check =true;
+			check=true;
 	    }
 	  }
     }
 //vertical
-for (int row = 0; row < 3; row++){
-	for (int column = 0; column < 7; column++) {
+for (int row=0; row<3; row++){
+	for (int column = 0; column<7; column++) {
 	if (spot[column][row]!=0 && spot[column][row] == spot[column][row+1] && spot[column][row]==spot[column][row+2] && spot [column][row]==spot[column][row+3]) {
-			check =true;
+			check=true;
 	   }
 	 }
    }
 //diagonal up
-
+for (int row=0; row <3; row++) {
+	for(int column=0; column<4; column++) {
+		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row+1] && spot[column][row] == spot[column+2][row+2] && spot[column][row] == spot[column+3][row+3]) {
+			check=true;
+		}
+	}
+}
 
 //diagonal down
+for (int row=0; row <6; row++) {
+	for(int column=0; column<4; column++) {
+		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row-1] && spot[column][row] == spot[column+2][row-2] && spot[column][row] == spot[column+3][row-3]) {
+			check=true;
+		}
+	}
+}
 
 return check;
 }//winCheckSchleife
