@@ -11,11 +11,11 @@ public class GameRules{
 	int row;
 	int column;
 	
-public gridSpot(){
+public void gridSpot(){
 	
 
-	for (int row=0; row=6; row++) {
-	for (int column=0; column=7; column++){
+	for (int row=0; row<6; row++) {
+	for (int column=0; column<7; column++){
 		spot[column][row]=0;
     	}
      }
