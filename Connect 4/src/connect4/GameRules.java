@@ -14,8 +14,8 @@ public class GameRules{
 public gridSpot(){
 	
 
-	for (int row=0; row=6; row++) {
-	for (int column=0; column=7; column++){
+	for (int row=0; row<6; row++) {
+	for (int column=0; column<7; column++){
 		spot[column][row]=0;
     	}
      }
@@ -26,15 +26,15 @@ public boolean winCheck() {
 
 //horizontal
 for (int row = 0; row < 6; row++){
-	for (int column = 0; column < 4; column++) {
+	for (int column=0; column<4; column++) {
 	if (spot[column][row]!=0 && spot[column][row] == spot[column+1][row] && spot[column][row]==spot[column+2][row] && spot [column][row]==spot[column+3][row]) {
 			check=true;
 	    }
 	  }
     }
 //vertical
-for (int row = 0; row < 3; row++){
-	for (int column = 0; column < 7; column++) {
+for (int row=0; row<3; row++){
+	for (int column = 0; column<7; column++) {
 	if (spot[column][row]!=0 && spot[column][row] == spot[column][row+1] && spot[column][row]==spot[column][row+2] && spot [column][row]==spot[column][row+3]) {
 			check=true;
 	   }
@@ -42,7 +42,7 @@ for (int row = 0; row < 3; row++){
    }
 //diagonal up
 for (int row=0; row <3; row++) {
-	for(int column=0; column=4; column++) {
+	for(int column=0; column<4; column++) {
 		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row+1] && spot[column][row] == spot[column+2][row+2] && spot[column][row] == spot[column+3][row+3]) {
 			check=true;
 		}
@@ -51,7 +51,7 @@ for (int row=0; row <3; row++) {
 
 //diagonal down
 for (int row=0; row <6; row++) {
-	for(int column=0; column=4; column++) {
+	for(int column=0; column<4; column++) {
 		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row-1] && spot[column][row] == spot[column+2][row-2] && spot[column][row] == spot[column+3][row-3]) {
 			check=true;
 		}
