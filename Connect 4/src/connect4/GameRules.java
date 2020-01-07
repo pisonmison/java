@@ -5,44 +5,100 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+///spot soll ein char drin haben, 
+
+
 public class GameRules{
 	
-	int [][] spot = new int [7][6];
-	int row;
-	int column;
+	public static boolean check = false;
+	char [][] spot = new char [6][7];
+
 	
 public void gridSpot(){
 	
 
-	for (int row=0; row<6; row++) {
-	for (int column=0; column<7; column++){
-		spot[column][row]=0;
+	for (int column=0; column<6; column++) {
+		for (int row=0; row<7; row++){
+			char element = GridTest.gamefield.getArray(column, row);
+			spot[column][row]= element;
     	}
      }
 }
-//Ab hier checken ob vier Stück vorhanden sind
-public boolean winCheck() {
-	boolean check=false;
 
+public GameRules() {
+	gridSpot();
+	//printGridSpot();
+	
+}
+
+public void printGridSpot() {
+	// nur zum testen, weil der hier gridSpot array printen soll
+	for(int i = 0; i < spot.length; i++) {
+		for (int j = 0; j < spot[i].length; j++) {
+			System.out.print(spot[i][j] + " ");
+		}
+		System.out.println("");
+		
+		
+		
+	}
+}
+public void winCheck() {
+	//GridTest.gamefield.printArray();
+	checkYellow();
+}
+
+
+public void checkYellow() {
+	gridSpot();
+	if(check == true) {
+		 System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
+	}
+	
+	
+		//Horizonal f�r gelb
+        for (int column= 0; column < 6; column++){
+        	for (int row=0; row<4; row++) {
+        	
+        	if (	spot[column][row] == 'X' 
+        			&& spot[column][row + 1] == 'X'
+        			&& spot[column][row + 2] == 'X'
+        			&& spot[column][row + 3] == 'X') {
+        					check=true;
+        			  }
+        			 }
+        		  }
+          
+       
+}}
+   
+//Ab hier checken ob vier Stück vorhanden sind
+/*public boolean winCheck() {
+	//boolean check=false;
+	if (check == true) {
+		System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
+	}
+/*
 //horizontal
-for (int row = 0; row < 6; row++){
-	for (int column=0; column<4; column++) {
+for (int column= 0; column < 6; column++){
+	for (int row=0; row<4; row++) {
+	
 	if (spot[column][row]!=0 && spot[column][row] == spot[column+1][row] && spot[column][row]==spot[column+2][row] && spot [column][row]==spot[column+3][row]) {
 			check=true;
 	    }
 	  }
     }
 //vertical
-for (int row=0; row<3; row++){
-	for (int column = 0; column<7; column++) {
+for (int column=0; column<3; column++){
+	for (int row = 0; row<7; row++) {
 	if (spot[column][row]!=0 && spot[column][row] == spot[column][row+1] && spot[column][row]==spot[column][row+2] && spot [column][row]==spot[column][row+3]) {
 			check=true;
 	   }
 	 }
    }
 //diagonal up
-for (int row=0; row <3; row++) {
-	for(int column=0; column<4; column++) {
+for (int column=0; column <3; column++) {
+	for(int row=0; row<4; row++) {
 		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row+1] && spot[column][row] == spot[column+2][row+2] && spot[column][row] == spot[column+3][row+3]) {
 			check=true;
 		}
@@ -50,8 +106,8 @@ for (int row=0; row <3; row++) {
 }
 
 //diagonal down
-for (int row=0; row <6; row++) {
-	for(int column=0; column<4; column++) {
+for (int column=0; column <6; column++) {
+	for(int row=0; row<4; row++) {
 		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row-1] && spot[column][row] == spot[column+2][row-2] && spot[column][row] == spot[column+3][row-3]) {
 			check=true;
 		}
@@ -59,8 +115,8 @@ for (int row=0; row <6; row++) {
 }
 
 return check;
-}//winCheckSchleife
-}//GameRulesSchleife
+}*///winCheckSchleife
+//}}GameRulesSchleife
 
 
 

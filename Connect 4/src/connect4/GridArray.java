@@ -1,6 +1,6 @@
 package connect4;
 
-public class GridArray {
+public  class GridArray {
 	
 	
 	
@@ -11,8 +11,8 @@ public class GridArray {
 			{'-','-', '-', '-', '-', '-', '-'},
 			{'-','-', '-', '-', '-', '-', '-'},
 			{'-','-', '-', '-', '-', '-', '-'}};
-	public GridArray() {
-		
+	public  GridArray() {
+		printArray();
 	}
 	
 	

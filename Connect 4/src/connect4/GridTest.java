@@ -1,8 +1,11 @@
 package connect4;
 
 import java.awt.*;
+import java.util.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TimerTask;
+
 import javax.swing.*;
 
 
@@ -33,14 +36,16 @@ public class GridTest extends JFrame implements ActionListener {
 	private char[][] spielfeld;
 	static JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
 	
-	GridArray gamefield = new GridArray();
+	static GridArray gamefield = new GridArray();
 	Player player = new Player();
-	
+	GameRules gamelogic = new GameRules();
 	
 	//test for player color
 	int playercolor = 0;
 	boolean playerSwitch = false;
 	
+
+
 	public GridTest() {
 		createGameGrid();
 		fillGrid();
@@ -209,20 +214,81 @@ public class GridTest extends JFrame implements ActionListener {
 		   
 		   
 		   updateGrid();
-		   gamefield.printArray();
+		   GridTest.gamefield.printArray();
 	  
 	}    
 
-		    	
+		 
+
+	
+	
+	
+	// wollte timer einbauen, damit er immer 1sec nachdem man farbe einsetzt, prüft ob gewonnen oder net.
+	//klappt noch net ganz
+	// aber winCheck(); funktioniert!
+	public void checkGrid() {
+		//gamelogic.winCheck();
+	/*	
+	      TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				gamelogic.winCheck();
+				
+			}
+	    	  
+	    	  
+	      };
+	      Timer timer = new Timer(3000, this);
+	      timer.start();
+	      timer.stop();
+	     
+	      
+	}	*/
+		
+		
+		if(arrow0.getModel().isPressed()
+				|| arrow1.getModel().isPressed()
+				|| arrow2.getModel().isPressed()
+				|| arrow3.getModel().isPressed()
+				|| arrow4.getModel().isPressed()
+				|| arrow5.getModel().isPressed()
+				|| arrow6.getModel().isPressed()) {
+			
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+				public void run() {
+					gamelogic.winCheck();
+				}
+			};
+			
+			final public start() {
+				
+				timer.s
+				}
+					
+			
+			}}
+			
+	
+	
+			
+
 		
 		/////////////////action events for button input
 	
 	 public void actionPerformed(ActionEvent e) {
-	       if(e.getSource() == arrow0) {
+	       
+
+		 
+		 if(e.getSource() == arrow0) {
 	    	   xPos = 0;
 	    	   yPos = counter0;
 	    	   insertColor();
 	    	   counter0--;
+	    	   
+	    	   checkGrid();
+	    	   
 	    	   
 	       }
 	       else if(e.getSource() == arrow1) {
@@ -232,7 +298,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter1;
 	    	   insertColor();
 	    	   counter1--;
-	    	  
+	    	   checkGrid();
 	    	   
 	       }
 	       else if(e.getSource() == arrow2) {
@@ -241,6 +307,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter2;
 	    	   insertColor();
 	    	   counter2--;
+	    	   checkGrid();
 	    	   
 	    	   
 	       }
@@ -251,6 +318,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter3;
 	    	   insertColor();
 	    	   counter3--;
+	    	   checkGrid();
 	    	
 	    	
 	       }
@@ -260,6 +328,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter4;
 	    	   insertColor();
 	    	   counter4--;
+	    	   checkGrid();
 	    	
 	    	   
 	    	   
@@ -271,6 +340,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter5;
 	    	   insertColor();
 	    	   counter5--;
+	    	   checkGrid();
 	    	  
 	    	   
 	       }
@@ -280,6 +350,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter6;
 	    	   insertColor();
 	    	   counter6--;
+	    	   checkGrid();
 	    	  
 	    	   
 	    	   
