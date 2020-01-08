@@ -4,17 +4,38 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
+import java.util.Timer;
+import java.util.TimerTask;
 ///spot soll ein char drin haben, 
 
 
-public class GameRules{
+public class  GameRules{
 	
 	public static boolean check = false;
-	char [][] spot = new char [6][7];
-
+	public static boolean draw = false;
 	
-public void gridSpot(){
+	public static char [][] spot = new char [6][7];
+	public static boolean playerSwitch = false; /*
+	false = gelb // true = rot ->  if playerSwitch false= make buttons for other player not clickable
+	*/
+
+
+//zum testen
+public static void WinOrNot() {
+	System.out.println("");
+	System.out.print("Win? :");
+	if(check == true) {
+		System.out.print("YES");
+	}
+	
+	else {
+		System.out.print("NO");
+	}
+}
+	
+	
+	
+public static void gridSpot(){
 	
 
 	for (int column=0; column<6; column++) {
@@ -31,6 +52,16 @@ public GameRules() {
 	
 }
 
+public void changeCheck() { //zum testen
+	if (check == true) {
+		check = false;
+	}
+		
+}
+
+
+
+
 public void printGridSpot() {
 	// nur zum testen, weil der hier gridSpot array printen soll
 	for(int i = 0; i < spot.length; i++) {
@@ -43,19 +74,23 @@ public void printGridSpot() {
 		
 	}
 }
-public void winCheck() {
-	//GridTest.gamefield.printArray();
+
+
+
+
+public static  void  winCheck() {
+	
 	checkYellow();
 	checkRed();
 	checkDraw();
-}
+	
+	WinOrNot();
+	
 
 
-public void checkYellow() {
-	gridSpot();
-	if(check == true) {
-		 System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
-	}
+
+public static void checkYellow() {
+	gridSpot(); //aktualise gridSpot 
 	
 	
 		//Horizonal fuer gelb
@@ -106,7 +141,7 @@ public void checkYellow() {
 	  }
   }
 }
-  public void checkRed() {
+  public static void checkRed() {
 		gridSpot();
 		if(check == true) {
 			 System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
@@ -164,7 +199,7 @@ public void checkYellow() {
 	  
 		  
 	  }
-  public void checkDraw() {
+  public static void checkDraw() {
 	  gridSpot();
 	  if(check == true) {
 		  System.out.println("DRAWWWW");
@@ -180,7 +215,16 @@ public void checkYellow() {
   }
 
 }//CLASS GAMERULES
-   
+
+/*
+public static void main(String[] args) {
+   GameRules logic = new GameRules();
+	logic.timerCheckGrid();
+    
+ }
+
+}
+   */
 //Ab hier checken ob vier Stück vorhanden sind
 /*public boolean winCheck() {
 	//boolean check=false;
