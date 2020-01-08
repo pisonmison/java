@@ -46,6 +46,8 @@ public void printGridSpot() {
 public void winCheck() {
 	//GridTest.gamefield.printArray();
 	checkYellow();
+	checkRed();
+	checkDraw();
 }
 
 
@@ -56,21 +58,128 @@ public void checkYellow() {
 	}
 	
 	
-		//Horizonal für gelb
-        for (int column= 0; column < 6; column++){
-        	for (int row=0; row<4; row++) {
+		//Horizonal fuer gelb
+        for (int column= 0; column<7; column++){
+        	for (int row=0; row<3; row++) {
         	
         	if (	spot[column][row] == 'X' 
-        			&& spot[column][row + 1] == 'X'
-        			&& spot[column][row + 2] == 'X'
-        			&& spot[column][row + 3] == 'X') {
+        			&& spot[column+1][row] == 'X'
+        			&& spot[column+2][row] == 'X'
+        			&& spot[column+3][row] == 'X') {
         					check=true;
         			  }
         			 }
         		  }
-          
-       
-}}
+          //vertical
+  for  (int column=0; column <7; column++) {
+	  for (int row=0; row<3; row++) {
+		  if( spot [column][row] == 'x'
+			    && spot[column][row + 1] == 'X'
+        		&& spot[column][row + 2] == 'X'
+        		&& spot[column][row + 3] == 'X') {
+			  		check=true;
+		  }
+	  }
+	  
+  }  
+  //diagonal up
+  for  (int column=0; column <7; column++) {
+	  for (int row=0; row<3; row++) {
+		  if( spot [column][row] == 'x'
+			    && spot[column+1][row + 1] == 'X'
+        		&& spot[column+2][row + 2] == 'X'
+        		&& spot[column+3][row + 3] == 'X') {
+			  		check=true;
+		  }
+	  }
+	  
+  }
+  //diagonal down
+  for  (int column=0; column <7; column++) {
+	  for (int row=0; row<3; row++) {
+		  if( spot [column][row] == 'x'
+			    && spot[column+1][row - 1] == 'X'
+        		&& spot[column+2][row - 2] == 'X'
+        		&& spot[column+3][row - 3] == 'X') {
+			  		check=true;
+		  }
+	  }
+  }
+}
+  public void checkRed() {
+		gridSpot();
+		if(check == true) {
+			 System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
+			 }
+		
+		
+			//Horizonal fuer gelb
+	        for (int column= 0; column < 7; column++){
+	        	for (int row=0; row<3; row++) {
+	        	
+	        	if (	spot[column][row] == 'O' 
+	        			&& spot[column+1][row] == 'O'
+	        			&& spot[column+2][row] == 'O'
+	        			&& spot[column+3][row] == 'O') {
+	        					check=true;
+	        			  }
+	        			 }
+	        		  }
+	          //vertical
+	  for  (int column=0; column <7; column++) {
+		  for (int row=0; row<3; row++) {
+			  if( spot [column][row] == 'O'
+				    && spot[column][row + 1] == 'O'
+	        		&& spot[column][row + 2] == 'O'
+	        		&& spot[column][row + 3] == 'O') {
+				  		check=true;
+			  }
+		  }
+		  
+	  }  
+	  //diagonal up
+	  for  (int column=0; column <7; column++) {
+		  for (int row=0; row<3; row++) {
+			  if( spot [column][row] == 'O'
+				    && spot[column+1][row + 1] == 'O'
+	        		&& spot[column+2][row + 2] == 'O'
+	        		&& spot[column+3][row + 3] == 'O') {
+				  		check=true;
+			  }
+		  }
+		  
+	  }
+	  //diagonal down
+	  for  (int column=0; column <7; column++) {
+		  for (int row=0; row<3; row++) {
+			  if( spot [column][row] == 'O'
+				    && spot[column+1][row - 1] == 'O'
+	        		&& spot[column+2][row - 2] == 'O'
+	        		&& spot[column+3][row - 3] == 'O') {
+				  		check=true;
+			  }
+		  }
+		  
+	  }
+	  
+		  
+	  }
+  public void checkDraw() {
+	  gridSpot();
+	  if(check == true) {
+		  System.out.println("DRAWWWW");
+	  }
+	  for (int column=0;column >=7;column++) {
+		  for (int row=0;row >=7; row++) {
+			  if(spot[column][row]!= 'X' && spot [column][row] != 'O') {
+				  check=true;
+			  }
+				  
+		  }
+	  }
+  }
+
+}//CLASS GAMERULES
    
 //Ab hier checken ob vier StÃ¼ck vorhanden sind
 /*public boolean winCheck() {
