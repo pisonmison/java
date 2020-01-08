@@ -101,15 +101,15 @@ public class Display extends JFrame implements ActionListener {
 	  //action method which calls when button to which the ActionListened is bound to, is pressed
 	  public void actionPerformed(ActionEvent e) {
 	       if(e.getSource() == b1) {
-	    	   
+	    	   mainframe.dispose();
 	    	   createConnectWindow();
 	       }
 	       
 	       if(e.getSource() == connectButton) {
 	    	   //save input string into username string and close window again(make it invisible)
 	    	   submitAction();
-	    	   secondframe.setVisible(false);
-	    	   mainframe.setVisible(false);
+	    	   secondframe.dispose();
+	    	  
 	    	   GridTest testgrid = new GridTest();
 	    	   
 	    	  // Grid();
@@ -168,6 +168,7 @@ public class Display extends JFrame implements ActionListener {
 		  
 		  secondframe.add(p1, BorderLayout.WEST);
 		  secondframe.add(connectButton, BorderLayout.EAST);
+		  secondframe.setLocationRelativeTo(null);
 		  secondframe.pack();
 		  secondframe.setVisible(true);
 		  

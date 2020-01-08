@@ -37,7 +37,7 @@ public char getArray(int y, int x){
 	///////////////////////////////////
 	public void printArray() {
 	
-	
+	System.out.println("");
 	
 	//array mit - füllen und jweils "0" oder "X" für farbe einsetzen und dann kann man rechnen
 	// i ist y-achse von oben nach unten(umgekehrt also)

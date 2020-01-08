@@ -15,6 +15,7 @@ public class GridTest extends JFrame implements ActionListener {
 	int xPos, yPos; // hier spÃ¤ter koordinaten Ã¼bergeben
 
 	
+	
 	//counter per tcp übersenden jedesmal
 	int counter0 = 5;
 	int counter1 = 5;
@@ -24,17 +25,17 @@ public class GridTest extends JFrame implements ActionListener {
 	int counter5 = 5;
 	int counter6 = 5;
 	
-	private JFrame mainframe;
+	public JFrame mainframe;
 	private JPanel buttonPanel, mainPanel,emptyPanel;
 	
 	
-	private ImageIcon emptyBox, whiteBox;
+	private ImageIcon emptyBox;
 	private JPanel[][] gridArrayPanel = new JPanel[6][7];
 	private JPanel gridPanel;
 	JLabel emptyLabel;
 	
-	private char[][] spielfeld;
-	static JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
+	
+	public JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
 	
 	static GridArray gamefield = new GridArray();
 	Player player = new Player();
@@ -42,9 +43,7 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	//test for player color
 	int playercolor = 0;
-	boolean playerSwitch = false;
 	
-
 
 	public GridTest() {
 		createGameGrid();
@@ -192,8 +191,9 @@ public class GridTest extends JFrame implements ActionListener {
 	}
 		}
 	}
-	//bevor du pushsr/commit erstmal ausfï¿½hren! dann nimmt er ï¿½nderungen wahr.verstehe
-	//hier erste testfunktion zum einsetzen roter/gelber farbe
+
+	
+	
 	
 	public void insertColor() {
 	 
@@ -202,15 +202,15 @@ public class GridTest extends JFrame implements ActionListener {
 			
 			
 			
-		   if(playerSwitch == true && yPos >= 0 ){//true for red
+		   if(GameRules.playerSwitch == true && yPos >= 0 ){//true for red
 			   gamefield.setArray('0', yPos, xPos);
 		  }
-		   else if(playerSwitch == false && yPos >= 0) {//false for yellow
+		   else if(GameRules.playerSwitch == false && yPos >= 0) {//false for yellow
 			   gamefield.setArray('X', yPos, xPos);
 		   }
 		   
 		   
-		   playerSwitch = !playerSwitch;
+		   GameRules.playerSwitch = !GameRules.playerSwitch;
 		   
 		   
 		   updateGrid();
@@ -223,55 +223,31 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	
 	
-	// wollte timer einbauen, damit er immer 1sec nachdem man farbe einsetzt, prüft ob gewonnen oder net.
-	//klappt noch net ganz
-	// aber winCheck(); funktioniert!
-	public void checkGrid() {
-		//gamelogic.winCheck();
-	/*	
-	      TimerTask task = new TimerTask() {
 
-			@Override
-			public void run() {
-				gamelogic.winCheck();
-				
-			}
-	    	  
-	    	  
-	      };
-	      Timer timer = new Timer(3000, this);
-	      timer.start();
-	      timer.stop();
-	     
-	      
-	}	*/
-		
-		
-		if(arrow0.getModel().isPressed()
-				|| arrow1.getModel().isPressed()
-				|| arrow2.getModel().isPressed()
-				|| arrow3.getModel().isPressed()
-				|| arrow4.getModel().isPressed()
-				|| arrow5.getModel().isPressed()
-				|| arrow6.getModel().isPressed()) {
-			
-			Timer timer = new Timer();
-			TimerTask task = new TimerTask() {
-				public void run() {
-					gamelogic.winCheck();
-				}
-			};
-			
-			final public start() {
-				
-				timer.s
-				}
-					
-			
-			}}
-			
 	
-	
+	/////////////////timer funktion/////////////////
+	/* prüft ob gewonnen oder net 0.5sec nach farbsetzung
+	 * falls win/draw/ -> schliese gamegrid und öffne neue fenster, zeige jeweils spieler win/lose/draw an*/
+	 
+	public void checkGrid() {		
+		new java.util.Timer().schedule( 
+		        new java.util.TimerTask() {
+		            @Override
+		            public void run() {
+		                GameRules.winCheck();
+		                if(GameRules.check == true) {
+		                	
+		                
+		                mainframe.dispose();
+		                
+		                //erstelle win/lose/draw
+		                }
+		            }
+		        }, 
+		        10 // 10 milliseconds -> prevents timer bug of when buttons are clicked several times in under the defined number.
+		);
+		
+	}
 			
 
 		
