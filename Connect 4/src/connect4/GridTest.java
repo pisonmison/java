@@ -235,6 +235,7 @@ public class GridTest extends JFrame implements ActionListener {
 		            @Override
 		            public void run() {
 		                GameRules.winCheck();
+		                GameRules.roundsPlayed++;
 		                if(GameRules.check == true) {
 		                	
 		                

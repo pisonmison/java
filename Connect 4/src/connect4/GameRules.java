@@ -19,9 +19,11 @@ public class  GameRules{
 	false = gelb // true = rot ->  if playerSwitch false= make buttons for other player not clickable
 	*/
 
-
+	public static int roundsPlayed = 0;
 //zum testen
 public static void WinOrNot() {
+	System.out.println("");
+	System.out.printf("Round:" + roundsPlayed);
 	System.out.println("");
 	System.out.print("Win? :");
 	if(check == true) {
@@ -83,10 +85,10 @@ public static  void  winCheck() {
 	checkYellow();
 	checkRed();
 	checkDraw();
-	
 	WinOrNot();
 	
-
+	
+}
 
 
 public static void checkYellow() {
@@ -94,119 +96,138 @@ public static void checkYellow() {
 	
 	
 		//Horizonal fuer gelb
-        for (int column= 0; column<7; column++){
-        	for (int row=0; row<3; row++) {
+        for (int column= 0; column<6; column++){
+        	for (int row=0; row<4; row++) {
         	
         	if (	spot[column][row] == 'X' 
-        			&& spot[column+1][row] == 'X'
-        			&& spot[column+2][row] == 'X'
-        			&& spot[column+3][row] == 'X') {
+        			&& spot[column][row+1] == 'X'
+        			&& spot[column][row+2] == 'X'
+        			&& spot[column][row+3] == 'X') {
         					check=true;
         			  }
         			 }
         		  }
           //vertical
-  for  (int column=0; column <7; column++) {
-	  for (int row=0; row<3; row++) {
-		  if( spot [column][row] == 'x'
-			    && spot[column][row + 1] == 'X'
-        		&& spot[column][row + 2] == 'X'
-        		&& spot[column][row + 3] == 'X') {
+  for  (int column=0; column <3; column++) {
+	  for (int row=0; row<7; row++) {
+		  if( spot [column][row] == 'X'
+			    && spot[column+1][row] == 'X'
+        		&& spot[column+2][row] == 'X'
+        		&& spot[column+3][row] == 'X') {
 			  		check=true;
 		  }
 	  }
 	  
   }  
   //diagonal up
-  for  (int column=0; column <7; column++) {
-	  for (int row=0; row<3; row++) {
-		  if( spot [column][row] == 'x'
+  for  (int column=0; column <3; column++) {
+	  for (int row=0; row<4; row++) {
+		  if( spot [column][row] == 'X'
 			    && spot[column+1][row + 1] == 'X'
         		&& spot[column+2][row + 2] == 'X'
         		&& spot[column+3][row + 3] == 'X') {
 			  		check=true;
-		  }
+			  	}
+		  
 	  }
-	  
   }
+
   //diagonal down
-  for  (int column=0; column <7; column++) {
-	  for (int row=0; row<3; row++) {
-		  if( spot [column][row] == 'x'
+  
+  for  (int column=0; column <3; column++) {
+	  for (int row=0; row<7; row++) {
+		  if( spot [column][row] == 'X') {
+			  if(row > 3
+		  
 			    && spot[column+1][row - 1] == 'X'
         		&& spot[column+2][row - 2] == 'X'
         		&& spot[column+3][row - 3] == 'X') {
-			  		check=true;
-		  }
+			  	check=true;
+		  
+			  }
 	  }
-  }
+	  }
 }
+  
+}
+
   public static void checkRed() {
 		gridSpot();
-		if(check == true) {
-			 System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
-			 }
 		
 		
-			//Horizonal fuer gelb
-	        for (int column= 0; column < 7; column++){
-	        	for (int row=0; row<3; row++) {
+			//Horizonal fuer rot
+	        for (int column= 0; column < 6; column++){
+	        	for (int row=0; row<4; row++) {
 	        	
-	        	if (	spot[column][row] == 'O' 
-	        			&& spot[column+1][row] == 'O'
-	        			&& spot[column+2][row] == 'O'
-	        			&& spot[column+3][row] == 'O') {
+	        	if (	spot[column][row] == '0' 
+	        			&& spot[column][row+1] == '0'
+	        			&& spot[column][row+2] == '0'
+	        			&& spot[column][row+3] == '0') {
 	        					check=true;
 	        			  }
 	        			 }
 	        		  }
 	          //vertical
-	  for  (int column=0; column <7; column++) {
-		  for (int row=0; row<3; row++) {
-			  if( spot [column][row] == 'O'
-				    && spot[column][row + 1] == 'O'
-	        		&& spot[column][row + 2] == 'O'
-	        		&& spot[column][row + 3] == 'O') {
+	  for  (int column=0; column <3; column++) {
+		  for (int row=0; row<7; row++) {
+			  if( spot [column][row] == '0'
+				    && spot[column+1][row] == '0'
+	        		&& spot[column+2][row] == '0'
+	        		&& spot[column+3][row] == '0') {
 				  		check=true;
 			  }
 		  }
 		  
 	  }  
 	  //diagonal up
-	  for  (int column=0; column <7; column++) {
-		  for (int row=0; row<3; row++) {
-			  if( spot [column][row] == 'O'
-				    && spot[column+1][row + 1] == 'O'
-	        		&& spot[column+2][row + 2] == 'O'
-	        		&& spot[column+3][row + 3] == 'O') {
+	  for  (int column=0; column <3; column++) {
+		  for (int row=0; row<4; row++) {
+			  if( spot [column][row] == '0'
+				    && spot[column+1][row + 1] == '0'
+	        		&& spot[column+2][row + 2] == '0'
+	        		&& spot[column+3][row + 3] == '0') {
 				  		check=true;
 			  }
 		  }
 		  
 	  }
 	  //diagonal down
-	  for  (int column=0; column <7; column++) {
-		  for (int row=0; row<3; row++) {
-			  if( spot [column][row] == 'O'
-				    && spot[column+1][row - 1] == 'O'
-	        		&& spot[column+2][row - 2] == 'O'
-	        		&& spot[column+3][row - 3] == 'O') {
-				  		check=true;
-			  }
+	  for  (int column=0; column <3; column++) {
+		  for (int row=0; row<7; row++) {
+			  if( spot [column][row] == '0') {
+				  if(row > 3
+			  
+				    && spot[column+1][row - 1] == '0'
+	        		&& spot[column+2][row - 2] == '0'
+	        		&& spot[column+3][row - 3] == '0') {
+				  	check=true;
+			  
+				  }
 		  }
-		  
-	  }
+		  }
+	}
 	  
 		  
 	  }
-  public static void checkDraw() {
+
+
+public static void checkDraw() {
+	if(roundsPlayed >= 41) {
+		System.out.print("DRAWWWW");
+	}
+	
+}
+
+
+}
+ /* public static void checkDraw() {
 	  gridSpot();
 	  if(check == true) {
 		  System.out.println("DRAWWWW");
 	  }
 	  for (int column=0;column >=7;column++) {
 		  for (int row=0;row >=7; row++) {
-			  if(spot[column][row]!= 'X' && spot [column][row] != 'O') {
+			  if(spot[column][row]!= '-') {
 				  check=true;
 			  }
 				  
@@ -214,7 +235,8 @@ public static void checkYellow() {
 	  }
   }
 
-}//CLASS GAMERULES
+}
+//CLASS GAMERULES
 
 /*
 public static void main(String[] args) {
@@ -225,51 +247,6 @@ public static void main(String[] args) {
 
 }
    */
-//Ab hier checken ob vier Stück vorhanden sind
-/*public boolean winCheck() {
-	//boolean check=false;
-	if (check == true) {
-		System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
-	}
-/*
-//horizontal
-for (int column= 0; column < 6; column++){
-	for (int row=0; row<4; row++) {
-	
-	if (spot[column][row]!=0 && spot[column][row] == spot[column+1][row] && spot[column][row]==spot[column+2][row] && spot [column][row]==spot[column+3][row]) {
-			check=true;
-	    }
-	  }
-    }
-//vertical
-for (int column=0; column<3; column++){
-	for (int row = 0; row<7; row++) {
-	if (spot[column][row]!=0 && spot[column][row] == spot[column][row+1] && spot[column][row]==spot[column][row+2] && spot [column][row]==spot[column][row+3]) {
-			check=true;
-	   }
-	 }
-   }
-//diagonal up
-for (int column=0; column <3; column++) {
-	for(int row=0; row<4; row++) {
-		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row+1] && spot[column][row] == spot[column+2][row+2] && spot[column][row] == spot[column+3][row+3]) {
-			check=true;
-		}
-	}
-}
-
-//diagonal down
-for (int column=0; column <6; column++) {
-	for(int row=0; row<4; row++) {
-		if(spot[column][row] !=0 && spot[column][row] == spot[column+1][row-1] && spot[column][row] == spot[column+2][row-2] && spot[column][row] == spot[column+3][row-3]) {
-			check=true;
-		}
-	}
-}
-
-return check;
-}*///winCheckSchleife
-//}}GameRulesSchleife
 
 
 
@@ -278,181 +255,6 @@ return check;
 
 
 
-
-
-
-
-/*public class GameRules {
-	
-	
-	boolean winCheck =false;
-	
-	int row = 0;
-	int column = 0;
-	int counter = 0;
-	int otherCounter = 0; 
-	int playerId1 = 2;
-	int [][] spot1 = new int [row][column];
-	
-	int cHRed = 0;
-	
-	
-	
-	public void checkRed() {
-	for(int j = 0; j < 6; j++) {
-	      for (int k = 0; k < 7; k++) {
-
-	      char spot = GridTest.gamefield.getArray(j, k);
-	      if(spot == 'X') {
-	    	  cHRed++;
-	      }
-	    }
-	  }
-	if(cHRed == 4) {
-		System.out.print("Vier in einer Reihe: WIN WIN WIN WIN");
-	}
-}
-	
-	      
-	      
-	      
-	      public boolean isFour(int[][] spot, int rowY, int columnX, int playerId) {
-		
-		
-		
-		GridArray gamefield = new GridArray();
-		//Horizontal prüfen
-		
-		char colorSpot = gamefield.getArray(row, column);
-		
-		
-		
-		
-		
-		checkHorizontal:
-		while (true) {
-			
-			if (column + (counter+1) <= 7) {
-				if (spot [row] [column + counter] == playerId && winCheck == false) {
-					
-					counter++;
-					continue checkHorizontal;
-				}
-			}
-				
-		winCheck = true;
-		if (column - (otherCounter + 1) > 0)
-	    {
-		if (spot [row] [(column - 2) - otherCounter] == playerId)
-		{
-		    otherCounter++;
-		    continue checkHorizontal;
-		}
-	  }
-	    if (counter == 3 || counter + otherCounter == 3 || otherCounter == 3)
-	    {
-		return true;
-	    }
-	    winCheck = false;
-	    counter = 0;
-	    otherCounter = 0;
-	    break;
-	}
-	//Vertical abcheken ob es vier stück gibt
-		checkVertical:
-	while (true)
-	{
-	    if (row + counter <= 3)
-	    {
-		if (spot [row + 1 + counter] [column - 1] == playerId && winCheck == false)
-		{
-		    counter++;
-		    continue checkVertical;
-		}
-	 }
-	    winCheck = true;
-	    if (row - otherCounter > 0)
-	    {
-		if (spot [row - 1 - otherCounter] [column - 1] == playerId)
-		{
-		    otherCounter++;
-		    continue checkVertical;
-		}
-	 }
-	    if (counter == 3 || counter + otherCounter == 3 || otherCounter == 3)
-	    {
-		return true;
-	    }
-	    winCheck = false;
-	    counter = 0;
-	    otherCounter = 0;
-	    break;
-	}
-	//Ab hier Diagonal
-	checkRightDiagonal:
-	while (true)
-	{
-	    if (row + counter < 4 && column + (counter + 1) <= 7)
-	    {
-		if (spot [row + 1 + counter] [column + counter] == playerId && winCheck == false)
-		{
-		    counter++;
-	//	    continue rightDiagonalCheck;
-		}
-   }
-	    winCheck = true;
-	   
-	    if (row - otherCounter > 0 && column - (otherCounter + 1) > 0)
-	    {
-		if (spot [row - 1 - otherCounter] [(column - 2) - otherCounter] == playerId)
-		{
-		    otherCounter++;
-		    continue checkRightDiagonal;
-		}
-   }
-	    if (counter == 3 || counter + otherCounter == 3 || otherCounter == 3)
-	    {
-		return true;
-	    }
-	    winCheck = false;
-	    counter = 0;
-	    otherCounter = 0;
-	    break;
-	}
-	checkLeftDiagonal:
-	while (true)
-	{
-	    if (row + counter < 4 && column - (counter + 1) > 0)
-	    {
-		if (spot [row + 1 + counter] [(column - 2) - counter] == playerId && winCheck == false)
-		{
-		    counter++;
-		    continue checkLeftDiagonal;
-		}
-	    }
-	    winCheck = true;
-	    if (row - otherCounter > 0 && column + (otherCounter + 1) <=7)
-	    {
-		if (spot [row - 1 - otherCounter] [column + otherCounter] == playerId)
-		{
-		    otherCounter++;
-		    continue checkLeftDiagonal;
-		}
-	    }
-	    if (counter == 3 || counter + otherCounter == 3 || otherCounter == 3)
-	    {
-		return true;
-	    }
-	    winCheck = false;
-	    counter = 0;
-	    otherCounter = 0;
-	    break;
-	}
-	return false;
-			}
-		
-		
-	} */
 
 //<<<<<<< HEAD
 
