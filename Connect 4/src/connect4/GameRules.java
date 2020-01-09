@@ -90,7 +90,9 @@ public static  void  winCheck() {
 	
 }
 
-
+/* WICHTIG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * Hier wurden columns und rows ausversehen vertauscht. in dem codecontext ist row = spalte und column = reihe..)
+ */
 public static void checkYellow() {
 	gridSpot(); //aktualise gridSpot 
 	
