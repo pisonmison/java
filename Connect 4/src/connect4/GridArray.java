@@ -39,10 +39,7 @@ public char getArray(int y, int x){
 	
 	System.out.println("");
 	
-	//array mit - füllen und jweils "0" oder "X" für farbe einsetzen und dann kann man rechnen
-	// i ist y-achse von oben nach unten(umgekehrt also)
-	//j ist x -achse von links nach rechts
-	//schaut euch google bilder von 2D array(array von arrays) an um zu verstehen!!!
+//print the array in console 
 	for(int i = 0; i < gameGridArray.length; i++) {
 		for (int j = 0; j < gameGridArray[i].length; j++) {
 			System.out.print(gameGridArray[i][j] + " ");

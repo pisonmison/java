@@ -226,8 +226,8 @@ public class GridTest extends JFrame implements ActionListener {
 
 	
 	/////////////////timer funktion/////////////////
-	/* prüft ob gewonnen oder net 0.5sec nach farbsetzung
-	 * falls win/draw/ -> schliese gamegrid und öffne neue fenster, zeige jeweils spieler win/lose/draw an*/
+	/* 
+	*/
 	 
 	public void checkGrid() {		
 		new java.util.Timer().schedule( 
@@ -245,14 +245,15 @@ public class GridTest extends JFrame implements ActionListener {
 		                }
 		            }
 		        }, 
-		        10 // 10 milliseconds -> prevents timer bug of when buttons are clicked several times in under the defined number.
+		        10 /*10 milliseconds -> prevents timer bug of when buttons are clicked+
+		         several times in under the defined number.*/
 		);
 		
 	}
 			
 
 		
-		/////////////////action events for button input
+//action events for button input
 	
 	 public void actionPerformed(ActionEvent e) {
 	       

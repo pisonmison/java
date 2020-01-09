@@ -188,7 +188,11 @@ public class Display extends JFrame implements ActionListener {
 	      
 	  }
 	  
-	  
+	  public static void produceEndScreen() {
+		  
+		  
+		  
+	  }
 	  
 	  
 	  //main methode 

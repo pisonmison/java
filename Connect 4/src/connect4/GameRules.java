@@ -16,12 +16,18 @@ public class  GameRules{
 	
 	public static char [][] spot = new char [6][7];
 	public static boolean playerSwitch = false; /*
-	false = gelb // true = rot ->  if playerSwitch false= make buttons for other player not clickable
+	false = yellow // true = red ->  if playerSwitch false= make buttons for other player not clickable
 	*/
 
 	public static int roundsPlayed = 0;
-//zum testen
-public static void WinOrNot() {
+
+	
+	
+	
+	
+	
+	//console output for testing
+	public static void WinOrNot() {
 	System.out.println("");
 	System.out.printf("Round:" + roundsPlayed);
 	System.out.println("");
@@ -54,6 +60,7 @@ public GameRules() {
 	
 }
 
+//for switching val for test
 public void changeCheck() { //zum testen
 	if (check == true) {
 		check = false;
@@ -65,7 +72,7 @@ public void changeCheck() { //zum testen
 
 
 public void printGridSpot() {
-	// nur zum testen, weil der hier gridSpot array printen soll
+	// console output of array 
 	for(int i = 0; i < spot.length; i++) {
 		for (int j = 0; j < spot[i].length; j++) {
 			System.out.print(spot[i][j] + " ");
@@ -86,7 +93,7 @@ public static  void  winCheck() {
 	checkRed();
 	checkDraw();
 	WinOrNot();
-	
+	//run produceEndscreen here
 	
 }
 
@@ -147,7 +154,7 @@ public static void checkYellow() {
 			  	check=true;
 		  
 			  }
-	  }
+	      }
 	  }
 }
   
@@ -166,8 +173,8 @@ public static void checkYellow() {
 	        			&& spot[column][row+2] == '0'
 	        			&& spot[column][row+3] == '0') {
 	        					check=true;
-	        			  }
-	        			 }
+	        			        }
+	        			   }
 	        		  }
 	          //vertical
 	  for  (int column=0; column <3; column++) {
@@ -205,8 +212,8 @@ public static void checkYellow() {
 				  	check=true;
 			  
 				  }
-		  }
-		  }
+		     }
+		}
 	}
 	  
 		  
