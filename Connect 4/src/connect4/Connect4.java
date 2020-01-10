@@ -28,8 +28,8 @@ public class Connect4 {
 	      Display test = new Display();
 	      Player player = new Player();
 	      GridArray gamefield = new GridArray();
-	      
-	     
+	      Client cliente= new Client();
+	      Server servidor= new Server();
 	     
 	      
 	      
