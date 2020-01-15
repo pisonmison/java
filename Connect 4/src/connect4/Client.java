@@ -4,17 +4,24 @@ import javax.swing.*;
 
 import java.net.*;
 
+import java.awt.event.*;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class Client {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		MarcoCliente mimarco=new MarcoCliente();
-		
-		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}
+	 public static void main(String[] args) {
+	      Display test = new Display();
+	      Player player = new Player();
+	      GridArray gamefield = new GridArray();
+	      Client cliente= new Client();
+	      Server servidor= new Server();
+	      MarcoCliente mimarco=new MarcoCliente();
+			
+			mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      
+	      
+	   }
 
 }
 
@@ -52,9 +59,28 @@ class LaminaMarcoCliente extends JPanel{
 		
 	}
 	
+	private class EnviaTexto implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			try {
+				Socket misocket=new Socket("192.168.0.193",9999);
+				
+				DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());	
+				
+				flujo_salida.writeUTF(campo1.getText());
+				
+				flujo_salida.close();
+				
+			} catch (UnknownHostException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage());
+			}// meine IP und eine freie Port
+		}
+	}
 	
 	
-		
 		
 		
 	private JTextField campo1;

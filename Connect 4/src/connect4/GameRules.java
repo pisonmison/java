@@ -143,14 +143,14 @@ public static void checkYellow() {
 
   //diagonal down
   
-  for  (int column=0; column <3; column++) {
-	  for (int row=0; row<7; row++) {
+  for  (int column=0; column <6; column++) {
+	  for (int row=0; row<4; row++) {
 		  if( spot [column][row] == 'X') {
-			  if(row > 3
+			  if(column> 2
 		  
-			    && spot[column+1][row - 1] == 'X'
-        		&& spot[column+2][row - 2] == 'X'
-        		&& spot[column+3][row - 3] == 'X') {
+			    && spot[column-1][row +1] == 'X'
+        		&& spot[column-2][row +2] == 'X'
+        		&& spot[column-3][row +3] == 'X') {
 			  	check=true;
 		  
 			  }
@@ -188,8 +188,8 @@ public static void checkYellow() {
 		  }
 		  
 	  }  
-	  //diagonal up
-	  for  (int column=0; column <3; column++) {
+	  //diagonal left up
+	 for  (int column=0; column <3; column++) {
 		  for (int row=0; row<4; row++) {
 			  if( spot [column][row] == '0'
 				    && spot[column+1][row + 1] == '0'
@@ -200,15 +200,16 @@ public static void checkYellow() {
 		  }
 		  
 	  }
-	  //diagonal down
-	  for  (int column=0; column <3; column++) {
-		  for (int row=0; row<7; row++) {
+	 
+	  //diagonal right up
+	 for  (int column=0; column <6; column++) {
+		  for (int row=0; row<4; row++) {
 			  if( spot [column][row] == '0') {
-				  if(row > 3
+				  if(column > 2
 			  
-				    && spot[column+1][row - 1] == '0'
-	        		&& spot[column+2][row - 2] == '0'
-	        		&& spot[column+3][row - 3] == '0') {
+				    && spot[column -1 ][row + 1] == '0'
+	        		&& spot[column -2][row +2] == '0'
+	        		&& spot[column -3][row +3] == '0') {
 				  	check=true;
 			  
 				  }
@@ -216,7 +217,7 @@ public static void checkYellow() {
 		}
 	}
 	  
-		  
+	  
 	  }
 
 
