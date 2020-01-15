@@ -40,7 +40,7 @@ public char getArray(int y, int x){
 	System.out.println("");
 	
 //print the array in console 
-	for(int i = 0; i < gameGridArray.length; i++) {
+	for(int i = 0; i < gameGridArray.length; i++) { 
 		for (int j = 0; j < gameGridArray[i].length; j++) {
 			System.out.print(gameGridArray[i][j] + " ");
 		}
@@ -49,18 +49,8 @@ public char getArray(int y, int x){
 		
 		
 	}
-	System.out.println("_____________"); // zum visuellen trennen von spielfeldern in der konsole
+	System.out.println("_____________"); // for better visual display in consoleAfter
 }
-	
-	public void insertInto(int yPos, int xPos) {
-		
-		
-		
-		
-		
-		gameGridArray[yPos][xPos] = '0'; // testfunktion um etwas einzufügen
-		
-	}
 	
 	
 	

@@ -15,7 +15,7 @@ public class Player {
 	private String playerIP;
 	private String playerPort;
 	
-
+	
 	
 	//getting username input from user and assigning it to player
 	

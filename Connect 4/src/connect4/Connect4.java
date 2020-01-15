@@ -25,9 +25,14 @@ public class Connect4 {
  */
 	
 	 public static void main(String[] args) {
-	      Display test = new Display();
+	      
+		 Client c = new Client();
+		 Server s = new Server();
+		 
+		 
+		 /*Display test = new Display();
 	      Player player = new Player();
-	      GridArray gamefield = new GridArray();
+	      GridArray gamefield = new GridArray();*/
 	      
 	     
 	     
