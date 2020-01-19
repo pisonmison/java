@@ -55,7 +55,6 @@ public class Display extends JFrame implements ActionListener {
 	      textlabel1.setPreferredSize(new Dimension(200, 50));
 	      textlabel2 = new JLabel(" CONNECT FOUR", SwingConstants.HORIZONTAL);
 	      textlabel2.setPreferredSize(new Dimension(100,50));
-	      
 	     
 	      //create a panel, pannel gathers all components like buttons, labels together, so you can display them where you want, 
 	      // button + label in bottom corner? -> add them to a pannel p1 and make f.add(p1.Borderlayout.bottomcorner(south))
