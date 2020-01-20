@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.TimerTask;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ public class GridTest extends JFrame implements ActionListener {
 
 	int xPos, yPos; // hier später koordinaten übergeben
 
-	
+	private Thread thread;
 	
 	//counter per tcp �bersenden jedesmal
 	int counter0 = 5;
@@ -33,7 +34,7 @@ public class GridTest extends JFrame implements ActionListener {
 	private JPanel[][] gridArrayPanel = new JPanel[6][7];
 	private JPanel gridPanel;
 	JLabel emptyLabel;
-	
+	 Timer timer;
 	
 	public JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
 	
@@ -49,13 +50,18 @@ public class GridTest extends JFrame implements ActionListener {
 		createGameGrid();
 		fillGrid();
 	
+		//thread = new Thread(this, "run");
+		//thread.start();
 		
 
 		
 		
 	}
 	
-	
+	public void getData() {
+		
+		
+	}
 	
 	
 	
@@ -197,20 +203,24 @@ public class GridTest extends JFrame implements ActionListener {
 	
 	public void insertColor() {
 	 
-			gridPanel.removeAll();
+			
 					
 			
 			
 			
-		   if(GameRules.playerSwitch == true && yPos >= 0 ){//true for red
+		   if(gamelogic.yourTurn == true && yPos >= 0 && gamelogic.colorSwitch == true ){//true for red
 			   gamefield.setArray('0', yPos, xPos);
+			   gamelogic.colorSwitch = false;
+			   
 		  }
-		   else if(GameRules.playerSwitch == false && yPos >= 0) {//false for yellow
+		   else if(gamelogic.yourTurn == true && yPos >= 0 && gamelogic.colorSwitch == false) {//false for yellow
 			   gamefield.setArray('X', yPos, xPos);
+			   gamelogic.colorSwitch = true;
 		   }
 		   
 		   
-		   GameRules.playerSwitch = !GameRules.playerSwitch;
+		  // gamelogic.yourTurn = false;
+		  // gamelogic.enemyTurn = true;
 		   
 		   
 		   updateGrid();
@@ -354,7 +364,7 @@ public class GridTest extends JFrame implements ActionListener {
 	
 /////// hier funktion zum updaten des spielfeldes, es wird jedesmal erneut gemalt
 public void updateGrid() {
-	
+	gridPanel.removeAll();
 	
 	for(int j = 0; j < 6; j++) {
 		for (int k = 0; k < 7; k++) {
@@ -428,12 +438,23 @@ public void updateGrid() {
     
 }
 
+public void sendData() {
+ 
+	
+	if(gamelogic.yourTurn == false) {
+		
+		//sende array zu server oder client.
+	}
+
+}
+
+
 
 
 
 public static void main(String[] args) {
     GridTest test = new GridTest();
-    
+   
  }
 
 }
