@@ -3,88 +3,43 @@ package connect4;
 import javax.swing.*;
 
 import java.net.*;
-
+import java.util.Scanner;
 import java.awt.event.*;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 
-public class Client {
+public class Client
+{
+  public static void main( String[] args )
+  {
+    Socket server = null;
 
-	 public static void main(String[] args) {
-	      Display test = new Display();
-	      Player player = new Player();
-	      GridArray gamefield = new GridArray();
-	      Client cliente= new Client();
-	      Server servidor= new Server();
-	      MarcoCliente mimarco=new MarcoCliente();
-			
-			mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	      
-	      
-	   }
+    try
+    {
+      server = new Socket( "localhost", 3141 );
+      Scanner  in  = new Scanner( server.getInputStream() );
+      PrintWriter out = new PrintWriter( server.getOutputStream(), true );
 
-}
+      out.println( "2" );
+      out.println( "4" );
+      System.out.println( in.nextLine() );
 
+      server = new Socket( "localhost", 3141 );
+      in  = new Scanner( server.getInputStream() );
+      out = new PrintWriter( server.getOutputStream(), true );
 
-class MarcoCliente extends JFrame{
-	
-	public MarcoCliente(){
-		
-		setBounds(600,300,280,350);
-				
-		LaminaMarcoCliente milamina=new LaminaMarcoCliente();
-		
-		add(milamina);
-		
-		setVisible(true);
-		}	
-	
-}
-
-class LaminaMarcoCliente extends JPanel{
-	
-	public LaminaMarcoCliente(){
-	
-		JLabel texto=new JLabel("CLIENTE");
-		
-		add(texto);
-	//test
-		campo1=new JTextField(20);
-	
-		add(campo1);		
-	
-		miboton=new JButton("Enviar");
-		
-		add(miboton);	
-		
-	}
-	
-	private class EnviaTexto implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			try {
-				Socket misocket=new Socket("192.168.0.193",9999);
-				
-				DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());	
-				
-				flujo_salida.writeUTF(campo1.getText());
-				
-				flujo_salida.close();
-				
-			} catch (UnknownHostException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				System.out.println(e1.getMessage());
-			}// meine IP und eine freie Port
-		}
-	}
-	
-	
-		
-		
-	private JTextField campo1;
-	
-	private JButton miboton;
-	
+      out.println( "3´z" );
+      out.println( "4" );
+      System.out.println( in.nextLine() );
+    }
+    catch ( UnknownHostException e ) {
+      e.printStackTrace();
+    }
+    catch ( IOException e ) {
+      e.printStackTrace();
+    }
+    finally {
+      if ( server != null )
+        try { server.close(); } catch ( IOException e ) { }
+    }
+  }
 }

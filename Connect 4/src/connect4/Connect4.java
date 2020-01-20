@@ -22,29 +22,25 @@ public class Connect4 {
  * -> 
  * 
  * 
- */
+ */ServerTest server;
+ ClientTest client;
 	
-	 public static void main(String[] args) {
+	 
+ public Connect4(){
+	 run();
+ }
+ 
+ public void run() {
+	 	GridTest test = new GridTest();
+	 	ServerTest server = new ServerTest();
+		 ClientTest client = new ClientTest();
+	 
+ }
+ 
+ public static void main(String[] args) {
 	      
-		
-		 
-		 
-		 /*Display test = new Display();
-	      Player player = new Player();
-<<<<<<< HEAD
-	      GridArray gamefield = new GridArray();*/
-	      
-	     
-
-	      GridArray gamefield = new GridArray();
-	      Client cliente= new Client();
-	      Server servidor= new Server();
-
-	     
-	      
-	      
-	   }
+	Connect4 game = new Connect4();
 	
 
 
-}
+}}

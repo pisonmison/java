@@ -11,15 +11,21 @@ import java.util.TimerTask;
 
 public class  GameRules{
 	
-	public static boolean check = false;
-	public static boolean draw = false;
+	static boolean check = false;
+	private static boolean draw = false;
 	
-	public static char [][] spot = new char [6][7];
-	public static boolean playerSwitch = false; /*
+	private static char [][] spot = new char [6][7];
+	static boolean yourTurn = true; 
+	static boolean enemyTurn = false;
+	static boolean colorSwitch = true;
+	
+	
+	/*
+	
 	false = yellow // true = red ->  if playerSwitch false= make buttons for other player not clickable
 	*/
 
-	public static int roundsPlayed = 0;
+	static int roundsPlayed = 0;
 
 	
 	
@@ -39,6 +45,7 @@ public class  GameRules{
 	else {
 		System.out.print("NO");
 	}
+	System.out.println("");
 }
 	
 	
