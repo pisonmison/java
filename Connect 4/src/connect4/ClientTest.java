@@ -3,7 +3,7 @@ package connect4;
 import javax.swing.*;
 
 import java.net.*;
-
+import java.awt.Component;
 import java.awt.event.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,18 +12,22 @@ import java.io.ObjectOutputStream;
 public class ClientTest {
 
 	static protected ObjectOutputStream myoutput;
-	
-	
-	 public static void main(String[] args) {
+	static boolean connected = false;
+	final GridTest grid = new GridTest();
+	static Socket mysocket;
+	private JTextField field1;
+	private JButton mybutton;
+	 public static void main(String[] args) throws UnknownHostException, IOException {
 	     
 	  ClientTest client = new ClientTest();
-	      
+	    
 	      //test
 	   }
 
 
 
-public ClientTest() {
+public ClientTest() throws UnknownHostException, IOException {
+	
 	System.out.println("Client is connected");
     Window window1=new Window();
 		
@@ -48,15 +52,15 @@ class WindowClient extends JPanel{
 	
 	public WindowClient(){
 	
-		JLabel texto=new JLabel("CLIENT");
+		JLabel text=new JLabel("CLIENT");
 		
-		add(texto);
+		add(text);
 	
 		
 	
 				
 	
-		mybutton=new JButton("Send");
+		JButton mybutton = new JButton("Send");
 		
 		SendText textfield= new SendText();
 		
@@ -66,27 +70,30 @@ class WindowClient extends JPanel{
 		
 	}
 	
-private class SendText implements ActionListener{
+	public  boolean hostAvailabilityCheck() { 
+	    try (Socket s = new Socket("localhost",9999)) {
+	        return true;
+	    } catch (IOException ex) {
+	        /* ignore */
+	    }
+	    return false;
+	}
 	
-	/*
-	 * GridArray field = new GridArray
-	 * field.getArray();
-	 * 
-	 *  wenns static is
-	 *  GridArray.getArray();
-	*/
+private class SendText implements ActionListener {
+
 	
 		
 		public void actionPerformed(ActionEvent e) {
-			//System.out.println(campo1.getText());
+			
 			try {
-				Socket mysocket=new Socket("192.168.56.1",9999);
-				System.out.println("Data was sent..");
+				
+				Socket mysocket = new Socket("localhost",9999);
 				ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());	
 				
-				myoutput.writeObject(GridTest.gamefield);
-				
-				myoutput.close();
+				myoutput.writeObject(grid.gamefield);
+				System.out.println("Data was sent:");
+				myoutput.flush();
+				connected = true;
 				
 			} catch (UnknownHostException e1) {
 				// TODO Auto-generated catch block
@@ -94,15 +101,36 @@ private class SendText implements ActionListener{
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				System.out.println(e1.getMessage());
+				//fall wenn client net connected -> dann server aufrufen.
+				
 			}// meine IP und eine freie Port
+			
 		}
-	}
-	
-	
-		//asd
+		
 
-private JTextField field1;
-	
-private JButton mybutton;
+public void sendData() {
+	try {
+		
+		Socket mysocket = new Socket("localhost",9999);
+		ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());	
+		
+		myoutput.writeObject(grid.gamefield);
+		System.out.println("Data was sent:");
+		myoutput.flush();
+		connected = true;
+		
+	} catch (UnknownHostException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		System.out.println(e1.getMessage());
+		//fall wenn client net connected -> dann server aufrufen.
+		
+	}// meine IP und eine freie Port
+}
+}
+
 	
 }}
+

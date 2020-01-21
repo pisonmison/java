@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.TimerTask;
 
@@ -11,7 +12,7 @@ import javax.swing.*;
 
 
 import java.awt.event.ActionListener;
-public class GridTest extends JFrame implements ActionListener {
+public  class GridTest extends JFrame implements ActionListener {
 
 	int xPos, yPos; // hier später koordinaten übergeben
 
@@ -307,7 +308,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter3--;
 	    	   checkGrid();
-	    	
+	    	   
 	    	
 	       }
 	       else if(e.getSource() == arrow4) {
@@ -317,7 +318,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter4--;
 	    	   checkGrid();
-	    	
+	    	  
 	    	   
 	    	   
 	       }
@@ -339,7 +340,7 @@ public class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter6--;
 	    	   checkGrid();
-	    	  
+	    	   
 	    	   
 	    	   
 	       }
@@ -438,16 +439,26 @@ public void updateGrid() {
     
 }
 
-public void sendData() {
+/*public void run() {
  
-	
-	if(gamelogic.yourTurn == false) {
-		
+	while(true) {
+	if(gamelogic.yourTurn == true) {
+		updateGrid();
 		//sende array zu server oder client.
 	}
-
+	}
 }
-
+*/
+public void sendData() {
+	try {
+		ClientTest.myoutput.writeObject(gamefield);
+		ClientTest.myoutput.flush();
+		ClientTest.myoutput.close();
+	} catch (IOException e1) {
+		
+		e1.printStackTrace();
+	}
+}
 
 
 

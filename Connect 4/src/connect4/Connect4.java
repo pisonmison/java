@@ -1,5 +1,7 @@
 package connect4;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class Connect4 {
 	
@@ -30,10 +32,10 @@ public class Connect4 {
 	 run();
  }
  
- public void run() {
+ public void run()  {
+	 	 
 	 	GridTest test = new GridTest();
-	 	ServerTest server = new ServerTest();
-		 ClientTest client = new ClientTest();
+		Client2 client = new Client2();
 	 
  }
  
