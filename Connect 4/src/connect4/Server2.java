@@ -49,6 +49,7 @@ public void init(){
 	grid.updateGrid();
 	mysocket.close();
 	}
+	
 } catch (IOException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();

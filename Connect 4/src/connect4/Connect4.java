@@ -36,6 +36,7 @@ public class Connect4 {
 	 	 
 	 	GridTest test = new GridTest();
 		Client2 client = new Client2();
+		//oder Server <- the way to go. Nicht grid in server erzeugen.
 	 
  }
  
