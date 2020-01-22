@@ -89,12 +89,11 @@ private class SendText implements ActionListener {
 				
 				Socket mysocket = new Socket("localhost",9999);
 				ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());	
-				
-				myoutput.writeObject(grid.gamefield);
+				myoutput.writeObject(GridTest.gamefield);
 				System.out.println("Data was sent:");
 				myoutput.flush();
 				connected = true;
-				
+				mysocket.close();
 			} catch (UnknownHostException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

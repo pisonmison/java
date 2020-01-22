@@ -17,26 +17,24 @@ public class Client2 implements ActionListener  {
 	}
 	
 public Client2() {
-	while(true) {
-		init();
-		
-	}
 	
 	
 }
 	
-private void init() {
+public static  void init() {
 // hier datensendung ausführen mit actionlister, der auf die buttons von GridTest hört.	
 try {
-		while(true) {
+
+
 		Socket mysocket = new Socket("localhost",9999);
 		ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
 		myoutput.writeObject(GridTest.gamefield);
 		System.out.println("Data was sent:");
 		myoutput.flush();
-		
+		mysocket.close();
 	
-		}
+		
+
 	} catch (UnknownHostException e1) {
 		
 		e1.printStackTrace();

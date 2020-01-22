@@ -12,7 +12,7 @@ import javax.swing.*;
 
 
 import java.awt.event.ActionListener;
-public  class GridTest extends JFrame implements ActionListener {
+public final  class GridTest extends JFrame implements ActionListener {
 
 	int xPos, yPos; // hier später koordinaten übergeben
 
@@ -275,9 +275,8 @@ public  class GridTest extends JFrame implements ActionListener {
 	    	   yPos = counter0;
 	    	   insertColor();
 	    	   counter0--;
-	    	   
 	    	   checkGrid();
-	    	   
+	    	   Client2.init();
 	    	   
 	       }
 	       else if(e.getSource() == arrow1) {
@@ -288,7 +287,7 @@ public  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter1--;
 	    	   checkGrid();
-	    	   
+	    	   Client2.init();
 	       }
 	       else if(e.getSource() == arrow2) {
 	    	   
@@ -297,7 +296,7 @@ public  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter2--;
 	    	   checkGrid();
-	    	   
+	    	   Client2.init();
 	    	   
 	       }
 	       else if(e.getSource() == arrow3) {
@@ -308,7 +307,7 @@ public  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter3--;
 	    	   checkGrid();
-	    	   
+	    	   Client2.init();
 	    	
 	       }
 	       else if(e.getSource() == arrow4) {
@@ -318,7 +317,7 @@ public  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter4--;
 	    	   checkGrid();
-	    	  
+	    	   Client2.init();
 	    	   
 	    	   
 	       }
@@ -330,7 +329,7 @@ public  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter5--;
 	    	   checkGrid();
-	    	  
+	    	   Client2.init();
 	    	   
 	       }
 	       else if(e.getSource() == arrow6) {
@@ -340,7 +339,7 @@ public  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter6--;
 	    	   checkGrid();
-	    	   
+	    	   Client2.init();
 	    	   
 	    	   
 	       }

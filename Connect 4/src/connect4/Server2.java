@@ -32,7 +32,7 @@ public Server2() throws ClassNotFoundException, IOException {
 	init();
 }
 
-public void init(){
+public static void init(){
 	try {
 	GridTest grid = new GridTest();
 	ServerSocket server=new ServerSocket(9999);//port öfnnen listen und Verbindungen akzeptieren

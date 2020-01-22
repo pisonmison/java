@@ -24,8 +24,7 @@ public class Connect4 {
  * -> 
  * 
  * 
- */ServerTest server;
- ClientTest client;
+ */static protected GridTest test;
 	
 	 
  public Connect4(){
@@ -34,7 +33,7 @@ public class Connect4 {
  
  public void run()  {
 	 	 
-	 	GridTest test = new GridTest();
+	  GridTest test = new GridTest();
 		Client2 client = new Client2();
 		//oder Server <- the way to go. Nicht grid in server erzeugen.
 	 
