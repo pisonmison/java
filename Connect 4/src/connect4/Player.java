@@ -11,9 +11,9 @@ public class Player {
 	
 
 	
-	private String playername;
-	private String playerIP;
-	private String playerPort;
+	private static String playername;
+	private static String playerIP;
+	private static String playerPort;
 	
 	
 	
@@ -21,13 +21,13 @@ public class Player {
 	
 	public String getPlayername() {
 		
-		return this.playername;
+		return playername;
 		
 	}
 	
 	public void setPlayername(String username) {
 		
-		this.playername = username;
+		playername = username;
 		
 		
 		
@@ -41,9 +41,9 @@ public class Player {
 	
 	}
 	
-	public String getPlayerIP() {
+	public static String getPlayerIP() {
 		
-		return this.playerIP;
+		return playerIP;
 		
 		}
 
@@ -56,9 +56,9 @@ public void setPlayerPort(String portnumber) {
 	
 	}
 	
-	public String getPlayerPort() {
+	public static String getPlayerPort() {
 		
-		return this.playerPort;
+		return playerPort;
 	}
 
 

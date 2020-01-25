@@ -6,7 +6,11 @@ public  class GridArray implements Serializable {
 	
 	
 	
-	 char[][] gameGridArray =  {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	char[][] gameGridArray =  {
 			{'-','-', '-', '-', '-', '-', '-'},
 			{'-','-', '-', '-', '-', '-', '-'},
 			{'-','-', '-', '-', '-', '-', '-'},  //spielfeld
@@ -62,15 +66,5 @@ String s = sj.toString();
 	}
 	System.out.println("_____________"); // for better visual display in consoleAfter
 }
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		
-		GridArray test = new  GridArray();
-	
-		
-	}
+
 }

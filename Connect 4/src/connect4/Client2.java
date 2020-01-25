@@ -7,57 +7,77 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class Client2 implements ActionListener  {
-	private static char [][] spot = new char [6][7];
-	GridTest game = new GridTest();
-	public static void main(String[] args){
+public class Client2  {
+	
+	
+	String ip = Player.getPlayerIP();
+	 String port = Player.getPlayerPort();
+	 String username = Player.getPlayerIP();
+	
+	
+	static protected boolean connectedClient = false;
+	 static GridTest clientGrid = new GridTest();
+	
+/*	 
+	public static void main(String[] args) throws ClassNotFoundException{
 	
 		new Client2();	
 	
-	}
+	}*/
 	
 public Client2() {
-	
-	
+	System.out.println("Client is started");
+	GridTest.clientConnected = true;
 }
-	
-public static  void init() {
+
+
+
+public static  void sendToServer() throws ClassNotFoundException {
 // hier datensendung ausführen mit actionlister, der auf die buttons von GridTest hört.	
+	Socket mysocket = null;
+	
+	
+	try {
+	//send data to server	
+	mysocket = new Socket("localhost",9999);
+	
+	ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
+	myoutput.writeObject(clientGrid.gamefield);
+	System.out.println("Data was sent:");
+	
+	myoutput.flush();
+	
+	//get data from server and save it into our gamefield array
+	ObjectInputStream myinput=new ObjectInputStream(mysocket.getInputStream());
+	Object mymessage = myinput.readObject();
+	clientGrid.gamefield = (GridArray)mymessage;
+		
+	mysocket.close();
+
+
+	} catch (UnknownHostException e1) {
+		
+		e1.printStackTrace();
+	} catch (IOException e1) {
+		
+		System.out.println(e1.getMessage());
+		
+		
+	}
+	
+}
+
+
+public static void sendData()throws ClassNotFoundException {
+	
 try {
-
-
-		Socket mysocket = new Socket("localhost",9999);
-		ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
-		myoutput.writeObject(GridTest.gamefield);
-		System.out.println("Data was sent:");
-		myoutput.flush();
-		mysocket.close();
-	
-		
-
-	} catch (UnknownHostException e1) {
-		
-		e1.printStackTrace();
-	} catch (IOException e1) {
-		
-		System.out.println(e1.getMessage());
-		//fall wenn client net connected -> dann server aufrufen.
-		
-	}// meine IP und eine freie Port
-	
-}
-
-@Override
-public void actionPerformed(ActionEvent e) {
-	
-/*try {
 		
 		
-		
-		ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
-		myoutput.writeObject(GridTest.gamefield);
-		System.out.println("Data was sent:");
-		myoutput.flush();
+	Socket mysocket = new Socket("localhost",9999);
+	ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
+	myoutput.writeObject(clientGrid.gamefield);
+	System.out.println("Data was sent:");
+	myoutput.flush();
 	
 		
 	} catch (UnknownHostException e1) {
@@ -65,13 +85,12 @@ public void actionPerformed(ActionEvent e) {
 		e1.printStackTrace();
 	} catch (IOException e1) {
 		
-		System.out.println(e1.getMessage());
-		//fall wenn client net connected -> dann server aufrufen.
-		
-	}// meine IP und eine freie Port
-	*/
+	System.out.println(e1.getMessage());
+	}
 }
+
+
+
 }
-	
 
 		

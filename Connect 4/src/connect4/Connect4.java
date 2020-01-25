@@ -27,11 +27,11 @@ public class Connect4 {
  */static protected GridTest test;
 	
 	 
- public Connect4(){
+ public Connect4() throws ClassNotFoundException{
 	 run();
  }
  
- public void run()  {
+ public void run() throws ClassNotFoundException  {
 	 	 
 	  GridTest test = new GridTest();
 		Client2 client = new Client2();
@@ -39,7 +39,7 @@ public class Connect4 {
 	 
  }
  
- public static void main(String[] args) {
+ public static void main(String[] args) throws ClassNotFoundException {
 	      
 	Connect4 game = new Connect4();
 	

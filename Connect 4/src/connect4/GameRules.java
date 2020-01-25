@@ -1,23 +1,15 @@
 package connect4;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
-import java.util.Timer;
-import java.util.TimerTask;
-///spot soll ein char drin haben, 
-
 
 public class  GameRules{
 	
-	static boolean check = false;
-	private static boolean draw = false;
+	protected static boolean check = false;
+	protected static boolean draw = false;
 	
 	private static char [][] spot = new char [6][7];
-	static boolean yourTurn = true; 
-	static boolean enemyTurn = false;
-	static boolean colorSwitch = true;
+	protected static boolean yourTurn = true; 
+	protected static boolean enemyTurn = false;
+	protected static boolean colorSwitch = true;
 	
 	
 	/*
@@ -52,6 +44,7 @@ public class  GameRules{
 	
 public static void gridSpot(){
 	
+	//use gridSpot array as storage, copy gotten array elements into it.
 
 	for (int column=0; column<6; column++) {
 		for (int row=0; row<7; row++){
@@ -63,7 +56,7 @@ public static void gridSpot(){
 
 public GameRules() {
 	gridSpot();
-	//printGridSpot();
+	
 	
 }
 

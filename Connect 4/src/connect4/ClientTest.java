@@ -15,8 +15,7 @@ public class ClientTest {
 	static boolean connected = false;
 	final GridTest grid = new GridTest();
 	static Socket mysocket;
-	private JTextField field1;
-	private JButton mybutton;
+
 	 public static void main(String[] args) throws UnknownHostException, IOException {
 	     
 	  ClientTest client = new ClientTest();
@@ -110,13 +109,14 @@ private class SendText implements ActionListener {
 public void sendData() {
 	try {
 		
+		
 		Socket mysocket = new Socket("localhost",9999);
 		ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());	
 		
 		myoutput.writeObject(grid.gamefield);
 		System.out.println("Data was sent:");
 		myoutput.flush();
-		connected = true;
+	
 		
 	} catch (UnknownHostException e1) {
 		// TODO Auto-generated catch block

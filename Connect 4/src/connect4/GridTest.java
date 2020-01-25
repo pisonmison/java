@@ -37,14 +37,17 @@ public final  class GridTest extends JFrame implements ActionListener {
 	JLabel emptyLabel;
 	 Timer timer;
 	
-	public JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
-	
-	static GridArray gamefield = new GridArray();
+	private JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
+	static boolean clientConnected = false;
+	boolean serverConnected = false;
+	protected static GridArray gamefield = new GridArray();
 	Player player = new Player();
 	GameRules gamelogic = new GameRules();
 	
 	//test for player color
 	int playercolor = 0;
+
+
 	
 
 	public GridTest() {
@@ -225,7 +228,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 		   
 		   
 		   updateGrid();
-		   GridTest.gamefield.printArray();
+		   //GridTest.gamefield.printArray();
 	  
 	}    
 
@@ -276,8 +279,12 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter0--;
 	    	   checkGrid();
-	    	   Client2.init();
-	    	   
+	    	   try {
+				callDataMethods();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	       }
 	       else if(e.getSource() == arrow1) {
 	    	   
@@ -287,7 +294,12 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter1--;
 	    	   checkGrid();
-	    	   Client2.init();
+	    	   try {
+				callDataMethods();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	       }
 	       else if(e.getSource() == arrow2) {
 	    	   
@@ -296,7 +308,12 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter2--;
 	    	   checkGrid();
-	    	   Client2.init();
+	    	   try {
+				callDataMethods();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	    	   
 	       }
 	       else if(e.getSource() == arrow3) {
@@ -307,7 +324,12 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter3--;
 	    	   checkGrid();
-	    	   Client2.init();
+	    	   try {
+				callDataMethods();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	    	
 	       }
 	       else if(e.getSource() == arrow4) {
@@ -317,8 +339,12 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter4--;
 	    	   checkGrid();
-	    	   Client2.init();
-	    	   
+	    	   try {
+				callDataMethods();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	    	   
 	       }
 	       else if(e.getSource() == arrow5) {
@@ -329,9 +355,16 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter5--;
 	    	   checkGrid();
-	    	   Client2.init();
+	    	   try {
+				callDataMethods();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    	 
+				}
 	    	   
-	       }
+	       
 	       else if(e.getSource() == arrow6) {
 	    	   
 	    	   xPos = 6;
@@ -339,7 +372,14 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   insertColor();
 	    	   counter6--;
 	    	   checkGrid();
-	    	   Client2.init();
+	    	   try {
+				callDataMethods();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    	  
+	    	  
 	    	   
 	    	   
 	       }
@@ -347,10 +387,24 @@ public final  class GridTest extends JFrame implements ActionListener {
 	  
 		
 		
-		
+public void callDataMethods() throws ClassNotFoundException {
+	
+if(clientConnected == true) {
+	System.out.println("Clientmethod was called");
+	Client2.sendToServer();
+
+}
+ else if(serverConnected == true) {
+	System.out.println("Servermethod was called");
+}
+
+ else {
+	 System.out.println("No Connection atm...");
+ }
+}
 	 
 	 
-	 
+	
 	 
 	 
 	 
@@ -448,23 +502,11 @@ public void updateGrid() {
 	}
 }
 */
-public void sendData() {
-	try {
-		ClientTest.myoutput.writeObject(gamefield);
-		ClientTest.myoutput.flush();
-		ClientTest.myoutput.close();
-	} catch (IOException e1) {
-		
-		e1.printStackTrace();
-	}
-}
 
 
 
 
-public static void main(String[] args) {
-    GridTest test = new GridTest();
-   
- }
+
+
 
 }

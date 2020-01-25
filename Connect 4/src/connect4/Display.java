@@ -5,7 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.*;
+import java.util.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.TimerTask;
 
+import javax.swing.*;
 
 public class Display extends JFrame implements ActionListener {
 	
@@ -15,7 +23,8 @@ public class Display extends JFrame implements ActionListener {
 	private JLabel textlabel1, textlabel2, ipText, portText, nameText;
 	private JButton b1, connectButton;
 	private JPanel p1, p2, p3;
-	
+	private boolean connectToServer = false;
+	private boolean connectToClient = false;
 	private JTextField ipInput, portInput, nameInput;
 	
 	//private String username = "asdasd";
@@ -45,8 +54,26 @@ public class Display extends JFrame implements ActionListener {
 
 	
 	  public void createWindow() {
+		  
+		  String[] options = {"Start Game", "Start Client", "Close"};
+		  int option_select = JOptionPane.showOptionDialog(mainframe, "Start or connect to a Game", "Connect 4", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+		  switch(option_select) {
+		  	case JOptionPane.YES_OPTION:
+		  		connectToServer = true;
+		  		//createConnectWindow();
+		  		Server2 server = new Server2();
+		  		break;
+		  	case JOptionPane.NO_OPTION:
+		  		connectToClient = true;
+		  		//createConnectWindow();
+		  		Client2 client = new Client2();
+		  		break;
+		  	default:
+		  		System.exit(0);
+		  }
+		  
 	      //Create new frame aka window
-	      mainframe = new JFrame("Connect 4");
+/*	      mainframe = new JFrame("Connect 4");
 	      mainframe.setSize(500,400);
 	      mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      	
@@ -90,6 +117,7 @@ public class Display extends JFrame implements ActionListener {
 	      mainframe.setLocationRelativeTo(null); // zeige fenster in der mitte des bildschirms an, ohne das command wirds immer links oben geöffnet
 	      mainframe.pack();
 	      mainframe.setVisible(true);
+	      */
 	   }
 	   // if Object Display is made, it automatically calls the createWindow method.
 	  public Display() {
@@ -100,16 +128,20 @@ public class Display extends JFrame implements ActionListener {
 	  //action method which calls when button to which the ActionListened is bound to, is pressed
 	  public void actionPerformed(ActionEvent e) {
 	       if(e.getSource() == b1) {
-	    	   mainframe.dispose();
-	    	   createConnectWindow();
+	    	   //mainframe.dispose();
+	    	   Server2 server = new Server2();
 	       }
 	       
 	       if(e.getSource() == connectButton) {
 	    	   //save input string into username string and close window again(make it invisible)
 	    	   submitAction();
 	    	   secondframe.dispose();
-	    	  
-	    	   GridTest testgrid = new GridTest();
+	    	   if(connectToServer == true) {
+	    	   Server2 server = new Server2();
+	    	   }
+	    	   else if(connectToClient == true) {
+	    		   Client2 client = new Client2();
+	    	   }
 	    	   
 	    	  // Grid();
 	    	   
@@ -192,19 +224,6 @@ public class Display extends JFrame implements ActionListener {
 		  
 		  
 	  }
-	  
-	  
-	  //main methode 
-	  
-	  public static void main(String[] args) {
-	      Display test = new Display();
-	   }
-	
-	  
-	  
-	  
-	  
-	  
 	  
 	  
 	 
