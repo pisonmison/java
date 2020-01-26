@@ -247,9 +247,11 @@ public final  class GridTest extends JFrame implements ActionListener {
 		                GameRules.winCheck();
 		                GameRules.roundsPlayed++;
 		                if(GameRules.check == true) {
-		                	
+		                
+		               
 		                
 		                mainframe.dispose();
+		                new Endscreen();
 						
 		                //endscreen
 		                

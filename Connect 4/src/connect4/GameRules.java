@@ -9,8 +9,8 @@ public class  GameRules{
 	protected static boolean draw = false;
 	
 	private static char [][] spot = new char [6][7];
-	protected  boolean yourTurn = false; 
-	protected  boolean enemyTurn = false;
+	protected static   boolean yourTurn = false; 
+	protected static   boolean enemyTurn = false;
 	
 	static int roundsPlayed = 0;
 

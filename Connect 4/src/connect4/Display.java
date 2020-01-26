@@ -2,24 +2,16 @@ package connect4;
 
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
-import java.awt.*;
-import java.util.Timer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.TimerTask;
 
 import javax.swing.*;
+
+
 
 public class Display extends JFrame{
 	
 	// Create a simple GUI window
 	//declare the different stuff which we add to the window like buttons, textlabels etc. for better overseeing
-	private JFrame mainframe, secondframe, endframe;
+	private JFrame mainframe, secondframe, endframe,lastframe;
 	private JLabel textlabel1, textlabel2, ipText, portText, nameText;
 	private JButton b1, connectButton;
 	private JPanel p1, p2, p3;
@@ -199,20 +191,52 @@ public class Display extends JFrame{
 	  //save input string to string variable "username" -> next step: save to string in class Player
 	  private void submitAction() {
 		  
-		  //für spieler1
+		  //fï¿½r spieler1
 		  player.setPlayername(nameInput.getText());
 		  player.setPlayerIP(ipInput.getText());
 		  player.setPlayerPort(portInput.getText());
 	      player.printplayerInfo();
 	
 	      
-	      //für spieler2
+	      //fï¿½r spieler2
 	      
 	  }
 	  
-	  public static void produceEndScreen() {
+	  public void produceEndScreen() {
 		  
+		  JFrame lastframe= new JFrame();
+		  lastframe.setSize(500,400);
+		  lastframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  JPanel p1=new JPanel();
 		  
+		  if (GameRules.yourTurn==true && GameRules.enemyTurn==false) {
+			  
+		  JLabel label = new JLabel("");
+		    Image img = new ImageIcon(this.getClass().getResource("/YOU_WIN.png")).getImage();
+		    label.setIcon(new ImageIcon(img));
+		    p1.add(label);
+		  }
+		    
+		   else if (GameRules.yourTurn==false && GameRules.enemyTurn==true) {
+		    	
+		   JLabel label = new JLabel("");
+			 Image img = new ImageIcon(this.getClass().getResource("/YOU_LOST.png")).getImage();
+			 label.setIcon(new ImageIcon(img));
+			 p1.add(label);
+	 
+		   }
+		   else {
+			   JLabel label = new JLabel("");
+			    Image img = new ImageIcon(this.getClass().getResource("/YOU_DRAW.png")).getImage();
+			    label.setIcon(new ImageIcon(img));
+			    p1.add(label);
+			   
+			   
+			   }
+		    lastframe.add(p1);
+			lastframe.setVisible(true);
+			
+		    
 		  
 	  }
 	  
