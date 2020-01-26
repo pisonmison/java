@@ -38,7 +38,7 @@ public void initServer() {
 	
 	
 	try {
-		ServerSocket server = new ServerSocket(5345);
+		ServerSocket server = new ServerSocket(9999);
 
 		
 		System.out.println("server laeuft");

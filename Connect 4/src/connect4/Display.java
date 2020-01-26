@@ -61,7 +61,7 @@ public class Display extends JFrame{
 	 */
 	  public void createWindow() {
 		  
-		  String[] options = {"Start Game", "Start Client", "Close"};
+		  String[] options = {"Start Server", "Start Client", "Close"};
 		  int option_select = JOptionPane.showOptionDialog(mainframe, "Start or connect to a Game", "Connect 4", 
 				  JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 		  switch(option_select) {
