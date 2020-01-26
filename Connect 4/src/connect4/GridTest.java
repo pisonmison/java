@@ -14,19 +14,12 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 public final  class GridTest extends JFrame implements ActionListener {
 
-	int xPos, yPos; // hier später koordinaten übergeben
+	
+	
+	
+	//decalre needed variables etc.
+	int xPos; 
 
-	private Thread thread;
-	
-	//counter per tcp �bersenden jedesmal
-	int counter0 = 5;
-	int counter1 = 5;
-	int counter2 = 5;
-	int counter3 = 5;
-	int counter4 = 5;
-	int counter5 = 5;
-	int counter6 = 5;
-	
 	public JFrame mainframe;
 	private JPanel buttonPanel, mainPanel,emptyPanel;
 	
@@ -44,34 +37,32 @@ public final  class GridTest extends JFrame implements ActionListener {
 	Player player = new Player();
 	GameRules gamelogic = new GameRules();
 	
-	//test for player color
-	int playercolor = 0;
+	
 
 
 	
 
+	//create a grid and fill it with empty white boxes when contructor is called
 	public GridTest() {
 		createGameGrid();
 		fillGrid();
-	
-		//thread = new Thread(this, "run");
-		//thread.start();
+
 		
 
 		
 		
 	}
 	
-	public void getData() {
-		
-		
-	}
+
 	
-	
-	
+	/*
+	 * Create the mainframe for our GUI
+	 * add the panels for button and the grid
+	 * add components to it and make it visible
+	 */
 	public  void createGameGrid() {
 		
-	    //creating window and mainpanel
+	    
 		
 		mainframe = new JFrame("Connect 4");
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +76,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    JPanel buttonPanel = new JPanel();
 	    
 	    
-	    //mache das layout der einzelnen bereiche
+	    //layout of the panels
 	    mainPanel.setLayout(new BorderLayout());
 	    gridPanel.setLayout(new GridLayout(4, 5));
 	    buttonPanel.setLayout(new GridLayout(1, 5));
@@ -116,7 +107,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 		arrow5.addActionListener((ActionListener) this);
 		arrow6.addActionListener((ActionListener) this);
 		
-		
+		//add buttons to buttonpanel
 		buttonPanel.add(arrow0);
 		buttonPanel.add(arrow1);
 		buttonPanel.add(arrow2);
@@ -132,22 +123,10 @@ public final  class GridTest extends JFrame implements ActionListener {
 		gridPanel = new JPanel();
 		gridPanel.setLayout(new GridLayout(6,7));
 		
+	
+	
 		
-		emptyBox = new ImageIcon("emptyBox.png"); 
-	    emptyLabel = new JLabel(emptyBox); 
-	    emptyPanel = new JPanel();
-		
-		
-		
-		
-		
-		
-		
-	   
-		
-		
-		
-		
+		//add panels to mainpanel 
 		mainPanel.add(gridPanel, BorderLayout.CENTER);
 	    mainPanel.add(buttonPanel, BorderLayout.NORTH);
 	 
@@ -170,18 +149,18 @@ public final  class GridTest extends JFrame implements ActionListener {
 	
 
 	
-	////rgb blauer hingergrund: R: 30 ,G: 144, B: 255
+	//rgb blue background: R: 30 ,G: 144, B: 255
 
-	
+	//fill the grid with empty white box images to represent an empty game field
 	public void fillGrid() {
 	    
 		
 		for(int j = 0; j < 6; j++) {
 	      for (int k = 0; k < 7; k++) {
 	    		  
-	    	  		
+	    	  		//get png image from folder, save it into and image, save image into label, add label to the GridArrayPanel(42 labels)
 	    	  		JLabel label = new JLabel("");
-		 	    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
+		 	    	Image img = new ImageIcon(this.getClass().getResource("/img/emptyBox.png")).getImage();
 		 	    	label.setIcon(new ImageIcon(img));
 		 	    	
 		 	    	
@@ -208,27 +187,40 @@ public final  class GridTest extends JFrame implements ActionListener {
 	public void insertColor() {
 	 
 			
-					
+			/*insert the corresponding symbol for color (X, 0) into our gamefield array	
+			 * if its the players turn. 
+			 * Irritate through array and check how many red/yellow symbols exist
+			 * if red > yellow -> next insert is yellow
+			 * if yellow > red -> next insert is red
+			 * this way we dont need to send color data through sockets.
+			 */
 			
 			
 			
-		   if(gamelogic.yourTurn == true && yPos >= 0 && gamelogic.colorSwitch == true ){//true for red
-			   gamefield.setArray('0', yPos, xPos);
-			   gamelogic.colorSwitch = false;
-			   
-		  }
-		   else if(gamelogic.yourTurn == true && yPos >= 0 && gamelogic.colorSwitch == false) {//false for yellow
-			   gamefield.setArray('X', yPos, xPos);
-			   gamelogic.colorSwitch = true;
+		   if(gamelogic.yourTurn == true) {
+				int as=0, bs=0;
+				for(int i=0;i<gamefield.gameGridArray.length;i++) {
+					for(int j=0;j<gamefield.gameGridArray[0].length;j++) {
+						if(gamefield.gameGridArray[i][j]=='0') {
+							as++;
+						}
+						else if(gamefield.gameGridArray[i][j]=='X') {
+							bs++;
+						}
+					}
+				}
+				if(as>bs) {
+					gamefield.setArray('X', xPos);
+				}
+				else {
+					gamefield.setArray('0', xPos);
+				}
 		   }
 		   
-		   
-		  // gamelogic.yourTurn = false;
-		  // gamelogic.enemyTurn = true;
-		   
+		 
 		   
 		   updateGrid();
-		   //GridTest.gamefield.printArray();
+		  //update grid after inserting color, so the insert appears in the gui
 	  
 	}    
 
@@ -239,8 +231,12 @@ public final  class GridTest extends JFrame implements ActionListener {
 	
 
 	
-	/////////////////timer funktion/////////////////
+	
 	/* 
+	 * check via gamerules methods if a win has happened
+	 * make it 10ms after inserting colors into array, so the methods are 
+	 * applied. Timer is needed to check on actual game state after the insert has already happened
+	 * without timer it will call check and insert at the same time.
 	*/
 	 
 	public void checkGrid() {		
@@ -254,12 +250,16 @@ public final  class GridTest extends JFrame implements ActionListener {
 		                	
 		                
 		                mainframe.dispose();
+						
+		                //endscreen
 		                
-		                //erstelle win/lose/draw
+		                //System.exit(0);
+		                
+		                
 		                }
 		            }
 		        }, 
-		        10 /*10 milliseconds -> prevents timer bug of when buttons are clicked+
+		        10 /*10 milliseconds -> prevents timer bug of when buttons are clicked
 		         several times in under the defined number.*/
 		);
 		
@@ -267,7 +267,11 @@ public final  class GridTest extends JFrame implements ActionListener {
 			
 
 		
-//action events for button input
+/*action events for button clicks, which call all the needed methods
+	
+	*xPos represents the x position of the buttons to insert into right column
+	*on click we also send data by calling corresponding methods from client/server
+	*/
 	
 	 public void actionPerformed(ActionEvent e) {
 	       
@@ -275,9 +279,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 		 
 		 if(e.getSource() == arrow0) {
 	    	   xPos = 0;
-	    	   yPos = counter0;
 	    	   insertColor();
-	    	   counter0--;
 	    	   checkGrid();
 	    	   try {
 				callDataMethods();
@@ -290,9 +292,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   
 	    	   
 	    	   xPos = 1;
-	    	   yPos = counter1;
 	    	   insertColor();
-	    	   counter1--;
 	    	   checkGrid();
 	    	   try {
 				callDataMethods();
@@ -304,9 +304,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	       else if(e.getSource() == arrow2) {
 	    	   
 	    	   xPos = 2;
-	    	   yPos = counter2;
 	    	   insertColor();
-	    	   counter2--;
 	    	   checkGrid();
 	    	   try {
 				callDataMethods();
@@ -320,9 +318,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   
 
 	    	   xPos = 3;
-	    	   yPos = counter3;
 	    	   insertColor();
-	    	   counter3--;
 	    	   checkGrid();
 	    	   try {
 				callDataMethods();
@@ -335,9 +331,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	       else if(e.getSource() == arrow4) {
 	    	   
 	    	   xPos = 4;
-	    	   yPos = counter4;
 	    	   insertColor();
-	    	   counter4--;
 	    	   checkGrid();
 	    	   try {
 				callDataMethods();
@@ -351,9 +345,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	    	   
 	    	
 	    	   xPos = 5;
-	    	   yPos = counter5;
 	    	   insertColor();
-	    	   counter5--;
 	    	   checkGrid();
 	    	   try {
 				callDataMethods();
@@ -368,9 +360,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	       else if(e.getSource() == arrow6) {
 	    	   
 	    	   xPos = 6;
-	    	   yPos = counter6;
 	    	   insertColor();
-	    	   counter6--;
 	    	   checkGrid();
 	    	   try {
 				callDataMethods();
@@ -386,7 +376,10 @@ public final  class GridTest extends JFrame implements ActionListener {
 	 }
 	  
 		
-		
+/*
+ * check if actual gui is a clientGUI or a serverGUI
+ * and based on result, it calls the corresponding methods for sending the array objects
+ */
 public void callDataMethods() throws ClassNotFoundException {
 	
 if(clientConnected == true) {
@@ -396,6 +389,7 @@ if(clientConnected == true) {
 }
  else if(serverConnected == true) {
 	System.out.println("Servermethod was called");
+	Server2.send2client();
 }
 
  else {
@@ -416,7 +410,11 @@ if(clientConnected == true) {
 
 	
 	
-/////// hier funktion zum updaten des spielfeldes, es wird jedesmal erneut gemalt
+/*
+ * updates the grid by repainting it and filling it again with image labels
+ * it checks the whole GridArray in the background for its symbols and  adds the
+ * corresponding images into our panel array. 0 for red, X for yellow, - for empty
+ */
 public void updateGrid() {
 	gridPanel.removeAll();
 	
@@ -431,7 +429,7 @@ public void updateGrid() {
 	  		  
 	    		//insert the created image labels into the grid array until full
 	    		JLabel label = new JLabel("");
-		    	Image img = new ImageIcon(this.getClass().getResource("/redBox.png")).getImage();
+		    	Image img = new ImageIcon(this.getClass().getResource("/img/redBox.png")).getImage();
 		    	label.setIcon(new ImageIcon(img));
 		    	
 		    	
@@ -445,7 +443,7 @@ public void updateGrid() {
 	    	//insert yellow boxes where X is in gamefield array	
 	    	else if(box == 'X') {
 	    		JLabel label = new JLabel("");
-		    	Image img = new ImageIcon(this.getClass().getResource("/yellowBox.png")).getImage();
+		    	Image img = new ImageIcon(this.getClass().getResource("/img/yellowBox.png")).getImage();
 		    	label.setIcon(new ImageIcon(img));
 		    	
 		    	
@@ -457,16 +455,16 @@ public void updateGrid() {
 	    		
 	    	}
     
-	    	//insert emtpy boxes where - is in gamefield array	
+	    	
 	  	  else {
-	  		  //spieler 2
 	  		  
+	  		  	//insert empty boxes where colors arent set
 	  		  
 	  		  
 	  		  
 		    	//create a label and add an image from the "img folder" into them. 
 		    	JLabel label = new JLabel("");
-		    	Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
+		    	Image img = new ImageIcon(this.getClass().getResource("/img/emptyBox.png")).getImage();
 		    	label.setIcon(new ImageIcon(img));
 		    	
 		    	
@@ -486,22 +484,14 @@ public void updateGrid() {
 
 	
 
-	
+	/*repaint and revalidate everytime 
+	 * when components are changed, deleted and added to the panel
+	 */
 	gridPanel.revalidate();
 	gridPanel.repaint();
     
 }
 
-/*public void run() {
- 
-	while(true) {
-	if(gamelogic.yourTurn == true) {
-		updateGrid();
-		//sende array zu server oder client.
-	}
-	}
-}
-*/
 
 
 

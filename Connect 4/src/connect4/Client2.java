@@ -14,8 +14,9 @@ public class Client2  {
 	 String port = Player.getPlayerPort();
 	 String username = Player.getPlayerIP();
 	
+		static Socket server = null;
 	
-	static protected boolean connectedClient = false;
+
 	 static GridTest clientGrid = new GridTest();
 	
 /*	 
@@ -28,68 +29,72 @@ public class Client2  {
 public Client2() {
 	System.out.println("Client is started");
 	GridTest.clientConnected = true;
+	this.receive();
 }
 
 
 
 public static  void sendToServer() throws ClassNotFoundException {
-// hier datensendung ausführen mit actionlister, der auf die buttons von GridTest hört.	
-	Socket mysocket = null;
-	
-	
+// send data to server in this method
+// we call this method by clicking buttons on game grid
+
 	try {
-	//send data to server	
-	mysocket = new Socket("localhost",9999);
-	
-	ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
-	myoutput.writeObject(clientGrid.gamefield);
-	System.out.println("Data was sent:");
-	
-	myoutput.flush();
-	
-	//get data from server and save it into our gamefield array
-	ObjectInputStream myinput=new ObjectInputStream(mysocket.getInputStream());
-	Object mymessage = myinput.readObject();
-	clientGrid.gamefield = (GridArray)mymessage;
+		// send data to server
 		
-	mysocket.close();
+		clientGrid.gamelogic.yourTurn = false;
+		clientGrid.gamelogic.enemyTurn = true;
+		
+		ObjectOutputStream myoutput = new ObjectOutputStream(server.getOutputStream());
+		myoutput.writeObject(GridTest.gamefield);
+		System.out.println("Data was sent:");
 
+		myoutput.flush();
 
 	} catch (UnknownHostException e1) {
-		
 		e1.printStackTrace();
 	} catch (IOException e1) {
-		
 		System.out.println(e1.getMessage());
-		
-		
 	}
+
 	
 }
 
 
-public static void sendData()throws ClassNotFoundException {
-	
-try {
+//wait for incoming data from server
+// if data is sent, client updates istself and checks the grid.
+public void receive() {
+
+	try {
+		server = new Socket("localhost", 8086);
 		
-		
-	Socket mysocket = new Socket("localhost",9999);
-	ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
-	myoutput.writeObject(clientGrid.gamefield);
-	System.out.println("Data was sent:");
-	myoutput.flush();
-	
-		
-	} catch (UnknownHostException e1) {
-		
-		e1.printStackTrace();
-	} catch (IOException e1) {
-		
-	System.out.println(e1.getMessage());
+		while (true) {
+
+			try {
+				ObjectInputStream myinput = new ObjectInputStream(server.getInputStream());
+				Object mymessage = myinput.readObject();
+				
+				GridTest.gamefield = (GridArray) mymessage;
+				clientGrid.updateGrid();
+				clientGrid.checkGrid();
+				
+				//if no win happened, enable the client to make his turn
+				//in order for the endscreens to work properly the booleans are set after checking for wins
+				
+				clientGrid.gamelogic.yourTurn = true;
+				clientGrid.gamelogic.enemyTurn = false;
+				
+						
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	} catch(Exception e) {
+		e.printStackTrace();
 	}
 }
-
-
 
 }
 

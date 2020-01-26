@@ -6,14 +6,12 @@ public  class GridArray implements Serializable {
 	
 	
 	
-	 /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	//init the array when creating an instance of this class
+	private static final long serialVersionUID = 1L; 
 	char[][] gameGridArray =  {
 			{'-','-', '-', '-', '-', '-', '-'},
 			{'-','-', '-', '-', '-', '-', '-'},
-			{'-','-', '-', '-', '-', '-', '-'},  //spielfeld
+			{'-','-', '-', '-', '-', '-', '-'},  //gamefield 
 			{'-','-', '-', '-', '-', '-', '-'},
 			{'-','-', '-', '-', '-', '-', '-'},
 			{'-','-', '-', '-', '-', '-', '-'}};
@@ -24,10 +22,20 @@ public  class GridArray implements Serializable {
 	
 //getter und setter
 	
+
 	
-public void setArray(char box, int y, int x) {
-		this.gameGridArray[y][x] = box;
-		
+/*set color symbol into our array	
+ * by checking if spaces are already occupied
+ */
+public void setArray(char box, int x) {
+	for(int i=gameGridArray.length-1;i>=0;i--) {
+		if(gameGridArray[i][x]=='-') {
+			this.gameGridArray[i][x] = box;
+			return;
+		}
+	}
+	System.err.println("No More inserts possible.");
+
 	}
 	
 public char getArray(int y, int x){
@@ -49,12 +57,14 @@ String s = sj.toString();
 	
 }
 	
-	///////////////////////////////////
+	
+
+//print the array in console for testing purposes
 	public void printArray() {
 	
 	System.out.println("");
 	
-//print the array in console 
+
 	for(int i = 0; i < gameGridArray.length; i++) { 
 		for (int j = 0; j < gameGridArray[i].length; j++) {
 			System.out.print(gameGridArray[i][j] + " ");
@@ -64,7 +74,7 @@ String s = sj.toString();
 		
 		
 	}
-	System.out.println("_____________"); // for better visual display in consoleAfter
+	System.out.println("_____________"); // for better visual display in console After print
 }
 
 }

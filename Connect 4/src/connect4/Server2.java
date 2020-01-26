@@ -18,14 +18,15 @@ public class Server2 {
 	
 	
 
-	GridTest serverGrid = new GridTest();
+	static GridTest serverGrid = new GridTest();
 	/*public static void main(String[] args) throws ClassNotFoundException, IOException {
 				
 		new Server2();
 		
 	}	*/
 	
-	
+	static Socket client_socket = null;
+
 public Server2() {
 	
 	initServer();
@@ -36,52 +37,64 @@ public void initServer() {
 	
 	
 	try {
-		ServerSocket server=new ServerSocket(9999);
-		
-		System.out.println("Server gestartet \n");
-		serverGrid.serverConnected = true;		
-		runit(server);
-		
-        
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
+		ServerSocket server = new ServerSocket(8086);
+
+		serverGrid.serverConnected = true;
+		System.out.println("server laeuft");
+
+		while (true) {
+
+			try {
+				client_socket = server.accept();
+
+				while (true) {
+					ObjectInputStream myinput = new ObjectInputStream(client_socket.getInputStream());
+					Object mymessage = myinput.readObject();
+					GridTest.gamefield = (GridArray) mymessage;
+					System.out.println(mymessage);
+					serverGrid.updateGrid();
+					serverGrid.checkGrid();
+					
+					//enable players turn on serverside
+					serverGrid.gamelogic.yourTurn = true;
+					serverGrid.gamelogic.enemyTurn = false;
+					
+				}
+			}
+
+			catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
+
 }
 
 
-@SuppressWarnings("static-access")
-public void runit(ServerSocket server) throws IOException{
+
+public static void send2client() {
+
 	
-	//server gets data from client1, saves it into his array, then sends server array to client2 + client1
-	
-	while(true) {
-	
-	Socket mysocket= server.accept();
+	serverGrid.gamelogic.yourTurn = false;
+	serverGrid.gamelogic.enemyTurn = true;
 	try {
-	ObjectInputStream myinput=new ObjectInputStream(mysocket.getInputStream());
-	Object mymessage = myinput.readObject();
-	serverGrid.gamefield = (GridArray)mymessage; //-<< save object into gamefield
-	//System.out.println(mymessage);
-	//
-	serverGrid.updateGrid();
-	
-	ObjectOutputStream myoutput = new ObjectOutputStream(mysocket.getOutputStream());
-	myoutput.writeObject(mymessage); //send gotten massage from client 1 to client 2 somehow
-	System.out.println("Data was sent:");
-	myoutput.flush();
-	
-	}
-	
- catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (ClassNotFoundException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-}}
+		
+		
+		
+		ObjectOutputStream myoutput = new ObjectOutputStream(client_socket.getOutputStream());
 
+		myoutput.writeObject(GridTest.gamefield);
+		myoutput.flush();
+	} catch (Exception e) {
+		System.out.println("Cannot send to CLient");
+		e.printStackTrace();
+	}
+
+}
 
 
 }
