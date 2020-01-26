@@ -13,14 +13,14 @@ public class Endscreen {
 	
 	public void produceScreen() {
 	JFrame lastframe = new JFrame();
-	  lastframe.setSize(500,400);
+	  lastframe.setSize(640,300);
 	  lastframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 JPanel p1=new JPanel();
 	  
 	  if (GameRules.yourTurn==true && GameRules.enemyTurn==false) {
 		  
 	  JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/YOU_WIN.png")).getImage();
+	    Image img = new ImageIcon(this.getClass().getResource("/win.png")).getImage();
 	    label.setIcon(new ImageIcon(img));
 	    p1.add(label);
 	  }
@@ -28,14 +28,14 @@ public class Endscreen {
 	   else if (GameRules.yourTurn==false && GameRules.enemyTurn==true) {
 	    	
 	   JLabel label = new JLabel("");
-		 Image img = new ImageIcon(this.getClass().getResource("/YOU_LOST.png")).getImage();
+		 Image img = new ImageIcon(this.getClass().getResource("/lost.png")).getImage();
 		 label.setIcon(new ImageIcon(img));
 		 p1.add(label);
 
 	   }
 	   else {
 		   JLabel label = new JLabel("");
-		    Image img = new ImageIcon(this.getClass().getResource("/YOU_DRAW.png")).getImage();
+		    Image img = new ImageIcon(this.getClass().getResource("/draw.png")).getImage();
 		    label.setIcon(new ImageIcon(img));
 		    p1.add(label);
 		   

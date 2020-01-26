@@ -202,7 +202,7 @@ public class Display extends JFrame{
 	      
 	  }
 	  
-	  public void produceEndScreen() {
+	 /* public void produceEndScreen() {
 		  
 		  JFrame lastframe= new JFrame();
 		  lastframe.setSize(500,400);
@@ -238,7 +238,7 @@ public class Display extends JFrame{
 			
 		    
 		  
-	  }
+	  }*/
 	  
 	  
 	 

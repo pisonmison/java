@@ -205,7 +205,7 @@ public static void checkYellow() {
 			  if( spot [column][row] == '0') {
 				  if(column > 2
 			  
-				    && spot[column -1 ][row + 1] == '0'
+				    && spot[column -1][row +1] == '0'
 	        		&& spot[column -2][row +2] == '0'
 	        		&& spot[column -3][row +3] == '0') {
 				  	check=true;
@@ -228,6 +228,7 @@ public static void checkYellow() {
 public static void checkDraw() {
 	if(roundsPlayed >= 41) {
 		System.out.print("DRAWWWW");
+		draw = true;
 	}
 	
 }
