@@ -10,11 +10,12 @@ import java.io.*;
 public class Client2  {
 	
 	//get strings from user input in the connect window
-	 String ip = Player.getPlayerIP();
-	 String port = Player.getPlayerPort();
+	 String gottenIp = Player.getPlayerIP();
+	 String gottenPort = Player.getPlayerPort();
+	 int port = Integer.parseInt(gottenPort);
 	 
 	
-		static Socket server = null;
+		static Socket server = new Socket();
 	
 
 	 static GridTest clientGrid = new GridTest();
@@ -61,7 +62,7 @@ public static  void sendToServer() throws ClassNotFoundException {
 public void receive() {
 
 	try {
-		server = new Socket("localhost", 8086);
+		server = new Socket(gottenIp, port);
 		
 		while (true) {
 

@@ -41,7 +41,9 @@ public class Endscreen {
 		   
 		   
 		   }
-	    lastframe.add(p1);
+	    
+	  
+	  lastframe.add(p1);
 		lastframe.setVisible(true);
 	    
 	}

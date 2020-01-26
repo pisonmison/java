@@ -16,7 +16,8 @@ import java.io.ObjectOutputStream;
 public class Server2 {
 	
 	
-	String ip = Player.getPlayerIP();
+	String gottenPort = Player.getPlayerPort();
+	int port = Integer.parseInt(gottenPort);
 
 	static GridTest serverGrid = new GridTest();
 	/*public static void main(String[] args) throws ClassNotFoundException, IOException {
@@ -37,7 +38,7 @@ public void initServer() {
 	
 	
 	try {
-		ServerSocket server = new ServerSocket(83838);
+		ServerSocket server = new ServerSocket(5345);
 
 		
 		System.out.println("server laeuft");
