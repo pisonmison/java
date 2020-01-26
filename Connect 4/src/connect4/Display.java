@@ -15,7 +15,7 @@ import java.util.TimerTask;
 
 import javax.swing.*;
 
-public class Display extends JFrame implements ActionListener {
+public class Display extends JFrame{
 	
 	// Create a simple GUI window
 	//declare the different stuff which we add to the window like buttons, textlabels etc. for better overseeing
@@ -30,6 +30,12 @@ public class Display extends JFrame implements ActionListener {
 	
 	
 	Player player = new Player();
+	
+	
+	  // if Object Display is made, it automatically calls the createWindow method.
+	public Display() {
+		createWindow();
+	  }
 	
 	public void createEndingWindow(){
 		endframe = new JFrame();
@@ -69,13 +75,12 @@ public class Display extends JFrame implements ActionListener {
 		  switch(option_select) {
 		  	case JOptionPane.YES_OPTION:
 		  		connectToServer = true;
-		  		//createConnectWindow();
-		  		Server2 server = new Server2();
+		  		createConnectWindow();
 		  		break;
 		  	case JOptionPane.NO_OPTION:
 		  		connectToClient = true;
-		  		//createConnectWindow();
-		  		Client2 client = new Client2();
+		  		createConnectWindow();
+		  		
 		  		break;
 		  	default:
 		  		System.exit(0);
@@ -83,43 +88,15 @@ public class Display extends JFrame implements ActionListener {
 		  
 	      
 	   }
-	   // if Object Display is made, it automatically calls the createWindow method.
-	  public Display() {
-		  createWindow();
-	  }
+	 
+	  
 	   
 	   
 	  //action method which calls when button to which the ActionListened is bound to, is pressed
-	  public void actionPerformed(ActionEvent e) {
-	       if(e.getSource() == b1) {
-	    	   //mainframe.dispose();
-	    	   Server2 server = new Server2();
-	       }
-	       
-	       if(e.getSource() == connectButton) {
-	    	   //save input string into username string and close window again(make it invisible)
-	    	   submitAction();
-	    	   secondframe.dispose();
-	    	   if(connectToServer == true) {
-	    	   Server2 server = new Server2();
-	    	   }
-	    	   else if(connectToClient == true) {
-	    		   Client2 client = new Client2();
-	    	   }
-	    	   	    	   
-	    	  
-	       }
-	    }
-	  
-	  
 	  
 	 
-	      
-	    
-		  
-		  
-		////creating a window where user can input his name and ip/port to which he want to connect 
-
+	  
+	  
 	  
 	  public void createConnectWindow() {
 		  
@@ -130,37 +107,94 @@ public class Display extends JFrame implements ActionListener {
 		  //creating input fields for ip,port,name
 		  ipInput = new JTextField(10);
 		  portInput = new JTextField(6);
-		  nameInput = new JTextField(10);
+		  
 		  
 		  //creating headlines over the input fields, so user know which field is for which input
 		  ipText = new JLabel("IP-Adress");
 		  portText = new JLabel("Port Number");
-		  nameText = new JLabel("Username");
+		  
 		  
 		  
 	      
-		  connectButton = new JButton("Connect!");
-		  connectButton.addActionListener(this);
+		  
 		  
 		  //left pannel with textfields for ip/port/username
 		  p1 = new JPanel();
-		  p1.setLayout(new GridLayout(2, 3));
+		  p1.setLayout(new GridLayout(2, 2));
 		  p1.add(ipText);
 		  p1.add(portText);
-		  p1.add(nameText);
+		 
+		  p1.add(ipInput);
+		  p1.add(portInput);
+		  
+		  String ip;
+		  String port;
+	
+		  int result = JOptionPane.showConfirmDialog(null, p1, 
+	               "Connect to Game", JOptionPane.OK_CANCEL_OPTION);
+	      
+		  /*show message and optionPane while user has no input 
+		   * if input is empty, show message and then optionPane again
+		   * if clicked on cancel, cancel while loop and exit
+		  */
+		  int g = -1;
+		  
+	      while(g < 0) {
+		  if (result == JOptionPane.OK_OPTION) {
+	         
+		  ip = ipInput.getText();
+	      port = portInput.getText();
+	    	  
+	    	  		if( (ip == null || ip.isEmpty())  &&
+	    			(port == null || port.isEmpty()  )){
+	    	  
+				    	 JOptionPane.showMessageDialog(null, "Invalid Input, Please enter again!");
+				    	 
+				    	 result = JOptionPane.showConfirmDialog(null, p1, 
+					               "Connect to Game", JOptionPane.OK_CANCEL_OPTION);
+	    	  			}
+	    	  		else {
+	    		  	
+	    	  		
+	    	  		//set playerport/ip in order for client/server to access it.	
+	    	  		player.setPlayerIP(ip);
+	    	  		player.setPlayerPort(port);
+	    	  		
+	    	  		//print input in console and create the players chosen instance as host/joiner
+	    	  		g++;
+	    		  	System.out.println("Ip-Adress: " + ip);
+			        System.out.println("Port: " + port);
+	    		  		if(connectToServer == true) {
+	    		  			Server2 server = new Server2();
+	    		  		}
+	    		  		else if(connectToClient == true){
+	    		  			Client2 client = new Client2();
+	    		  		}
+	    		  		else {
+	    		  			
+	    		  		}
+	    		  			
+	    	  }
+	    	  }
+	      
+		  
+	      
+		  
+	      if(result == JOptionPane.CANCEL_OPTION) {
+	    	  System.out.println("Connection cancelled");
+	    	  System.exit(0);
+	      }
+	  }}
 		  
 		  
-		  
-		  
-		  
-		  
+		/*  
 		  secondframe.add(p1, BorderLayout.WEST);
 		  secondframe.add(connectButton, BorderLayout.EAST);
 		  secondframe.setLocationRelativeTo(null);
 		  secondframe.pack();
 		  secondframe.setVisible(true);
-		  
-	  }
+		  */
+	  
 	
 	  //save input string to string variable "username" -> next step: save to string in class Player
 	  private void submitAction() {

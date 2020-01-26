@@ -16,7 +16,7 @@ import java.io.ObjectOutputStream;
 public class Server2 {
 	
 	
-	
+	String ip = Player.getPlayerIP();
 
 	static GridTest serverGrid = new GridTest();
 	/*public static void main(String[] args) throws ClassNotFoundException, IOException {
@@ -37,16 +37,17 @@ public void initServer() {
 	
 	
 	try {
-		ServerSocket server = new ServerSocket(8086);
+		ServerSocket server = new ServerSocket(83838);
 
-		serverGrid.serverConnected = true;
+		
 		System.out.println("server laeuft");
 
 		while (true) {
 
 			try {
 				client_socket = server.accept();
-
+				serverGrid.serverConnected = true;
+				
 				while (true) {
 					ObjectInputStream myinput = new ObjectInputStream(client_socket.getInputStream());
 					Object mymessage = myinput.readObject();

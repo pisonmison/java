@@ -17,10 +17,10 @@ public final  class GridTest extends JFrame implements ActionListener {
 	
 	
 	
-	//decalre needed variables etc.
+	//decalare needed components
 	int xPos; 
 
-	public JFrame mainframe;
+	private JFrame mainframe;
 	private JPanel buttonPanel, mainPanel,emptyPanel;
 	
 	
@@ -34,7 +34,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	static boolean clientConnected = false;
 	boolean serverConnected = false;
 	protected static GridArray gamefield = new GridArray();
-	Player player = new Player();
+	
 	GameRules gamelogic = new GameRules();
 	
 	

@@ -9,23 +9,19 @@ import java.io.*;
 
 public class Client2  {
 	
-	
-	String ip = Player.getPlayerIP();
+	//get strings from user input in the connect window
+	 String ip = Player.getPlayerIP();
 	 String port = Player.getPlayerPort();
-	 String username = Player.getPlayerIP();
+	 
 	
 		static Socket server = null;
 	
 
 	 static GridTest clientGrid = new GridTest();
-	
-/*	 
-	public static void main(String[] args) throws ClassNotFoundException{
-	
-		new Client2();	
-	
-	}*/
-	
+	//call the game GUI instance in the client
+
+	 
+	//
 public Client2() {
 	System.out.println("Client is started");
 	GridTest.clientConnected = true;

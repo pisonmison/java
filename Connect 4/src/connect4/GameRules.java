@@ -9,16 +9,15 @@ public class  GameRules{
 	protected static boolean draw = false;
 	
 	private static char [][] spot = new char [6][7];
-	protected  boolean yourTurn = true; 
+	protected  boolean yourTurn = false; 
 	protected  boolean enemyTurn = false;
 	
 	static int roundsPlayed = 0;
 
-	
-	
-	
-	
-	
+
+
+
+
 	//console output for testing
 	public static void WinOrNot() {
 	System.out.println("");
