@@ -226,10 +226,19 @@ public static void checkYellow() {
   the game ends in a draw because all spaces are filled
   */
 public static void checkDraw() {
-	if(roundsPlayed >= 41) {
-		System.out.print("DRAWWWW");
-		draw = true;
+	
+	
+	for(int i = 0; i < spot.length; i++) {
+		for (int j = 0; j < spot[i].length; j++) {			
+			if(spot[i][j] == '-') {
+				return;
+			}
+			
+		}
+		
 	}
+	check=true;
+	draw=true;
 	
 }
 

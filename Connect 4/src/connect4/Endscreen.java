@@ -16,7 +16,18 @@ public class Endscreen {
 	  lastframe.setSize(640,300);
 	  lastframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 JPanel p1=new JPanel();
-	  
+	 if(GameRules.draw) {
+		 	JLabel label = new JLabel("");
+		    Image img = new ImageIcon(this.getClass().getResource("/draw.png")).getImage();
+		    label.setIcon(new ImageIcon(img));
+		    p1.add(label);
+		   
+		   
+
+	 }
+	 else {
+	 
+	 
 	  if (GameRules.yourTurn==true && GameRules.enemyTurn==false) {
 		  
 	  JLabel label = new JLabel("");
@@ -33,13 +44,6 @@ public class Endscreen {
 		 p1.add(label);
 
 	   }
-	   else {
-		   JLabel label = new JLabel("");
-		    Image img = new ImageIcon(this.getClass().getResource("/draw.png")).getImage();
-		    label.setIcon(new ImageIcon(img));
-		    p1.add(label);
-		   
-		   
 		   }
 	    
 	  
