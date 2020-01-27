@@ -93,13 +93,13 @@ public final  class GridTest extends JFrame implements ActionListener {
 		
 		buttonPanel.setLayout(new GridLayout(1, 7));
 		
-		arrow0 = new JButton("0");
-		arrow1 = new JButton("1");
-		arrow2 = new JButton("2");
-		arrow3 = new JButton("3");
-		arrow4 = new JButton("4");
-		arrow5 = new JButton("5");
-		arrow6 = new JButton("6");
+		arrow0 = new JButton("1");
+		arrow1 = new JButton("2");
+		arrow2 = new JButton("3");
+		arrow3 = new JButton("4");
+		arrow4 = new JButton("5");
+		arrow5 = new JButton("6");
+		arrow6 = new JButton("7");
 		
 		//adding actionlisteners to button;
 		arrow0.addActionListener((ActionListener) this);
@@ -132,12 +132,12 @@ public final  class GridTest extends JFrame implements ActionListener {
 		mainPanel.add(infoPanel, BorderLayout.SOUTH);
 		mainPanel.add(gridPanel, BorderLayout.CENTER);
 	    mainPanel.add(buttonPanel, BorderLayout.NORTH);
-	 
+	    
 	    
 		//insert the main panel into the frame
 	    mainframe.add(mainPanel);
 		mainframe.setSize(700,600);
-	    
+	 
 		mainframe.setLocationRelativeTo(null);
 		mainframe.setVisible(true);
 		mainframe.setResizable(true);
