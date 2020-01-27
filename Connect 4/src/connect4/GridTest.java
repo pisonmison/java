@@ -123,7 +123,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 		
 		
 	
-	
+		//create info panel to show the player if its his turn or the enemy is still making his
 		infoPanel = new JPanel();
 		infoPanel.add(new Label("WAITING FOR OPPONENT TO CONNECT"));
 		infoPanel.setBackground((new Color(255, 165, 0)));

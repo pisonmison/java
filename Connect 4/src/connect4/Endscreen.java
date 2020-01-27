@@ -10,15 +10,19 @@ public class Endscreen {
 	}
 	
 	
-	
+	//produce different endscreens based on actual game state
 	public void produceScreen() {
 	JFrame lastframe = new JFrame();
-	  lastframe.setSize(640,300);
+	  lastframe.setSize(640,360);
 	  lastframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 JPanel p1=new JPanel();
+	 
+	 
 	 if(GameRules.draw) {
+		 	
+		 	//for loading images the same code sample as in "GridTest" is used here
 		 	JLabel label = new JLabel("");
-		    Image img = new ImageIcon(this.getClass().getResource("/draw.png")).getImage();
+		    Image img = new ImageIcon(this.getClass().getResource("/drawResized.png")).getImage();
 		    label.setIcon(new ImageIcon(img));
 		    p1.add(label);
 		   
@@ -30,7 +34,7 @@ public class Endscreen {
 	 
 	  if (GameRules.yourTurn==true && GameRules.enemyTurn==false) {
 		  
-	  JLabel label = new JLabel("");
+		  JLabel label = new JLabel("");
 	    Image img = new ImageIcon(this.getClass().getResource("/win.png")).getImage();
 	    label.setIcon(new ImageIcon(img));
 	    p1.add(label);
