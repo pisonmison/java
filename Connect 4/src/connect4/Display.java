@@ -29,26 +29,7 @@ public class Display extends JFrame{
 		createWindow();
 	  }
 	
-	public void createEndingWindow(){
-		endframe = new JFrame();
-		endframe.setSize(500,400);
-		endframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		p1 = new JPanel();
-
-		JLabel label = new JLabel("");
-	    Image img = new ImageIcon(this.getClass().getResource("/emptyBox.png")).getImage();
-	    label.setIcon(new ImageIcon(img));
-	    p1.add(label);
-		
-		endframe.add(p1);
-		endframe.setVisible(true);
-		
-		
-		
-		
-		
-	}
+	
 
 	
 	/*
@@ -67,11 +48,14 @@ public class Display extends JFrame{
 		  switch(option_select) {
 		  	case JOptionPane.YES_OPTION:
 		  		connectToServer = true;
-		  		createConnectWindow();
+		  		Server2 server = new Server2();
+		  		
+		  		//createConnectWindow();
 		  		break;
 		  	case JOptionPane.NO_OPTION:
 		  		connectToClient = true;
-		  		createConnectWindow();
+		  		Client2 client = new Client2();
+		  		//createConnectWindow();
 		  		
 		  		break;
 		  	default:
@@ -179,68 +163,10 @@ public class Display extends JFrame{
 	  }}
 		  
 		  
-		/*  
-		  secondframe.add(p1, BorderLayout.WEST);
-		  secondframe.add(connectButton, BorderLayout.EAST);
-		  secondframe.setLocationRelativeTo(null);
-		  secondframe.pack();
-		  secondframe.setVisible(true);
-		  */
-	  
+
 	
-	  //save input string to string variable "username" -> next step: save to string in class Player
-	  private void submitAction() {
-		  
-		  //f�r spieler1
-		  player.setPlayername(nameInput.getText());
-		  player.setPlayerIP(ipInput.getText());
-		  player.setPlayerPort(portInput.getText());
-	      player.printplayerInfo();
-	
-	      
-	      //f�r spieler2
+	 
 	      
 	  }
-	  
-	 /* public void produceEndScreen() {
-		  
-		  JFrame lastframe= new JFrame();
-		  lastframe.setSize(500,400);
-		  lastframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		  JPanel p1=new JPanel();
-		  
-		  if (GameRules.yourTurn==true && GameRules.enemyTurn==false) {
-			  
-		  JLabel label = new JLabel("");
-		    Image img = new ImageIcon(this.getClass().getResource("/YOU_WIN.png")).getImage();
-		    label.setIcon(new ImageIcon(img));
-		    p1.add(label);
-		  }
-		    
-		   else if (GameRules.yourTurn==false && GameRules.enemyTurn==true) {
-		    	
-		   JLabel label = new JLabel("");
-			 Image img = new ImageIcon(this.getClass().getResource("/YOU_LOST.png")).getImage();
-			 label.setIcon(new ImageIcon(img));
-			 p1.add(label);
-	 
-		   }
-		   else {
-			   JLabel label = new JLabel("");
-			    Image img = new ImageIcon(this.getClass().getResource("/YOU_DRAW.png")).getImage();
-			    label.setIcon(new ImageIcon(img));
-			    p1.add(label);
-			   
-			   
-			   }
-		    lastframe.add(p1);
-			lastframe.setVisible(true);
-			
-		    
-		  
-	  }*/
-	  
-	  
-	 
+	
 
-}

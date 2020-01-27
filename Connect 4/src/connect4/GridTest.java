@@ -21,7 +21,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	int xPos; 
 
 	private JFrame mainframe;
-	private JPanel buttonPanel, mainPanel,emptyPanel;
+	private JPanel buttonPanel, mainPanel,emptyPanel, infoPanel;
 	
 	
 	private ImageIcon emptyBox;
@@ -73,21 +73,24 @@ public final  class GridTest extends JFrame implements ActionListener {
 		JPanel mainPanel = new JPanel();
 	    
 	    gridPanel = new JPanel();
-	    JPanel buttonPanel = new JPanel();
+	    buttonPanel = new JPanel();
 	    
 	    
 	    //layout of the panels
+	    
 	    mainPanel.setLayout(new BorderLayout());
-	    gridPanel.setLayout(new GridLayout(4, 5));
-	    buttonPanel.setLayout(new GridLayout(1, 5));
+	   
 	  
+		//create Grind Panel
+		gridPanel = new JPanel();
+		gridPanel.setLayout(new GridLayout(6,7));
 		
 		
 		
 		
 		
 		//defining top panel with 7 buttons;
-		buttonPanel = new JPanel();
+		
 		buttonPanel.setLayout(new GridLayout(1, 7));
 		
 		arrow0 = new JButton("0");
@@ -119,14 +122,14 @@ public final  class GridTest extends JFrame implements ActionListener {
 		
 		
 		
-		//create Grind Panel
-		gridPanel = new JPanel();
-		gridPanel.setLayout(new GridLayout(6,7));
-		
 	
 	
+		infoPanel = new JPanel();
+		infoPanel.add(new Label("WAITING FOR OPPONENT TO CONNECT"));
+		infoPanel.setBackground((new Color(255, 165, 0)));
 		
 		//add panels to mainpanel 
+		mainPanel.add(infoPanel, BorderLayout.SOUTH);
 		mainPanel.add(gridPanel, BorderLayout.CENTER);
 	    mainPanel.add(buttonPanel, BorderLayout.NORTH);
 	 
@@ -145,8 +148,61 @@ public final  class GridTest extends JFrame implements ActionListener {
 		
 	}
 	
-
 	
+	public void fillInfoPanel() {
+		
+		infoPanel.removeAll();
+		
+		if(gamelogic.yourTurn == true) {
+			
+			JLabel label = new JLabel("IT IS YOUR TURN NOW!");
+			infoPanel.add(label);
+			infoPanel.setBackground((new Color(0, 255, 0)));
+			infoPanel.revalidate();
+		    infoPanel.repaint();
+		}
+		else if(gamelogic.yourTurn == false) {
+			
+			JLabel label = new JLabel("WAITING FOR OPPONENT TO FINISH...");
+			infoPanel.add(label);
+			infoPanel.setBackground((new Color(255, 0, 0)));
+			infoPanel.revalidate();
+		    infoPanel.repaint();
+		    
+		}
+		
+	    infoPanel.revalidate();
+	    infoPanel.repaint();
+	
+	
+	
+	}
+/*functions for disabling buttons
+ * we cant disable the children of a panel
+ * therefore disabling all 7 buttons works
+ */
+	public void disableButtons() {
+		buttonPanel.setEnabled(false);
+		arrow0.setEnabled(false);
+		arrow1.setEnabled(false);
+		arrow2.setEnabled(false);
+		arrow3.setEnabled(false);
+		arrow4.setEnabled(false);
+		arrow5.setEnabled(false);
+		arrow6.setEnabled(false);
+	}
+	
+	
+	public void enableButtons() {
+		buttonPanel.setEnabled(true);
+		arrow0.setEnabled(true);
+		arrow1.setEnabled(true);
+		arrow2.setEnabled(true);
+		arrow3.setEnabled(true);
+		arrow4.setEnabled(true);
+		arrow5.setEnabled(true);
+		arrow6.setEnabled(true);
+	}
 
 	
 	//rgb blue background: R: 30 ,G: 144, B: 255
@@ -491,7 +547,7 @@ public void updateGrid() {
 	 */
 	gridPanel.revalidate();
 	gridPanel.repaint();
-    
+    fillInfoPanel();
 }
 
 

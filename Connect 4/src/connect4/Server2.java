@@ -16,50 +16,56 @@ import java.io.ObjectOutputStream;
 public class Server2 {
 	
 	
-	String gottenPort = Player.getPlayerPort();
-	int port = Integer.parseInt(gottenPort);
+	
 
 	static GridTest serverGrid = new GridTest();
-	/*public static void main(String[] args) throws ClassNotFoundException, IOException {
-				
-		new Server2();
-		
-	}	*/
 	
 	static Socket client_socket = null;
 
 public Server2() {
 	
+	System.out.println("Port ist: 9999");
+	
 	initServer();
 }
 
 public void initServer() {
-	
+	serverGrid.disableButtons();
 	
 	
 	try {
 		ServerSocket server = new ServerSocket(9999);
-
+		
 		
 		System.out.println("server laeuft");
+		System.out.println("Warte auf Client....");
 
 		while (true) {
-
+			
 			try {
+				/*f connection is made, enable buttons and let server player make the first move
+				also update infoPanel to notify that he can make a move now
+				*/
 				client_socket = server.accept();
+				System.out.println("Client verbunden! Du beginnst!");
+				serverGrid.enableButtons();
 				serverGrid.serverConnected = true;
-				
+				serverGrid.gamelogic.yourTurn = true;
+				serverGrid.fillInfoPanel();
 				while (true) {
 					ObjectInputStream myinput = new ObjectInputStream(client_socket.getInputStream());
 					Object mymessage = myinput.readObject();
 					GridTest.gamefield = (GridArray) mymessage;
 					System.out.println(mymessage);
-					serverGrid.updateGrid();
+					
 					serverGrid.checkGrid();
 					
 					//enable players turn on serverside
 					serverGrid.gamelogic.yourTurn = true;
 					serverGrid.gamelogic.enemyTurn = false;
+					
+					serverGrid.updateGrid();
+					serverGrid.enableButtons();
 					
 				}
 			}
@@ -81,15 +87,20 @@ public void initServer() {
 public static void send2client() {
 
 	
-	serverGrid.gamelogic.yourTurn = false;
-	serverGrid.gamelogic.enemyTurn = true;
+	
 	try {
 		
 		
 		
 		ObjectOutputStream myoutput = new ObjectOutputStream(client_socket.getOutputStream());
 
-		myoutput.writeObject(GridTest.gamefield);
+		myoutput.writeObject(serverGrid.gamefield);
+		
+		serverGrid.gamelogic.yourTurn = false;
+		serverGrid.gamelogic.enemyTurn = true;
+		serverGrid.disableButtons();
+		serverGrid.fillInfoPanel();
+		
 		myoutput.flush();
 	} catch (Exception e) {
 		System.out.println("Cannot send to CLient");

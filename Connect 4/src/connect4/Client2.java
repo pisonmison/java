@@ -10,9 +10,9 @@ import java.io.*;
 public class Client2  {
 	
 	//get strings from user input in the connect window
-	 String gottenIp = Player.getPlayerIP();
+	 String gottenIp  = "localhost";//= Player.getPlayerIP();
 	 String gottenPort = Player.getPlayerPort();
-	 int port = Integer.parseInt(gottenPort);
+	 int port = 9999;//Integer.parseInt(gottenPort);
 	 
 	
 		static Socket server = new Socket();
@@ -24,7 +24,9 @@ public class Client2  {
 	 
 	//
 public Client2() {
+	init();
 	System.out.println("Client is started");
+	clientGrid.disableButtons();
 	GridTest.clientConnected = true;
 	this.receive();
 }
@@ -34,16 +36,19 @@ public Client2() {
 public static  void sendToServer() throws ClassNotFoundException {
 // send data to server in this method
 // we call this method by clicking buttons on game grid
-
+	
 	try {
 		// send data to server
 		
 		clientGrid.gamelogic.yourTurn = false;
 		clientGrid.gamelogic.enemyTurn = true;
+		clientGrid.disableButtons();
+		clientGrid.fillInfoPanel();
 		
 		ObjectOutputStream myoutput = new ObjectOutputStream(server.getOutputStream());
 		myoutput.writeObject(GridTest.gamefield);
 		System.out.println("Data was sent:");
+		
 
 		myoutput.flush();
 
@@ -56,14 +61,30 @@ public static  void sendToServer() throws ClassNotFoundException {
 	
 }
 
-
+void init() {
+	clientGrid.disableButtons();
+	while(true) {
+	try {
+		server = new Socket(gottenIp, port);
+		clientGrid.fillInfoPanel();
+		server.close();
+		break;
+	} catch (UnknownHostException e) {
+		
+		e.printStackTrace();
+	} catch (IOException e) {
+		System.out.println("Warte auf Verbindung...");
+		
+	}
+}
+}
 //wait for incoming data from server
 // if data is sent, client updates istself and checks the grid.
 public void receive() {
 
 	try {
 		server = new Socket(gottenIp, port);
-		
+		clientGrid.fillInfoPanel();
 		while (true) {
 
 			try {
@@ -71,7 +92,8 @@ public void receive() {
 				Object mymessage = myinput.readObject();
 				
 				GridTest.gamefield = (GridArray) mymessage;
-				clientGrid.updateGrid();
+				System.out.println(mymessage);
+				
 				clientGrid.checkGrid();
 				
 				//if no win happened, enable the client to make his turn
@@ -79,7 +101,9 @@ public void receive() {
 				
 				clientGrid.gamelogic.yourTurn = true;
 				clientGrid.gamelogic.enemyTurn = false;
+				clientGrid.updateGrid();
 				
+				clientGrid.enableButtons();
 						
 			}
 			catch (IOException e) {
