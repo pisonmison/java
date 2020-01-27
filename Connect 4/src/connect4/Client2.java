@@ -10,7 +10,7 @@ import java.io.*;
 public class Client2  {
 	
 	//get strings from user input in the connect window
-	 String gottenIp  = "localhost";//= Player.getPlayerIP();
+	 String gottenIp  = Player.getPlayerIP();
 	 String gottenPort = Player.getPlayerPort();
 	 int port = 9999;//Integer.parseInt(gottenPort);
 	 

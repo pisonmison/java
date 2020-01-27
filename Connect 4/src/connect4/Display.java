@@ -2,6 +2,8 @@ package connect4;
 
 
 import java.awt.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import javax.swing.*;
 
@@ -25,7 +27,7 @@ public class Display extends JFrame{
 	
 	
 	  // if Object Display is made, it automatically calls the createWindow method.
-	public Display() {
+	public Display() throws UnknownHostException {
 		createWindow();
 	  }
 	
@@ -40,13 +42,15 @@ public class Display extends JFrame{
 	 * also dialog stuff is added like title, etc. 
 	 * 
 	 */
-	  public void createWindow() {
-		  
+	  public void createWindow() throws UnknownHostException {
+		  InetAddress inetAddress = InetAddress. getLocalHost();
 		  String[] options = {"Start Server", "Start Client", "Close"};
-		  int option_select = JOptionPane.showOptionDialog(mainframe, "Start or connect to a Game", "Connect 4", 
+		  int option_select = JOptionPane.showOptionDialog(mainframe, "Start as Server / Connect as Client", "Connect 4", 
 				  JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 		  switch(option_select) {
 		  	case JOptionPane.YES_OPTION:
+		  		//display server ip and port information for connection with client
+		  		JOptionPane.showMessageDialog(null, "Server Information \n Port: 9999 \n Ip-Adress:  " + inetAddress.getHostAddress());
 		  		connectToServer = true;
 		  		Server2 server = new Server2();
 		  		
@@ -54,8 +58,8 @@ public class Display extends JFrame{
 		  		break;
 		  	case JOptionPane.NO_OPTION:
 		  		connectToClient = true;
-		  		Client2 client = new Client2();
-		  		//createConnectWindow();
+		  		
+		  		createConnectWindow();
 		  		
 		  		break;
 		  	default:
