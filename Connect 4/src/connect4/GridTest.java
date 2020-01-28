@@ -301,21 +301,24 @@ public final  class GridTest extends JFrame implements ActionListener {
 		            @Override
 		            public void run() {
 		                GameRules.winCheck();
-		                GameRules.roundsPlayed++;
+		                
 		                if(GameRules.check == true) {
 		                
-		               
-		                
-		                mainframe.dispose();
-		                new Endscreen();
-						
-		                //endscreen
-		                
-		                //System.exit(0);
-		                
+		                	mainframe.dispose();
+							new Endscreen();
+					
 		                
 		                }
-		            }
+		                else {
+		                	
+							gamelogic.yourTurn = true;
+							gamelogic.enemyTurn = false;
+								
+							}
+		                	;
+		                }
+		                
+		            
 		        }, 
 		        10 /*10 milliseconds -> prevents timer bug of when buttons are clicked
 		         several times in under the defined number.*/

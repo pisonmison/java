@@ -22,7 +22,8 @@ public class Display extends JFrame{
 	private JTextField ipInput, portInput, nameInput;
 	
 	
-	
+
+
 	Player player = new Player();
 	
 	
@@ -58,8 +59,8 @@ public class Display extends JFrame{
 		  		break;
 		  	case JOptionPane.NO_OPTION:
 		  		connectToClient = true;
-		  		
-		  		createConnectWindow();
+		  		Client2 client = new Client2();
+		  		//createConnectWindow();
 		  		
 		  		break;
 		  	default:

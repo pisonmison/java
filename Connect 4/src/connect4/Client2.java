@@ -84,24 +84,22 @@ public void receive() {
 
 	try {
 		server = new Socket(gottenIp, port);
-		clientGrid.fillInfoPanel();
+		clientGrid.gamelogic.yourTurn = true;
 		while (true) {
-
+			
 			try {
 				ObjectInputStream myinput = new ObjectInputStream(server.getInputStream());
 				Object mymessage = myinput.readObject();
 				
 				GridTest.gamefield = (GridArray) mymessage;
 				System.out.println(mymessage);
-				
+				clientGrid.updateGrid();
 				clientGrid.checkGrid();
 				
 				//if no win happened, enable the client to make his turn
 				//in order for the endscreens to work properly the booleans are set after checking for wins
 				
-				clientGrid.gamelogic.yourTurn = true;
-				clientGrid.gamelogic.enemyTurn = false;
-				clientGrid.updateGrid();
+				
 				
 				clientGrid.enableButtons();
 						

@@ -25,11 +25,12 @@ public class Server2 {
 public Server2() {
 	
 	System.out.println("Port ist: 9999");
-	
+	serverGrid.gamelogic.yourTurn = true;
 	initServer();
 }
 
 public void initServer() {
+	
 	serverGrid.disableButtons();
 	
 	
@@ -50,9 +51,11 @@ public void initServer() {
 				System.out.println("Client verbunden! Du beginnst!");
 				serverGrid.enableButtons();
 				serverGrid.serverConnected = true;
-				serverGrid.gamelogic.yourTurn = true;
+				
 				serverGrid.fillInfoPanel();
 				while (true) {
+					
+					
 					ObjectInputStream myinput = new ObjectInputStream(client_socket.getInputStream());
 					Object mymessage = myinput.readObject();
 					GridTest.gamefield = (GridArray) mymessage;
@@ -61,8 +64,7 @@ public void initServer() {
 					serverGrid.checkGrid();
 					
 					//enable players turn on serverside
-					serverGrid.gamelogic.yourTurn = true;
-					serverGrid.gamelogic.enemyTurn = false;
+					
 					
 					serverGrid.updateGrid();
 					serverGrid.enableButtons();
@@ -90,14 +92,12 @@ public static void send2client() {
 	
 	try {
 		
-		
+		serverGrid.gamelogic.yourTurn = false;
+		serverGrid.gamelogic.enemyTurn = true;
 		
 		ObjectOutputStream myoutput = new ObjectOutputStream(client_socket.getOutputStream());
 
 		myoutput.writeObject(serverGrid.gamefield);
-		
-		serverGrid.gamelogic.yourTurn = false;
-		serverGrid.gamelogic.enemyTurn = true;
 		serverGrid.disableButtons();
 		serverGrid.fillInfoPanel();
 		

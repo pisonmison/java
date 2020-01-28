@@ -20,7 +20,7 @@ public class Endscreen {
 	 
 	 if(GameRules.draw) {
 		 	
-		 	//for loading images the same code sample as in "GridTest" is used here
+		 	//for loading the images the same code sample as in "GridTest" is used
 		 	JLabel label = new JLabel("");
 		    Image img = new ImageIcon(this.getClass().getResource("/drawResized.png")).getImage();
 		    label.setIcon(new ImageIcon(img));
