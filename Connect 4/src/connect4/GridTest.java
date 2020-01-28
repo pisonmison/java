@@ -32,7 +32,7 @@ public final  class GridTest extends JFrame implements ActionListener {
 	
 	private JButton arrow1,arrow2,arrow3,arrow4,arrow5,arrow6,arrow0;
 	static boolean clientConnected = false;
-	boolean serverConnected = false;
+	static boolean serverConnected = false;
 	protected static GridArray gamefield = new GridArray();
 	
 	GameRules gamelogic = new GameRules();

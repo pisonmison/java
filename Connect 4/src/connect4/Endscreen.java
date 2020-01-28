@@ -9,10 +9,19 @@ public class Endscreen {
 		produceScreen();
 	}
 	
-	
+	String player = "";
 	//produce different endscreens based on actual game state
 	public void produceScreen() {
-	JFrame lastframe = new JFrame();
+	  
+	if(GridTest.clientConnected == true) {
+		player = "SERVER";}
+	else {
+		player  = "CLIENT";
+	}
+	
+		 
+		
+	  JFrame lastframe = new JFrame(player);
 	  lastframe.setSize(640,360);
 	  lastframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 JPanel p1=new JPanel();
