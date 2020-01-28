@@ -40,10 +40,10 @@ public static void gridSpot(){
 	
 	//use gridSpot array as storage, copy gotten array elements into it.
 
-	for (int column=0; column<6; column++) {
-		for (int row=0; row<7; row++){
-			char element = GridTest.gamefield.getArray(column, row);
-			spot[column][row]= element;
+	for (int row=0; row<6; row++) {
+		for (int column=0; column<7; column++){
+			char element = GridTest.gamefield.getArray(row, column);
+			spot[row][column]= element;
     	}
      }
 }
@@ -90,47 +90,43 @@ public static  void  winCheck() {
 	
 }
 
-/* IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * in the following context of code columns = rows and rows = columns. Basically the opposite, the code works as intended tho.
- */
-
 
 //check for a wining row for yellow color
 public static void checkYellow() {
 	gridSpot(); //update gridSpot array. 
 	
 	
-		//Horizonal fuer gelb
-        for (int column= 0; column<6; column++){
-        	for (int row=0; row<4; row++) {
+		//horizontal
+        for (int row= 0; row<6; row++){
+        	for (int column=0; column<4; column++) {
         	
-        	if (	spot[column][row] == 'X' 
-        			&& spot[column][row+1] == 'X'
-        			&& spot[column][row+2] == 'X'
-        			&& spot[column][row+3] == 'X') {
+        	if (	spot[row][column] == 'X' 
+        			&& spot[row][column+1] == 'X'
+        			&& spot[row][column+2] == 'X'
+        			&& spot[row][column+3] == 'X') {
         					check=true;
         			  }
         			 }
         		  }
           //vertical
-  for  (int column=0; column <3; column++) {
-	  for (int row=0; row<7; row++) {
-		  if( spot [column][row] == 'X'
-			    && spot[column+1][row] == 'X'
-        		&& spot[column+2][row] == 'X'
-        		&& spot[column+3][row] == 'X') {
+  for  (int row=0; row <3; row++) {
+	  for (int column=0; column<7; column++) {
+		  if( spot [row][column] == 'X'
+			    && spot[row+1][column] == 'X'
+        		&& spot[row+2][column] == 'X'
+        		&& spot[row+3][column] == 'X') {
 			  		check=true;
 		  }
 	  }
 	  
   }  
   //diagonal up
-  for  (int column=0; column <3; column++) {
-	  for (int row=0; row<4; row++) {
-		  if( spot [column][row] == 'X'
-			    && spot[column+1][row + 1] == 'X'
-        		&& spot[column+2][row + 2] == 'X'
-        		&& spot[column+3][row + 3] == 'X') {
+  for  (int row=0; row <3; row++) {
+	  for (int column=0; column<4; column++) {
+		  if( spot [row][column] == 'X'
+			    && spot[row+1][column + 1] == 'X'
+        		&& spot[row+2][column + 2] == 'X'
+        		&& spot[row+3][column + 3] == 'X') {
 			  		check=true;
 			  	}
 		  
@@ -139,14 +135,14 @@ public static void checkYellow() {
 
   //diagonal down
   
-  for  (int column=0; column <6; column++) {
-	  for (int row=0; row<4; row++) {
-		  if( spot [column][row] == 'X') {
+  for  (int row=0; row <6; row++) {
+	  for (int column=0; column<4; column++) {
+		  if( spot [row][column] == 'X') {
 			  if(column> 2
 		  
-			    && spot[column-1][row +1] == 'X'
-        		&& spot[column-2][row +2] == 'X'
-        		&& spot[column-3][row +3] == 'X') {
+			    && spot[row-1][column +1] == 'X'
+        		&& spot[row-2][column +2] == 'X'
+        		&& spot[row-3][column +3] == 'X') {
 			  	check=true;
 		  
 			  }
@@ -163,36 +159,36 @@ public static void checkYellow() {
 		
 		
 			//Horizonal fuer rot
-	        for (int column= 0; column < 6; column++){
-	        	for (int row=0; row<4; row++) {
+	        for (int row= 0; row < 6; row++){
+	        	for (int column=0; column<4; column++) {
 	        	
-	        	if (	spot[column][row] == '0' 
-	        			&& spot[column][row+1] == '0'
-	        			&& spot[column][row+2] == '0'
-	        			&& spot[column][row+3] == '0') {
+	        	if (	spot[row][column] == '0' 
+	        			&& spot[row][column+1] == '0'
+	        			&& spot[row][column+2] == '0'
+	        			&& spot[row][column+3] == '0') {
 	        					check=true;
 	        			        }
 	        			   }
 	        		  }
 	          //vertical
-	  for  (int column=0; column <3; column++) {
-		  for (int row=0; row<7; row++) {
-			  if( spot [column][row] == '0'
-				    && spot[column+1][row] == '0'
-	        		&& spot[column+2][row] == '0'
-	        		&& spot[column+3][row] == '0') {
+	  for  (int row=0; row <3; row++) {
+		  for (int column=0; column<7; column++) {
+			  if( spot [row][column] == '0'
+				    && spot[row+1][column] == '0'
+	        		&& spot[row+2][column] == '0'
+	        		&& spot[row+3][column] == '0') {
 				  		check=true;
 			  }
 		  }
 		  
 	  }  
 	  //diagonal left up
-	 for  (int column=0; column <3; column++) {
-		  for (int row=0; row<4; row++) {
-			  if( spot [column][row] == '0'
-				    && spot[column+1][row + 1] == '0'
-	        		&& spot[column+2][row + 2] == '0'
-	        		&& spot[column+3][row + 3] == '0') {
+	 for  (int row=0; row <3; row++) {
+		  for (int column=0; column<4; column++) {
+			  if( spot [row][column] == '0'
+				    && spot[row+1][column + 1] == '0'
+	        		&& spot[row+2][column + 2] == '0'
+	        		&& spot[row+3][column + 3] == '0') {
 				  		check=true;
 			  }
 		  }
@@ -200,14 +196,14 @@ public static void checkYellow() {
 	  }
 	 
 	  //diagonal right up
-	 for  (int column=0; column <6; column++) {
-		  for (int row=0; row<4; row++) {
-			  if( spot [column][row] == '0') {
+	 for  (int row=0; row <6; row++) {
+		  for (int column=0; column<4; column++) {
+			  if( spot [row][column] == '0') {
 				  if(column > 2
 			  
-				    && spot[column -1][row +1] == '0'
-	        		&& spot[column -2][row +2] == '0'
-	        		&& spot[column -3][row +3] == '0') {
+				    && spot[row -1][column +1] == '0'
+	        		&& spot[row -2][column +2] == '0'
+	        		&& spot[row -3][column +3] == '0') {
 				  	check=true;
 			  
 				  }
