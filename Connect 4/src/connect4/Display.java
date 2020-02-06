@@ -59,8 +59,8 @@ public class Display extends JFrame{
 		  		break;
 		  	case JOptionPane.NO_OPTION:
 		  		connectToClient = true;
-		  		Client2 client = new Client2();
-		  		//createConnectWindow();
+		  		//Client2 client = new Client2();
+		  		createConnectWindow();
 		  		
 		  		break;
 		  	default:
@@ -72,8 +72,7 @@ public class Display extends JFrame{
 	 
 	  
 	   
-	   
-	  //action method which calls when button to which the ActionListened is bound to, is pressed
+	 
 	  
 	 
 	  

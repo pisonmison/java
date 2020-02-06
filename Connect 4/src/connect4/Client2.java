@@ -79,7 +79,7 @@ void init() {
 }
 }
 //wait for incoming data from server
-// if data is sent, client updates istself and checks the grid.
+// if data is sent, client updates itself and checks the grid.
 public void receive() {
 
 	try {
